@@ -1,2 +1,2 @@
-wymonorion
+WymonOrion project
 ==========

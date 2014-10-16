@@ -1,2 +1,9 @@
+# Ignore all the temporary and backup files.
 *~
+*.swp
+# Ignore libs.
 *.[oa]
+*.lib
+# Ignore the doxygen documentation files.
+/doc
+error_log.txt

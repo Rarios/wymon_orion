@@ -52,5 +52,5 @@ endif()
 
 # Create excecutable.
 set(EXECUTABLE_NAME "${PROJECT_NAME}")
-add_executable(${EXECUTABLE_NAME} "${ANIM_SRC_DIR}/main.cpp") 
+add_executable(${EXECUTABLE_NAME} "${WO_SRC_DIR}/main.cpp") 
 target_link_libraries(${EXECUTABLE_NAME} ${GRAPHICS_LIB_NAME} ${UTILS_LIB_NAME})

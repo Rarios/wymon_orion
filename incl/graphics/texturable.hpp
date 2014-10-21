@@ -99,7 +99,6 @@ protected :
 	*/
     virtual void updateTexCoords() = 0;
 
-#endif
 	void appl_displ_rect(const sf::IntRect& displ_rect);
 
 	//! Draw the sprite to a render target.
@@ -131,4 +130,4 @@ protected :
 
 };
 
-#endif
+#endif // _TEXTURABLE_

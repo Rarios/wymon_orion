@@ -2,8 +2,6 @@
 
 #include "Time_string.hpp"
 
-START_GG
-
 // Member variables
 
 //! Calender time variable.
@@ -230,5 +228,3 @@ std::string Time_string::asc_date(std::chrono::time_point<std::chrono::system_cl
 	return (m_str_buff.assign(std::asctime(m_time_info))) ;
 	
 }
-
-END_GG

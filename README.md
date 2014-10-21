@@ -14,6 +14,9 @@ It is hard to define what the main purpose or the main functionality of the appl
 
 # Building
 
+**IMPORTANT**:
+Read the issue page first, because this section is no longer up-to-date!
+
 Note that right now the application won't compile, because some code snippets consist of legacy code and have to be adjusted for the new implementations of the utilized libraries. However, the libs themselves should compile without major issues, provided that the **SFML** is installed on the computer. You simply have to remove the code from the _CMakeLists.txt_ file that gives the instructions to build the executable and only leave the code for the libraries if you want to try it out. All include files can be found in the _incl/graphics_ directory.
 The recommended way to build the project is to go into the _build_ directory and execute the following commands (on a Linux-like system):
 

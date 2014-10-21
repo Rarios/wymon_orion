@@ -7,3 +7,7 @@
 # Ignore the doxygen documentation files.
 /doc
 error_log.txt
+# Ignore all test builds.
+/test_build
+# Ignore CMakeLists file which is used to build test executables.
+CMakeLists.txt

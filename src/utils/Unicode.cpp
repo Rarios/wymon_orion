@@ -136,7 +136,7 @@ bool Unicode::is_newline(const key &letter) {
 		return(letter == carriage_return) ;
 	#else
 		// Other OSes, like Unix based.
-		return(letter == lineFeed) ;
+		return(letter == line_feed) ;
 	#endif
 	
 }

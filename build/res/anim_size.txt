@@ -1,3 +1,4 @@
+--wymon.png--
 width_first=106
 width_second=108
 height=96px

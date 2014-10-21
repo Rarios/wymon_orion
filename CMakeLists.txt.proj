@@ -1,0 +1,87 @@
+# WymonOrion custom project make file generation.
+# This CMakeLists file is made for the user to customize. It will build the
+# "graphics" and the "utils" lib and the user can also add his own files to
+# create a custom application.
+#
+# Usage instructions:
+# To customize this file, go to the places where the line starts with "#!"
+# (simply search through the file) and follow the code specific customizing
+# instructions. The instructions are always placed below the lines with the
+# "#!" mark. To activate the code, remove the "#!" marks. Note that the
+# code will only work properly if you have done this with all "#!" marks.
+# In order to activate the file after you are done, remove the ".proj" at 
+# the end.
+cmake_minimum_required(VERSION 2.6)
+#! project(cust_exec_name)
+# In the line above, replace "cust_exec_name" with the name of your
+# application.
+
+# Set directories for include and source.
+#! set(EXEC_INCL_DIR ${CMAKE_CURRENT_LIST_DIR}/incl)
+# Replace the second argument within the brackets with the the include
+# directory of your project (dir in which all header files are).
+#! set(EXEC_SRC_DIR ${CMAKE_CURRENT_LIST_DIR}/src)
+# Replace the second argument within the brackets with the the source 
+# directory of your project (dir in which all source files are).
+set(WO_GRAPHICS_INCL_DIR ${EXEC_INCL_DIR}/graphics)
+set(WO_GRAPHICS_SRC_DIR ${EXEC_SRC_DIR}/graphics)
+set(WO_UTILS_INCL_DIR ${EXEC_INCL_DIR}/utils)
+set(WO_UTILS_SRC_DIR ${EXEC_SRC_DIR}/utils)
+
+# Enable debug symbols by default.
+if(CMAKE_BUILD_TYPE STREQUAL "")
+	set(CMAKE_BUILD_TYPE Debug)
+endif()
+# (you can also set it on the command line; -D CMAKE_BUILD_TYPE=Release)
+
+# Set compiler flags.
+#! set(GCC_COMPILER_FLAGS "-std=c++11")
+#! set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GCC_COMPILER_FLAGS}")
+# NOTE: The above two lines of code assume that you are using GCC to build
+# the binaries. If that is not the case, please look up the proper way to tell
+# your compiler, that the latest C++11 standard has to be used.
+# If your compiler doesn't support C++11, well, a mono TV? (use another
+# compiler ;P). However, if you are using GCC, just remove the "#!" mark at the
+# beginning of the two above lines.
+
+# Set include directories.
+include_directories(${EXEC_INCL_DIR})
+include_directories(${WO_GRAPHICS_INCL_DIR})
+include_directories(${WO_UTILS_INCL_DIR})
+
+# Create lib for all items related to graphics.
+set(WO_GRAPHICS_LIB "wo_graphics")
+add_library(${WO_GRAPHICS_LIB}
+	    ${WO_GRAPHICS_SRC_DIR}/animation.cpp 
+	    ${WO_GRAPHICS_SRC_DIR}/frame_repos.cpp
+	    ${WO_GRAPHICS_SRC_DIR}/sprite.cpp
+	    ${WO_GRAPHICS_SRC_DIR}/text.cpp
+	    ${WO_GRAPHICS_SRC_DIR}/texturable.cpp
+	    ${WO_GRAPHICS_SRC_DIR}/texture_repos.cpp)
+
+# Create lib for all items related to general utilities.
+set(WO_UTILS_LIB "wo_utils")
+add_library(${WO_UTILS_LIB}
+	    ${WO_UTILS_SRC_DIR}/Unicode.cpp 
+	    ${WO_UTILS_SRC_DIR}/Time_string.cpp)
+
+# Detect and add SFML
+set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake_mod ${CMAKE_MODULE_PATH})
+# Find any version 2.X of SFML.
+# See the FindSFML.cmake file for additional details and instructions.
+find_package(SFML 2 REQUIRED system window graphics)
+if(SFML_FOUND)
+	include_directories(${SFML_INCLUDE_DIR})
+	target_link_libraries(${WO_GRAPHICS_LIB} ${SFML_LIBRARIES})
+endif()
+
+# Create excecutable with custom source files.
+set(CUST_EXEC "${PROJECT_NAME}")
+#! add_executable(${CUST_EXEC})
+# Add all the source files you have created for your project after the already
+# existing argument in the brackets above. Note that you have to use the
+# appropritate path, normally, if well configured, it should suffice to do the
+# following:
+# ${EXEC_SRC_DIR}/my_source.cpp
+# Seperate all arguments by a space.
+target_link_libraries(${CUST_EXEC} ${WO_GRAPHICS_LIB} ${WO_UTILS_LIB})

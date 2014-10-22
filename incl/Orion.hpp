@@ -6,29 +6,27 @@
 #define _ORION_
 
 #ifndef SFML_GRAPHICS_HPP
-	#include <SFML/Graphics.hpp>
+#include <SFML/Graphics.hpp>
 #endif
 #ifndef _SPRITE_ // <cstdlib>; <string>; <iostream>; "debug.hpp"; "namespace.hpp"; "initVal.hpp"
-	#include "sprite.hpp"
+#include "sprite.hpp"
 #endif
 #ifndef TEXT_HPP
-	#include "text.hpp"
+#include "text.hpp"
 #endif
 #ifndef _TEXTFIELD_
-	#include "Textfield.hpp"
+#include "Textfield.hpp"
 #endif
 #ifndef _ANIMATION_
-	#include "animation.hpp"
+#include "animation.hpp"
 #endif
 #ifndef _WINDOW_
-	#include "Window.hpp"
+#include "Window.hpp"
 #endif
 #ifndef _Time_string_
-	#include "Time_string.hpp"
+#include "Time_string.hpp"
 #endif
 #include <iostream>
-
-START_GG
 
 // Orion //
 // Orion is the name of the m_wymon "Terminal". It's a program
@@ -84,7 +82,5 @@ private :
 	void setObjectPos( void ) ;
 
 } ;
-
-END_GG
 
 #endif

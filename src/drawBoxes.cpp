@@ -1,10 +1,10 @@
 // Textfield - drawBoxes.cpp
 
 #ifndef _TEXTFIELD_
-	#include "Textfield.hpp"
+#include "Textfield.hpp"
 #endif
 
-void gg::Textfield::drawBoxes(sf::Vector2u renderSize) {
+void Textfield::drawBoxes(sf::Vector2u renderSize) {
 
 	unsigned int a = 10 ; // Space between outer and text box
 	unsigned int b = 5 ; // Space between bottom text and bottom outer box

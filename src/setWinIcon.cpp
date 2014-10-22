@@ -1,10 +1,8 @@
 // Window - setWinIcon.cpp
 
-
 #ifndef _WINDOW_
-	#include "Window.hpp"
+#include "Window.hpp"
 #endif
-
 
 const std::size_t MAX_ICON_SIZE = 32 ; // Max. exceptable size of an icon
 
@@ -14,31 +12,30 @@ const std::size_t MAX_ICON_SIZE = 32 ; // Max. exceptable size of an icon
 // Returns true if everything was succesful.
 // Error is returned either if file wasn't loaded
 // of the size of the image extends MAX_ICON_SIZE.
+bool Window::setWinIcon ( const std::string& Filename ) {
 
-bool gg::Window::setWinIcon ( const std::string& Filename ) {
-
-	if ( !( mWinIcon.loadFromFile ( Filename ) ) ) {
+	if (!(mWinIcon.loadFromFile(Filename))) {
 	
 		debug ( std::cout << __FILE__ << "!# Couldn't load Icon" << std::endl ) ;
 
 		// Loading operation failed
 
-		return ( false ) ;
+		return false;
 	
 	}
 
-	sf::Vector2u IconSize = mWinIcon.getSize () ;
+	sf::Vector2u IconSize = mWinIcon.getSize() ;
 
 	if ( IconSize.x > MAX_ICON_SIZE || IconSize.y > MAX_ICON_SIZE ) {
 	
 		debug ( std::cout << __FILE__ << "!# Icon size too big" << std::endl ) ;
 
-		return ( false ) ;
+		return false;
 	
 	}
 
-	this->setIcon ( IconSize.x , IconSize.y , mWinIcon.getPixelsPtr () ) ;
+	this->setIcon(IconSize.x, IconSize.y, mWinIcon.getPixelsPtr()) ;
 
-	return ( true ) ;
+	return true;
 
 } // setWinIcon

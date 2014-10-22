@@ -2,7 +2,7 @@
 
 #include "Textfield.hpp"
 
-void gg::Textfield::draw( sf::RenderTarget& target , sf::RenderStates states ) const {
+void Textfield::draw( sf::RenderTarget& target , sf::RenderStates states ) const {
 
 	target.draw(m_outerBox , states) ;
 	target.draw( m_textBox , states ) ;

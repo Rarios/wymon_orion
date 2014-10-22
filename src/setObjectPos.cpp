@@ -1,23 +1,21 @@
 // Orion - initObjectPos.cpp
 
-
 #ifndef _ORION_
-	#include "Orion.hpp"
+#include "Orion.hpp"
 #endif
-
 
 // setObjectPos
 // Sets the position of all objects on the screen
 
-void gg::Orion::setObjectPos( void ) {
+void Orion::setObjectPos( void ) {
 
 	// Size vars for calculations
 
-	sf::Vector2u renderSize = m_win.getSize () ; // Size of the render region of the window (excluding borders, etc.)
-	sf::Vector2f wymonSize = m_wymon.max_obj_size() ;
+	sf::Vector2u renderSize = m_win.getSize(); // Size of the render region of the window (excluding borders, etc.)
+	sf::Vector2f wymonSize = m_wymon.max_obj_size();
 	sf::Vector2f timerSize = m_timerText.size();
 	sf::Vector2f dateSize = m_dateText.size();
-	sf::Vector2f textfieldSize = m_textfield.size() ;
+	sf::Vector2f textfieldSize = m_textfield.size();
 
 	float a = 20.0f ;
 	float b = static_cast<float>( renderSize.y ) / 10.0f ;
@@ -72,9 +70,9 @@ void gg::Orion::setObjectPos( void ) {
 
 	// Set all positions
 
-	m_wymon.setPos( wymonPos ) ;
-	m_timerText.setPos( timerPos ) ;
-	m_dateText.setPos( datePos ) ;
+	m_wymon.setPosition( wymonPos ) ;
+	m_timerText.setPosition( timerPos ) ;
+	m_dateText.setPosition( datePos ) ;
 	m_textfield.setPos(textfieldPos) ;
 
 }

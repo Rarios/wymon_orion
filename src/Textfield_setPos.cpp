@@ -1,11 +1,15 @@
 // Textfield - setPos.cpp
 
 #include "Textfield.hpp"
+#ifndef _DEBUG_
+#include "debug.hpp"
+#endif
+#include <iostream>
 
 // setPos
 // Takes the position of the outermost box
 // and calculates the position of all other objects
-void gg::Textfield::setPos(const sf::Vector2f& pos) {
+void Textfield::setPos(const sf::Vector2f& pos) {
 
 	// Center text box relative to outer box (which itself is centered relative to the window
 	m_outerBox.setPosition(pos) ; // pos equals the position of the outermost object of textfield
@@ -56,21 +60,21 @@ void gg::Textfield::setPos(const sf::Vector2f& pos) {
 
 	// Set all positions
 	m_textBox.setPosition(posTextBox) ;
-	m_curText.setPos(posText) ;
+	m_curText.setPosition(posText) ;
 	setPosWritten() ;
 
 }
 
 // setm_posWritten
 // Set the position of the written text
-void gg::Textfield::setPosWritten(void) {
+void Textfield::setPosWritten(void) {
 
 	for(std::size_t it = 0 ; it < m_textPtrList.size() ; ++ it) {
 	
-		m_textPtrList[it]->setPos(m_posWritten[it]) ;
+		m_textPtrList[it]->setPosition(m_posWritten[it]) ;
 
 		debug(std::cout << "Vector2f with position: " << m_posWritten[it].x << ", " << m_posWritten[it].y << std::endl) ;
-		debug(std::cout << "Position of text objects after setting: " << m_textPtrList[it]->getPos().x << ", " << m_textPtrList[it]->getPos().y << std::endl) ;
+		debug(std::cout << "Position of text objects after setting: " << m_textPtrList[it]->getPosition().x << ", " << m_textPtrList[it]->getPosition().y << std::endl) ;
 	
 	}
 

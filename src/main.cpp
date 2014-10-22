@@ -1,39 +1,32 @@
 // Ranom
 // main.cpp
 
-
-#ifndef _IOSTREAM_
-	#include <iostream>
-#endif
-#ifndef _CSTDLIB_
-	#include <cstdlib>
-#endif
+#include <iostream>
+#include <cstdlib>
 #ifndef _ORION_
-	#include "Orion.hpp"
+#include "Orion.hpp"
 #endif
 #ifndef _DEBUG_
-	#include "debug.hpp"
+#include "debug.hpp"
 #endif
 
 
 signed int main ( void ) {
 
 	// Create Window
-
-	gg::Orion Win ( sf::VideoMode ( 600 , 450 ) , "Ranom - Orion - indev 0.2.0" ) ;
+	Orion Win(sf::VideoMode ( 600 , 450 ), "WymonOrion - angad 0.0.0" ) ;
 
 	// Create Icon
-
-	if ( !(Win.setWinIcon ( "resources/wymonIcon.png" ) ) ) {
+	if (!(Win.setWinIcon("res/wymonIcon.png"))) {
 	
 		debug ( std::cout << __FILE__ << "#! Couldn't load icon" << std::endl ) ;
 		debug ( std::cin.get () ) ;
-		return ( EXIT_FAILURE ) ;
+		return EXIT_FAILURE;
 	
 	}
 
-	Win.run () ;
+	Win.run();
 
-	return ( EXIT_SUCCESS ) ;
+	return EXIT_SUCCESS;
 
 }

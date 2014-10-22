@@ -1,10 +1,10 @@
 // Window - processEvents.cpp
 
 #ifndef _ORION_
-	#include "Orion.hpp"
+#include "Orion.hpp"
 #endif
 
-void gg::Orion::processEvents ( void ) {
+void Orion::processEvents ( void ) {
 
 	sf::Event Events ; // Event structure
 

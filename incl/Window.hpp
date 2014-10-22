@@ -5,23 +5,13 @@
 #ifndef _WINDOW_
 #define _WINDOW_
 
-#ifndef SFML_GRAPHICS_HPP
-	#include <SFML/Graphics.hpp>
-#endif
-#ifndef _CSTDLIB_
-	#include <cstdlib>
-#endif
-#ifndef _STRING_
-	#include <string>
-#endif
-#ifndef _IOSTREAM_
-	#include <iostream>
-#endif
+#include <SFML/Graphics.hpp>
+#include <cstdlib>
+#include <string>
+#include <iostream>
 #ifndef _DEBUG_ // "namespace.hpp"
-	#include "debug.hpp"
+#include "debug.hpp"
 #endif
-
-START_GG
 
 // Window //
 // Window is a class derived from the "sf::RenderWindow". Thus, it is a rendering target for
@@ -72,7 +62,5 @@ public :
 	bool setWinIcon ( const std::string& Filename ) ;
 
 } ; // Window
-
-END_GG
 
 #endif

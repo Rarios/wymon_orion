@@ -4,6 +4,7 @@
 #ifndef _TEXTFIELD_
 #define _TEXTFIELD_
 
+#include <SFML/Graphics.hpp>
 #ifndef _TEXT_
 #include "text.hpp" // <SFML/Grafics.hpp>; <iostream>; "debug.hpp"; "namespace.hpp"
 #endif
@@ -22,8 +23,6 @@
 #ifndef _UNICODE_
 #include "Unicode.hpp"
 #endif
-
-START_GG
 
 const std::size_t defaultLimit = 4 ;
 
@@ -62,7 +61,13 @@ public :
 
 	void setPos(const sf::Vector2f& pos) ;
 
+	//static sf::Font init_font(const std::string& font_name);
+
 private :
+	
+	// Member variables.
+
+	sf::Font m_font;
 
 	text sizeTextIndic ; // Size indicator for text objects
 
@@ -72,7 +77,7 @@ private :
 
 	std::vector<text> m_textArray ; // Array which stores the actual text elements
 
-	std::vector<std::shared_ptr<Text>> m_textPtrList ; // List for accessing different text objects in the array (better performance)
+	std::vector<std::shared_ptr<text>> m_textPtrList ; // List for accessing different text objects in the array (better performance)
 
 	sf::String m_string ; // Holds current text (the text which is not entered, but already written)
 
@@ -97,7 +102,5 @@ private :
 	void setPosWritten() ;
 
 } ;
-
-END_GG
 
 #endif

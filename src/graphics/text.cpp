@@ -35,7 +35,7 @@
 * Creates an empty text.
 */
 text::text() : m_str(), m_font(nullptr), m_char_size(30), m_style(reg),
-m_color(255, 255, 255), m_vertices(sf::Quads), m_bound() {
+m_color(sf::Color::Black), m_vertices(sf::Quads), m_bound() {
 }
 
 //! Text member constructor.
@@ -43,14 +43,26 @@ m_color(255, 255, 255), m_vertices(sf::Quads), m_bound() {
 * Constructs the text object with a string, a font and a character size.
 * \param string String holding characters which are drawn on the screen.
 * \param font Font which is used to draw the string.
+* \param color Color used to draw the string.
 * \param char_size Character size for drawing, in pixel.
 */
-text::text(const sf::String& str, const sf::Font& font, unsigned int char_size) :
+text::text(const sf::String& str, const sf::Font& font, const sf::Color& color,
+		   unsigned int char_size) :
 m_str(str), m_font(&font), m_char_size(char_size), 
-m_style(reg), m_color(255, 255, 255), m_vertices(sf::Quads), m_bound() {
+m_style(reg), m_color(color), m_vertices(sf::Quads), m_bound() {
 
     updt_geom();
 
+}
+
+//! Text copy constructor.
+/*!
+* Constructs the text object from another one.
+* \param other Other text object from which this one is constructed.
+*/
+text::text(const text& other) : m_str(other.str()), m_font(other.font()),
+m_char_size(other.char_size()), m_style(other.style()), m_color(other.color()),
+m_vertices(sf::Quads), m_bound() {
 }
 
 //! Default destructor.

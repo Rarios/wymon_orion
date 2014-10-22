@@ -294,16 +294,31 @@ sf::Vector2f text::find_char_pos(std::size_t index) const {
 
 }
 
-//! Get visual size.
+//! Get local size of the object.
 /*!
-* Get the visual size of the text rendered on the screen. This size is a result
-* of character size, style, etc.
+* Get the local size of the text. This is a convenience function for
+* loc_bound().
 * \return Visual size of text.
 */
-sf::Vector2f text::size() const {
+sf::Vector2f text::obj_size() const {
 
     // Bounds of text without transformations.
     auto bound = loc_bound();
+
+    return sf::Vector2f(bound.width, bound.height);
+
+}
+
+//! Get global size of the object.
+/*!
+* This returns the global size of the text. It is a conveniece function for
+* glob_bound(), so that only the size can be requested.
+* \return global size of the object
+*/
+sf::Vector2f text::size() const {
+
+    // Bounds of text with transformations.
+    auto bound = glob_bound();
 
     return sf::Vector2f(bound.width, bound.height);
 

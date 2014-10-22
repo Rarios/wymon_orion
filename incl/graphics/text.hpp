@@ -104,6 +104,7 @@ public:
 
     sf::Vector2f find_char_pos(std::size_t index) const;
 
+	sf::Vector2f obj_size() const;
     sf::Vector2f size() const;
     sf::FloatRect loc_bound() const;
     sf::FloatRect glob_bound() const;

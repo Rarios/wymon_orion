@@ -45,17 +45,17 @@
 
 void font_del(const sf::Font* font_ptr) {
 
-	std::cout << "Calling the font pointer deleter function." << std::endl;
+	//std::cout << "Calling the font pointer deleter function." << std::endl;
 
 	if (font_ptr) {
 	
-		std::cout << "Font pointer is already nullptr." << std::endl;
+		//std::cout << "Font pointer is already nullptr." << std::endl;
 		return;
 	
 	}
 
 	delete font_ptr;
-	std::cout << "Deleted the font pointer." << std::endl;
+	//std::cout << "Deleted the font pointer." << std::endl;
 
 }
 
@@ -66,6 +66,9 @@ void font_del(const sf::Font* font_ptr) {
 text::text() : m_str(), m_font(nullptr, &font_del), 
 m_char_size(30), m_style(reg), m_color(sf::Color::Black), 
 m_vertices(sf::Quads), m_bound() {
+
+	updt_geom();
+
 }
 
 //! Text member constructor.
@@ -94,6 +97,9 @@ text::text(const text& other) : m_str(other.str()),
 m_font(other.font(), &font_del), m_char_size(other.char_size()), 
 m_style(other.style()), m_color(other.color()),
 m_vertices(sf::Quads), m_bound() {
+		
+	updt_geom();
+
 }
 
 //! Default destructor.
@@ -362,7 +368,7 @@ sf::Vector2f text::size() const {
 * \return Local bounding rectangle of the object.
 */
 sf::FloatRect text::loc_bound() const {
-
+	
     return m_bound;
 
 }
@@ -391,7 +397,6 @@ void text::draw(sf::RenderTarget& targt, sf::RenderStates stat) const {
     if (nullptr != m_font) {
 
         stat.transform *= getTransform();
-		std::cout << "Current character size: " << m_char_size << std::endl;
         stat.texture = &m_font->getTexture(m_char_size);
         targt.draw(m_vertices, stat);
 

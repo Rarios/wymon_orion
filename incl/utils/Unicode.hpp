@@ -8,7 +8,7 @@
 #endif
 
 //! Typedef for more code readability
-typedef std::size_t key  ;
+typedef std::size_t key;
 
 //! Unicode handling class
 /*!

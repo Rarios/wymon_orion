@@ -21,8 +21,6 @@ signed int main ( void ) {
 	
 	}
 
-	std::cout << "Nothing half way main" << std::endl;
-
 	Win.run();
 
 	return EXIT_SUCCESS;

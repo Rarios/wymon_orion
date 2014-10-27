@@ -9,10 +9,9 @@
 */
 Textfield::Textfield(const sf::Font* font) :
 m_font(),
-m_size_indic("W", font, sf::Color::Black, 16),
 m_lim(default_lim),
-m_cur_text(std::string(""), font, sf::Color::Black, 16), 
-m_texts{m_lim, text(std::string(""), font, sf::Color::Black, 16)},
+m_cur_text(std::string(""), nullptr, sf::Color::Black, default_char_size), 
+m_texts(m_lim, text(std::string(""), nullptr, sf::Color::Black, default_char_size)),
 m_outer_box(), m_text_box(), 
 m_submit_pos(),  
 m_line_spacing(2.0f),
@@ -20,10 +19,10 @@ m_text_height{} {
 
 	m_font = font;
 
+	m_cur_text.font(m_font);
 	m_cur_text.setPosition(sf::Vector2f(100.f , 100.f));
 	
-	// Height of the text + 2x line spacing (top and bottom).
-	m_text_height = m_size_indic.obj_size().y + 2 * m_line_spacing;
+	m_text_height = static_cast<float>(2 * m_line_spacing + default_char_size);
 
 }
 
@@ -87,11 +86,9 @@ void Textfield::submit_pos(void) {
 void Textfield::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 
 	target.draw(m_outer_box, states);
-	target.draw( m_text_box, states);
+	target.draw(m_text_box, states);
 	// Unsubmitted text.
 	target.draw(m_cur_text, states);
-
-	std::cout << "Nothing half way Textfield::draw" << std::endl;
 
 	// Draw all the submitted texts.
 	for(const auto& text : m_texts) {
@@ -122,7 +119,7 @@ void Textfield::put_char(const sf::Uint32& character) {
 
 		// Text is submitted, store it inside the submitted text array and
 		// clear the content from the buffer and current text.
-		m_text_buff += '\n';
+		m_text_buff += character;
 		store_text(m_text_buff);
 
 		m_text_buff.clear();

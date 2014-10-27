@@ -205,6 +205,15 @@ void Orion::run() {
 	// Clear the window in case something is already in there.
 	m_win.clear(); 
 
+	// Font.
+	if (!m_font.loadFromFile("res/NotoSerif-Regular.ttf")) {
+	
+		std::cerr << "Could not load Noto font\n";
+		std::cin.get();
+		return;
+	
+	}
+
 	// Background.
 	if (!m_background.load("res/background.jpg")) {
 	
@@ -214,8 +223,6 @@ void Orion::run() {
 	
 	}
 	m_win.draw(m_background);
-
-	std::cout << "Nothing quarter way Orion::run" << std::endl;
 
 	// m_wymon
 	if (!m_wymon.load("res/wymon.png", sf::IntRect(0, 0, 108, 96))) {
@@ -229,24 +236,10 @@ void Orion::run() {
 	m_wymon.insert(frame(107, 0, 108, 96));
 	m_win.draw(m_wymon);
 
-	std::cout << "Nothing after creating animation in Orion::run" << std::endl;
-
 	// Textfield
 	m_textfield.draw_box(sf::Vector2u(m_win.getSize().x , m_win.getSize().y));
-	std::cout << "Nothing after Textfield::drawBoxes in Orion::run" << std::endl;
-	m_win.draw(m_textfield) ;
-
-	std::cout << "Nothing half way Orion::run" << std::endl;
-
-	// Font.
-	if (!m_font.loadFromFile("res/NotoSerif-Regular.ttf")) {
+	m_win.draw(m_textfield);
 	
-		std::cerr << "Could not load Noto font\n";
-		std::cin.get();
-		return;
-	
-	}
-
 	// Date.
 	m_date_text.str(m_time_str.time_str(Time_string::DATE));
 	m_date_text.font(&m_font);

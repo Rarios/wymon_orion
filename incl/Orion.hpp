@@ -57,6 +57,8 @@ private :
 
 	//! Font used for all text inside the window.
 	sf::Font m_font;
+	//! Path to the font used in this class.
+	std::string m_fontname;
 
 	//! Text displaying the current time.
 	text m_time_text;

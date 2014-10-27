@@ -6,7 +6,7 @@
 
 #include <SFML/Graphics.hpp>
 #ifndef _TEXT_
-#include "text.hpp" // <SFML/Grafics.hpp>; <iostream>; "debug.hpp"; "namespace.hpp"
+#include "text.hpp"
 #endif
 #ifndef _SPRITE_
 #include "sprite.hpp"
@@ -17,10 +17,12 @@
 #ifndef _UNICODE_
 #include "Unicode.hpp"
 #endif
+#include <string>
 #include <list>
 #include <array>
 
 const std::size_t default_lim = 4;
+const std::size_t default_char_size = 16;
 
 const sf::Color box_bord_color(224, 224, 224 );
 const sf::Color outer_box_color(255, 255, 255, 85);
@@ -39,10 +41,7 @@ private :
 
 	//! Font used for text field.
 	const sf::Font* m_font;
-
-	//! Indicator for how tall the text will be.
-	text m_size_indic;
-
+	
 	//! Limit of stored submitted texts.
 	std::size_t m_lim;
 
@@ -82,6 +81,7 @@ private :
 	// Member functions.
 
 	void store_text(const sf::String& str);
+	void upd_text_height();
 	void submit_pos();
 
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;

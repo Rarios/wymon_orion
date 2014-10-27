@@ -14,7 +14,7 @@
 Orion::Orion(sf::VideoMode mode, const sf::String& title , sf::Uint32 style ,
 			 const sf::ContextSettings& settings) : 
 m_win(mode, title, style, settings), m_win_icon(), m_time_str(), m_background(),
-m_wymon(), m_clock(), m_font(), m_time_text(), m_date_text(), 
+m_wymon(), m_clock(), m_elap_time(), m_font(), m_time_text(), m_date_text(), 
 m_textfield(&m_font) {
 }
 
@@ -120,13 +120,10 @@ void Orion::render() {
 	}
 
 	// Animate m_wymon animation.
-	sf::Time elap_time;
-	elap_time = m_clock.restart();
-	
 	// Update elapsed time and check if limit is reached. If yes, render frame
 	// and restart the clock.
-	elap_time = m_clock.getElapsedTime();
-	if (500.f <= elap_time.asMilliseconds()) {
+	m_elap_time = m_clock.getElapsedTime();
+	if (850.f <= m_elap_time.asMilliseconds()) {
 	
 		m_wymon.render();
 		m_clock.restart();
@@ -224,8 +221,8 @@ void Orion::run() {
 	}
 	m_win.draw(m_background);
 
-	// m_wymon
-	if (!m_wymon.load("res/wymon.png", sf::IntRect(0, 0, 108, 96))) {
+	// Wymon animation.
+	if (!m_wymon.load("res/wymon.png", sf::IntRect(0, 0, 106, 96))) {
 	
 		std::cerr << "Could not load wymon.png\n";
 		std::cin.get();
@@ -256,6 +253,9 @@ void Orion::run() {
 	m_win.display();
 
 	obj_pos();
+
+	// Initialize the elapsed time variable.
+	m_elap_time = m_clock.restart();
 
 	// Main loop.
 	while (m_win.isOpen()) {

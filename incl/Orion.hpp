@@ -54,6 +54,13 @@ private :
 	animation m_wymon;
 	//! Clock for the Animation
 	sf::Clock m_clock;
+	//! Elapsed time since last frame.
+	/*!
+	* This variable stores the time that has been passed since the last time
+	* the animation rendered a frame. If this hits a limit, the animation
+	* should render again.
+	*/
+	sf::Time m_elap_time;
 
 	//! Font used for all text inside the window.
 	sf::Font m_font;

@@ -8,7 +8,7 @@
 #ifndef SFML_GRAPHICS_HPP
 #include <SFML/Graphics.hpp>
 #endif
-#ifndef _SPRITE_ // <cstdlib>; <string>; <iostream>; "debug.hpp"; "namespace.hpp"; "initVal.hpp"
+#ifndef _SPRITE_
 #include "sprite.hpp"
 #endif
 #ifndef TEXT_HPP
@@ -20,9 +20,6 @@
 #ifndef _ANIMATION_
 #include "animation.hpp"
 #endif
-#ifndef _WINDOW_
-#include "Window.hpp"
-#endif
 #ifndef _Time_string_
 #include "Time_string.hpp"
 #endif
@@ -33,53 +30,56 @@
 // desinged to support the user in his daily work. All of the
 // functionalities are combined into this one main class
 
+//! Orion class.
+/*!
+* This class holds the main entry point for the program, as well as all the
+* data needed by the program, such as background, animation, etc.
+*/
 class Orion {
-
-public :
-
-	// Constructor
-	Orion(sf::VideoMode mode , const sf::String& title , sf::Uint32 style = sf::Style::Default ,
-			const sf::ContextSettings& settings = sf::ContextSettings ()) ;
-
-	// Destructor
-	~Orion( void ) {
-	}
-
-	bool setWinIcon(std::string filename) {
-	
-		return(m_win.setWinIcon(filename)) ;
-	
-	}
-
-	void processEvents ( void ) ;
-	void run( void ) ;
-
-	void drawObjects(void) ;
 
 private :
 
-	Window m_win ; // Window; the render target
+	//! Window used as a render target.
+	sf::RenderWindow m_win;
+	//! Window icon.
+	sf::Image m_win_icon;
 
-	Time_string m_timer ; // Main window date/time handling
-	sf::Clock m_clock ; // Main m_clock for animations and smooth movement
+	//! Window time and date string handling.
+	Time_string m_time_str;
 
-	Sprite m_background ;
-	animation m_wymon ;
+	//! Window background.
+	Sprite m_background;
 
-	float m_animFrame ; // Current animation frame of m_wymon
+	//! Wymon animation.
+	animation m_wymon;
+	//! Clock for the Animation
+	sf::Clock m_clock;
 
+	//! Font used for all text inside the window.
 	sf::Font m_font;
 
-	text m_timerText ;
-	std::string m_tempTime ; // Temporary storage for time value
-	text m_dateText ;
-	std::string m_tempDate ; // Temporary storage for date value
+	//! Text displaying the current time.
+	text m_time_text;
+	//! Text displaying the current date.
+	text m_date_text;
 
+	//! Input field for the user.
 	Textfield m_textfield ;
 
-	void render( void ) ;
+	void obj_pos();
+	void render();
 
-	void setObjectPos( void ) ;
+public :
+
+	Orion(sf::VideoMode mode , const sf::String& title , sf::Uint32 style = sf::Style::Default ,
+			const sf::ContextSettings& settings = sf::ContextSettings ());
+	~Orion();
+
+	bool win_icon(const std::string& filename);
+
+	void proc_events();
+	void draw_obj() ;
+	void run();
 
 } ;
 

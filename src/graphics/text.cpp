@@ -26,16 +26,46 @@
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <cassert>
+#include <iostream>
 #include "text.hpp"
 
 // Member functions.
+
+//! Custom deleter for font pointers.
+/*! 
+* This function first test whether or not the font pointer is valid. If it is,
+* it deletes the pointer. If not it returns without doing anything.
+*
+* NOTE: There has been some strange error with the "free()" function involved
+* with the fonts. The solution to this error was to create this custom deleter
+* function. This might not be the best way, so this problem should be review
+* later on again. 
+* \param font_ptr Raw font pointer to delete.
+*/
+
+void font_del(const sf::Font* font_ptr) {
+
+	std::cout << "Calling the font pointer deleter function." << std::endl;
+
+	if (font_ptr) {
+	
+		std::cout << "Font pointer is already nullptr." << std::endl;
+		return;
+	
+	}
+
+	delete font_ptr;
+	std::cout << "Deleted the font pointer." << std::endl;
+
+}
 
 //! Default constructor.
 /*!
 * Creates an empty text.
 */
-text::text() : m_str(), m_font(nullptr), m_char_size(30), m_style(reg),
-m_color(sf::Color::Black), m_vertices(sf::Quads), m_bound() {
+text::text() : m_str(), m_font(nullptr, &font_del), 
+m_char_size(30), m_style(reg), m_color(sf::Color::Black), 
+m_vertices(sf::Quads), m_bound() {
 }
 
 //! Text member constructor.
@@ -46,9 +76,9 @@ m_color(sf::Color::Black), m_vertices(sf::Quads), m_bound() {
 * \param color Color used to draw the string.
 * \param char_size Character size for drawing, in pixel.
 */
-text::text(const sf::String& str, const sf::Font& font, const sf::Color& color,
+text::text(const sf::String& str, const sf::Font* font, const sf::Color& color,
 		   unsigned int char_size) :
-m_str(str), m_font(&font), m_char_size(char_size), 
+m_str(str), m_font(font, &font_del), m_char_size(char_size), 
 m_style(reg), m_color(color), m_vertices(sf::Quads), m_bound() {
 
     updt_geom();
@@ -60,8 +90,9 @@ m_style(reg), m_color(color), m_vertices(sf::Quads), m_bound() {
 * Constructs the text object from another one.
 * \param other Other text object from which this one is constructed.
 */
-text::text(const text& other) : m_str(other.str()), m_font(other.font()),
-m_char_size(other.char_size()), m_style(other.style()), m_color(other.color()),
+text::text(const text& other) : m_str(other.str()), 
+m_font(other.font(), &font_del), m_char_size(other.char_size()), 
+m_style(other.style()), m_color(other.color()),
 m_vertices(sf::Quads), m_bound() {
 }
 
@@ -90,11 +121,11 @@ void text::str(const sf::String& str) {
 * that does not exist anymore, the behaviour is undefined.
 * \param font New font which is used for drawing.
 */
-void text::font(const sf::Font& font) {
+void text::font(const sf::Font* font) {
 
-    if (m_font.get() != &font) {
+    if (m_font.get() != font) {
 
-        m_font = std::make_shared<const sf::Font>(font);
+        m_font.reset(font, &font_del);
         updt_geom();
 
     }
@@ -257,7 +288,7 @@ sf::Vector2f text::find_char_pos(std::size_t index) const {
     }
 
     // Precompute the variables needed by the algorithm.
-    bool bold = (m_style & bold) != 0;
+    bool bold = (m_style & this->bold) != 0;
     float h_space = static_cast<float>(m_font->getGlyph(L' ', m_char_size, bold).advance);
     float v_space = static_cast<float>(m_font->getLineSpacing(m_char_size));
 
@@ -357,10 +388,11 @@ sf::FloatRect text::glob_bound() const {
 */
 void text::draw(sf::RenderTarget& targt, sf::RenderStates stat) const {
 
-    if (m_font) {
+    if (nullptr != m_font) {
 
         stat.transform *= getTransform();
-        stat.texture = &(m_font->getTexture(m_char_size));
+		std::cout << "Current character size: " << m_char_size << std::endl;
+        stat.texture = &m_font->getTexture(m_char_size);
         targt.draw(m_vertices, stat);
 
     }
@@ -386,7 +418,7 @@ void text::updt_geom() {
         return;
 
     // Compute values related to the text style.
-    bool bold = (m_style & bold) != 0;
+    bool bold = (m_style & this->bold) != 0;
     // Underline.
     bool unln = (m_style & underline) != 0;
     // Italic.

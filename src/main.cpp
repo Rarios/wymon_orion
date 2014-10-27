@@ -6,24 +6,22 @@
 #ifndef _ORION_
 #include "Orion.hpp"
 #endif
-#ifndef _DEBUG_
-#include "debug.hpp"
-#endif
-
 
 signed int main ( void ) {
 
 	// Create Window
-	Orion Win(sf::VideoMode ( 600 , 450 ), "WymonOrion - angad 0.0.0" ) ;
+	Orion Win(sf::VideoMode(600, 450), "WymonOrion - angad 0.0.0");
 
 	// Create Icon
-	if (!(Win.setWinIcon("res/wymonIcon.png"))) {
+	if (!(Win.win_icon("res/wymonIcon.png"))) {
 	
-		debug ( std::cout << __FILE__ << "#! Couldn't load icon" << std::endl ) ;
-		debug ( std::cin.get () ) ;
+		std::cerr << "Could not load window icon";
+		std::cin.get();
 		return EXIT_FAILURE;
 	
 	}
+
+	std::cout << "Nothing half way main" << std::endl;
 
 	Win.run();
 

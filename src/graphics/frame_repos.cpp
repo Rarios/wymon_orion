@@ -111,7 +111,7 @@ std::size_t frame_repository::insert(frames_ptr* frm_ptr, const frame& frm,
     // Get iterator at position index. Do it AFTER the emplace, to make sure
     // that back() has an element to access.
     auto it = (*frm_ptr)->operator[](ORIG_FRM).begin();
-    for (auto i = 0; i <= index; ++ i) {
+    for (std::size_t i = 0; i <= index; ++ i) {
 
         ++ it;
 

@@ -37,7 +37,7 @@
 #include "texture_repos.hpp"
 #endif
 
-class sf::Texture;
+//class sf::Texture;
 
 //! Base class for texture handling.
 /*!

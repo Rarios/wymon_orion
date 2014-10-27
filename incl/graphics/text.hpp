@@ -83,13 +83,13 @@ public:
     // Member functions.
 
     text();
-    text(const sf::String& str, const sf::Font& font,
+    text(const sf::String& str, const sf::Font* font,
 	const sf::Color& color = sf::Color::Black, unsigned int char_size = 30);
 	text(const text& other);
     ~text();
 
     void str(const sf::String& str);
-    void font(const sf::Font& font);
+    void font(const sf::Font* font);
     void font_ptr(const_font_ptr font);
     void char_size(unsigned int size);
     void style(sf::Uint32 styl);

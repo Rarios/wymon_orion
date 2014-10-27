@@ -35,7 +35,7 @@ endif()
 # (you can also set it on the command line; -D CMAKE_BUILD_TYPE=Release)
 
 # Set compiler flags.
-#! set(GCC_COMPILER_FLAGS "-std=c++11")
+#! set(GCC_COMPILER_FLAGS "-std=c++11 -Wall -Wextra -pedantic")
 #! set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GCC_COMPILER_FLAGS}")
 # NOTE: The above two lines of code assume that you are using GCC to build
 # the binaries. If that is not the case, please look up the proper way to tell

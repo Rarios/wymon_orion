@@ -14,92 +14,92 @@
 #ifndef _CSTDLIB_
 #include <cstdlib>
 #endif
-#ifndef _VECTOR_
-#include <vector>
-#endif
-#ifndef _MEMORY_
-#include <memory>
-#endif
 #ifndef _UNICODE_
 #include "Unicode.hpp"
 #endif
+#include <list>
+#include <array>
 
-const std::size_t defaultLimit = 4 ;
+const std::size_t default_lim = 4;
 
-const sf::Color boxBorder ( 224 , 224 , 224 ) ;
+const sf::Color box_bord_color(224, 224, 224 );
+const sf::Color outer_box_color(255, 255, 255, 85);
+const sf::Color text_box_color(255, 255, 255);
 
-const sf::Color outerBox ( 255 , 255 , 255 , 85 ) ;
-
-const sf::Color textBox ( 255 , 255 , 255 ) ;
-
-// Textfield
-// Textfield is a class providing a text input handling
-// mechanism; it also offers a gui interface
-
+//! Textfield for user input.
+/*!
+* This class manages user input and its graphical represenation inside a text
+* field box.
+*/
 class Textfield : public sf::Drawable {
-
-public :
-
-	// Constructor
-
-	Textfield( void ) ;
-
-	Textfield( std::size_t limit ) ;
-
-	// Destructor
-
-	~Textfield( void ) {
-	}
-
-	void putChar( sf::Uint32 character ) ;
-	
-	void drawBoxes( sf::Vector2u renderSize ) ;
-
-	void setSize(sf::Vector2u siz) ;
-
-	sf::Vector2f size(void) ;
-
-	void setPos(const sf::Vector2f& pos) ;
-
-	//static sf::Font init_font(const std::string& font_name);
 
 private :
 	
 	// Member variables.
 
-	sf::Font m_font;
+	//! Font used for text field.
+	const sf::Font* m_font;
 
-	text sizeTextIndic ; // Size indicator for text objects
+	//! Indicator for how tall the text will be.
+	text m_size_indic;
 
-	std::size_t m_limit ; // Limit for the number of storeable text object
+	//! Limit of stored submitted texts.
+	std::size_t m_lim;
 
-	text m_curText ; // Text which the user has not yet submitted
+	//! Current text.
+	/*!
+	* This is the text object holding the unsubmitted text, which is the text
+	* the user is currently writing. Note that this variable is used to display
+	* the text the user is typing.
+	*/
+	text m_cur_text;
+	//! Holds current text (the text which is not submitted, but written).
+	/*!
+	* This variable is needed to buffer the user's input text. Without this
+	* variable, it would be necessary to get and set the string from the
+	* m_cur_text all the time changes have to be made. So the content of this
+	* variable and the m_cur_text variable are identical, but as this acts as a
+	* buffer, less function calls have to be made.
+	*/
+	sf::String m_text_buff; 
 
-	std::vector<text> m_textArray ; // Array which stores the actual text elements
+	//! List holding the texts.
+	std::list<text> m_texts;
 
-	std::vector<std::shared_ptr<text>> m_textPtrList ; // List for accessing different text objects in the array (better performance)
-
-	sf::String m_string ; // Holds current text (the text which is not entered, but already written)
-
-	sf::RectangleShape m_outerBox ; // Box which holds already entered text
-
-	sf::RectangleShape m_textBox ; // Box which holds current text the user is typing
+	//! Box, which holds already submitted text.
+	sf::RectangleShape m_outer_box; 
+	//! Box, which holds text the user is currently typing.
+	sf::RectangleShape m_text_box; 
 	
-	std::vector<sf::Vector2f> m_posWritten ; // Positions of already written text
+	//! Positions of already submitted texts.
+	std::array<sf::Vector2f, default_lim> m_submit_pos;
 
-	float m_lineSpacing ;
+	//! Spacing between the lines.
+	float m_line_spacing;
+	//! Height of the text inside the text field.
+	float m_text_height;
 
-	float m_textHeight ;
+	// Member functions.
 
-	Unicode unicode ;
+	void store_text(const sf::String& str);
+	void submit_pos();
 
-	void initList( void ) ;
+	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
-	void draw( sf::RenderTarget& target , sf::RenderStates states ) const ;
+public :
 
-	void createText(const sf::String& str) ;
+	// Member functions.
+	
+	Textfield(const sf::Font* font);
+	~Textfield();
 
-	void setPosWritten() ;
+	void put_char(const sf::Uint32& character);
+
+	void pos(const sf::Vector2f& pos);
+
+	void draw_box(sf::Vector2u render_size);
+
+	sf::Vector2f size() const;
 
 } ;
 

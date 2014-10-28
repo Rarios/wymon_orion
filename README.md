@@ -3,6 +3,8 @@ WymonOrion project
 
 This is the WymonOrion project repository. It consits of two major parts. The first part is a set of general purpose libraries. The other part is a set of code files utilizing those libs to build an application.
 
+The project is currently in its first major release state: **angad 0.0.0**
+
 # Libraries
 
 The libraries consist of the _graphics_ and the _utils_ library. The _graphics_ library partly uses the **SFML**, reimplements different classes provided by the **SFML** and adds an animation class on top of it. In addition to that, the _graphics_ lib has special data structures, not provided by the **SFML** itself, taking care of memory management for textures and animation frames.
@@ -14,10 +16,13 @@ It is hard to define what the main purpose or the main functionality of the appl
 
 # Building
 
-**IMPORTANT**:
-Read the issue page first, because this section is no longer up-to-date!
+Depending on what you want to do with this project repository, building the main application, building only the libraries or even building your own project with self-written source files utilizing the provided libs, different _CMakeLists.txt_ files are provided. These files are as follows:
 
-Note that right now the application won't compile, because some code snippets consist of legacy code and have to be adjusted for the new implementations of the utilized libraries. However, the libs themselves should compile without major issues, provided that the **SFML** is installed on the computer. You simply have to remove the code from the _CMakeLists.txt_ file that gives the instructions to build the executable and only leave the code for the libraries if you want to try it out. All include files can be found in the _incl/graphics_ directory.
+* CMakeLists.txt.all - Builds the application and the libraries
+* CMakeLists.txt.libsonly - Builds only the libraries
+* CMakeLists.txt.proj - Build your own project with the provided libraries
+
+To activate your preferred build, remove the last part of the filename, so you end up having a _CMakeLists.txt_ file. Read the instructions at the top of the file. After that you can start to build.
 The recommended way to build the project is to go into the _build_ directory and execute the following commands (on a Linux-like system):
 
 ```
@@ -44,7 +49,7 @@ I would also like to mention that this project has been written in **GVIM**, a v
 Please note that I am a student, currently in the year of my final exams. I will fix and implement as much as possible, but only if I have the time to do so. Also note that, even though this repository is fairly young, the code has been written in a couple of months and only recently been made into a git repository.
 
 - [x] Insert the new implementation of the _graphics_ and the _utils_ library.
-- [ ] Adjust legacy code from application, so it will work with the new library implementation.
+- [x] Adjust legacy code from application, so it will work with the new library implementation.
 - [ ] Use a single, clear coding convention (currently this is not the case, which is due to the code being written over a couple of months).
 - [ ] Test builds on different platforms.
 - [ ] Remove Herobrine.

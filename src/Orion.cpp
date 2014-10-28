@@ -85,10 +85,8 @@ void Orion::obj_pos() {
 	date_pos.y = time_pos.y + time_size.y + date_size.y;
 
 	// Textfield.
-	// Space between window bottom and outer box bottom.
-	float outer_bot_off = 20.0f; 
 	textfield_pos.x = render_size.x / 2 - textfield_size.x / 2 ;
-	textfield_pos.y = render_size.y - textfield_size.y - outer_bot_off;
+	textfield_pos.y = render_size.y - textfield_size.y - border - margin;
 
 	// Set all positions.
 	m_wymon.setPosition(wymon_pos);
@@ -151,15 +149,24 @@ void Orion::proc_events() {
 
 			break;
 
-			case sf::Event::Resized : 
+			case sf::Event::Resized : {
 
 				// Reset the view of the window to the new size.
-				m_win.setView(sf::View(sf::FloatRect(0.0f, 0.0f, 
+				m_win.setView(sf::View(sf::FloatRect(0.f, 0.f,
 							  static_cast<float>(m_win.getSize().x), 
 							  static_cast<float>(m_win.getSize().y))));
+				// Set the position of the background, so that the window is
+				// in the middle of it.
+				/*auto max_win_size = sf::VideoMode::getDesktopMode();
+				auto win_size = m_win.getSize();
+				auto background_size = m_background.size();
+				m_background.setOrigin(background_size.x / 2,
+									   background_size.y / 2);
+				m_background.move(-1 * (max_win_size.width / 2),
+								  -1 * (max_win_size.height / 2));*/
 				obj_pos();
 
-			break;
+			} break;
 
 			case sf::Event::Closed : 
 
@@ -219,6 +226,11 @@ void Orion::run() {
 		return;
 	
 	}
+	// Scale background so it fits the maximum desktop size.
+	auto max_win_size = sf::VideoMode::getDesktopMode();
+	auto background_size = m_background.obj_size();
+	m_background.setScale(sf::Vector2f(max_win_size.width / background_size.x,
+						  max_win_size.height / background_size.y));
 	m_win.draw(m_background);
 
 	// Wymon animation.

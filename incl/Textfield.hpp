@@ -23,10 +23,18 @@
 
 const std::size_t default_lim = 4;
 const std::size_t default_char_size = 16;
+const float border = 12.f;
+const float margin = 20.f;
+const float padding = 10.f;
 
-const sf::Color box_bord_color(224, 224, 224 );
-const sf::Color outer_box_color(255, 255, 255, 85);
-const sf::Color text_box_color(255, 255, 255);
+const sf::Color box_bord_color(255, 255, 255, 128);
+const sf::Color outer_box_color(255, 255, 255);
+const sf::Color text_box_color(250, 250, 250);
+/*const sf::Color text_bord_color(text_box_color.r,
+								text_box_color.g,
+								text_box_color.b,
+								128);*/
+const sf::Color text_bord_color(230, 230, 230);
 
 //! Textfield for user input.
 /*!
@@ -64,6 +72,19 @@ private :
 
 	//! List holding the texts.
 	std::list<text> m_texts;
+	//! Funny appended text.
+	/*!
+	* This text is appended at the start of every submitted text line. And
+	* yeah, it's some funny arrows :).
+	*/
+	text m_app_text;
+	//! Width of appended text.
+	/*!
+	* NOTE: A generic approach using the obj_size() function in comination with
+	* m_app_text did not work, so the value of this had to be hard coded. This
+	* is not as it shoud be, so there has to be a fix later on.
+	*/
+	float m_app_w;
 
 	//! Box, which holds already submitted text.
 	sf::RectangleShape m_outer_box; 
@@ -75,6 +96,8 @@ private :
 
 	//! Spacing between the lines.
 	float m_line_spacing;
+	//! Spacing between text and borders.
+	float m_col_spacing;
 	//! Height of the text inside the text field.
 	float m_text_height;
 
@@ -83,6 +106,7 @@ private :
 	void store_text(const sf::String& str);
 	void upd_text_height();
 	void submit_pos();
+	bool is_too_wide();
 
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 

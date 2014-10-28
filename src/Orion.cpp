@@ -81,8 +81,8 @@ void Orion::obj_pos() {
 	time_pos.y = wymon_pos.y + (wymon_size.y / 2 - time_size.y / 2);
 
 	// Date.
-	date_pos.x = time_pos.x ;
-	date_pos.y = time_pos.y + time_size.y ;
+	date_pos.x = time_pos.x;
+	date_pos.y = time_pos.y + time_size.y + date_size.y;
 
 	// Textfield.
 	// Space between window bottom and outer box bottom.

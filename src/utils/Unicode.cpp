@@ -1,6 +1,7 @@
 // Unicode.cpp - Unicode.hpp
 
 #include "Unicode.hpp"
+#include <iostream>
 
 // Constant member variables
 
@@ -115,6 +116,9 @@ bool Unicode::is_numeric(const key &letter) {
 */
 bool Unicode::is_printable(const key &letter) {
 	
+	/*std::cout << "Printable? ";
+	std::cout << !((null <= letter && info_sep_one >= letter) ||
+		   (del <= letter && apc >= letter)) << std::endl;*/
 	return(!((null <= letter && info_sep_one >= letter) ||
 		   (del <= letter && apc >= letter))) ;
 	
@@ -122,21 +126,23 @@ bool Unicode::is_printable(const key &letter) {
 
 //! Returns true if letter creates a line break.
 /*!
-* A new line is created differently depending on the OS. On Windows, first
-* there is a line feed ('\n') and then comes a carriage return ('\r').
-* Other OSes might just write a line feed. However, it is the last character
-* written, which should be checked. This function handles this automatically.
+* Different OSes use different represenations of a new line character. Some
+* might be using the LF ('\n') character, some the CR ('\r'), or a combination
+* of both. Note that this also depends on your settings. This function uses a
+* system-independent approach for finding a new line character.
+* NOTE: Always use this function to keep the code system-independent.
 * \param letter Character code of the Unicode character tables (v6.3).
 * \return True if letter creates a new line.
 */
 bool Unicode::is_newline(const key &letter) {
 	
-	#ifdef _MSC_VER // Only defined on MS Visual Studio, so only works on Windows!
-		// Only for windows operation systems.
-		return(letter == carriage_return) ;
-	#else
-		// Other OSes, like Unix based.
-		return(letter == line_feed) ;
-	#endif
+	// NOTE: as you can see on the wikipedia page:
+	// http://en.wikipedia.org/wiki/Newline
+	// different OSes use different ways of representing a line feed.
+	// Originally, the code used to switch between the OS specific 
+	// representation, but since I discovered that my Ubuntu 14.04 also used
+	// the CR instead of the LF, I changed the code so it would support both.
+	// This might be caused because of a dual boot/keyboard setting.
+	return((letter == line_feed) || (letter == carriage_return));
 	
 }

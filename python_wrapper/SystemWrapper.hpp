@@ -9,7 +9,9 @@ BOOST_PYTHON_MODULE(System) {
 	using namespace boost;
 	using namespace wo;
 
-
+	python::class_<system::NonCopyable>("NonCopyable", python::no_init);
+	
+	
 	python::class_<system::Time>("Time", python::init<>())
 		.def("asSeconds", &system::Time::asSeconds)
 		.def("asMilliseconds", &system::Time::asMilliseconds)
@@ -85,9 +87,22 @@ BOOST_PYTHON_MODULE(System) {
 		 ;
 		 
 	python::class_<system::String>("String", python::init<>())
-		.def(init<const char*>()) //WARNING: Second parameter not implemented!
-		.def(init<const std::string&>()) //WARNING: Second parameter not implemented!
+		.def(init<const char*>()) //WARNING: Second parameter are missing!
+		.def(init<const std::string&>()) //WARNING: Second parameter are missing!
 		;
+		
+	python::class_<system::Vector2<int>>("Vector2i")
+		.def(init<int, int>())
+		.def_readwrite("x", &Vector2<int>::x)
+		.def_readwrite("y", &Vector2<int>::y)
+		;
+	
+	python::class_<system::Vector2<float>>("Vector2f")
+		.def(init<float, float>())
+		.def_readwrite("x", &Vector2<float>::x)
+		.def_readwrite("y", &Vector2<float>::y)
+		;
+	//Operators of Vector2 are missing!!
 		
 }
 

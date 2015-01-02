@@ -1,7 +1,7 @@
 # WymonOrion project make file generation.
-# This CMakeLists file generates a make file, which compiles all files inside
-# of this repository, thus builds the libs and also the application.
-# In order to activate the file, remove the ".all" at the end.
+# This CMakeLists file generates a MAKE file, which only compiles the
+# "graphics" and "utils" library.
+# In order to activate the file, remove the ".libsonly" at the end.
 cmake_minimum_required(VERSION 2.6)
 project(wymon_orion)
 
@@ -24,7 +24,6 @@ set(GCC_COMPILER_FLAGS "-std=c++11 -Wall -Wextra -pedantic")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GCC_COMPILER_FLAGS}")
 
 # Set include directories.
-include_directories(${WO_INCL_DIR})
 include_directories(${WO_GRAPHICS_INCL_DIR})
 include_directories(${WO_UTILS_INCL_DIR})
 
@@ -42,8 +41,7 @@ add_library(${WO_GRAPHICS_LIB}
 set(WO_UTILS_LIB "wo_utils")
 add_library(${WO_UTILS_LIB}
 	    ${WO_UTILS_SRC_DIR}/Unicode.cpp 
-	    ${WO_UTILS_SRC_DIR}/Time_string.cpp
-		${WO_UTILS_SRC_DIR}/Time_string_constants.cpp)
+	    ${WO_UTILS_SRC_DIR}/Time_string.cpp)
 
 # Detect and add SFML
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake_mod ${CMAKE_MODULE_PATH})
@@ -54,11 +52,3 @@ if(SFML_FOUND)
 	include_directories(${SFML_INCLUDE_DIR})
 	target_link_libraries(${WO_GRAPHICS_LIB} ${SFML_LIBRARIES})
 endif()
-
-# Create the executable, wymon_orion.
-set(WO_EXEC "${PROJECT_NAME}")
-add_executable(${WO_EXEC}
-			   ${WO_SRC_DIR}/main.cpp 
-			   ${WO_SRC_DIR}/Orion.cpp
-			   ${WO_SRC_DIR}/Textfield.cpp)
-target_link_libraries(${WO_EXEC} ${WO_GRAPHICS_LIB} ${WO_UTILS_LIB})

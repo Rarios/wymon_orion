@@ -1,0 +1,50 @@
+Job #0001, dated 27/11/2014:
+
+-- Applying Coding Conventions --
+
+We have agreed on the following coding conventions for this project:
+
+wo_code_conv (shared with WymonOrion Gmail account)
+
+NOTE: Please do read the coding conventions once again, because some additions
+have been made.
+
+Now those coding conventions have to be applied to each and every code file 
+inside the repository. The following parts have to be dealt with separately:
+
+NOTE: The sections with headings inside the double #-signs can be dealt with
+in any order. BUT within the sections, each file has to be dealt with in the
+order of occurrence, because they build up on each other.
+
+## utils ##
+
+-) Time_string (/incl and /src, NOTE: rename to "time_str")
+-) Unicode (/incl and /src)
+
+## graphics ##
+
+-) texturable (/incl and /src, NOTE: the class HAS TO be called "texturable")
+-) sprite (/incl and /src)
+-) texture_repository (/incl and /src)
+
+In addition to that, please insert the "Exhibit A" from the Mozilla Public
+License v2.0 at the start of every file AFTER you have applied the
+coding conventions. That way, we can tell whether or not a file is finished.
+
+Here is the "Exhibit A", already prepared to be copied at the start of the
+file:
+
+/*
+* This Source Code Form is subject to the terms of the Mozilla Public License,
+* v.2.0. If a copy of the MPL was not distributed with this file, You can 
+* obtain one at http://mozilla.org/MPL/2.0/.
+*/
+
+After you have done your work, stage the files, write a commit with the
+commit message telling which part you modified and push it on the server.
+Please just use YOUR personal branch, not the master branch.
+
+In this list below you can write down your name and which part you want to
+work on:
+
+-)

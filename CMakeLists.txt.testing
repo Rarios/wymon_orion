@@ -12,6 +12,8 @@ set(WO_GRAPHICS_INCL_DIR ${WO_INCL_DIR}/graphics)
 set(WO_GRAPHICS_SRC_DIR ${WO_SRC_DIR}/graphics)
 set(WO_UTILS_INCL_DIR ${WO_INCL_DIR}/utils)
 set(WO_UTILS_SRC_DIR ${WO_SRC_DIR}/utils)
+set(SFML_INCL_DIR ${WO_INCL_DIR}/SFML)
+set(SFML_SRC_DIR ${WO_SRC_DIR}/SFML)
 
 # Enable debug symbols by default.
 if(CMAKE_BUILD_TYPE STREQUAL "")
@@ -27,6 +29,10 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GCC_COMPILER_FLAGS}")
 include_directories(${WO_INCL_DIR})
 include_directories(${WO_GRAPHICS_INCL_DIR})
 include_directories(${WO_UTILS_INCL_DIR})
+include_directories(${SFML_INCL_DIR})
+include_directories(${SFML_INCL_DIR}/System)
+include_directories(${SFML_INCL_DIR}/Window)
+include_directories(${SFML_INCL_DIR}/Graphics)
 
 # Create lib for all items related to graphics.
 set(WO_GRAPHICS_LIB "wo_graphics")
@@ -39,14 +45,29 @@ file(GLOB WO_UTILS_FILES FILE_MATCH PATTER "${WO_UTILS_SRC_DIR}/*.cpp")
 add_library(${WO_UTILS_LIB} ${WO_UTILS_FILES})
 
 # Detect and add SFML
-set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake_mod ${CMAKE_MODULE_PATH})
+#set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake_mod ${CMAKE_MODULE_PATH})
 # Find any version 2.X of SFML.
 # See the FindSFML.cmake file for additional details and instructions.
-find_package(SFML 2 REQUIRED system window graphics)
-if(SFML_FOUND)
-	include_directories(${SFML_INCLUDE_DIR})
-	target_link_libraries(${WO_GRAPHICS_LIB} ${SFML_LIBRARIES})
-endif()
+#find_package(SFML 2 REQUIRED system window graphics)
+#if(SFML_FOUND)
+
+# Create SFML System
+set(SFML_SYSTEM_LIB sfml_system_lib)
+file(GLOB SFML_SYSTEM_SOURCES FILE_MATCH PATTER "${SFML_SRC_DIR}/System/*.cpp")
+add_library(${SFML_SYSTEM_LIB} ${SFML_SYSTEM_SOURCES})
+
+# Create SFML Window
+set(SFML_WINDOW_LIB sfml_window_lib)
+file(GLOB SFML_WINDOW_SOURCES FILE_MATCH PATTER "${SFML_SRC_DIR}/Window/*.cpp")
+add_library(${SFML_WINDOW_LIB} ${SFML_WINDOW_SOURCES})
+
+# Create SFML Graphics 
+set(SFML_GRAPHICS_LIB sfml_graphics_lib)
+file(GLOB SFML_GRAPHICS_SOURCES FILE_MATCH PATTER "${SFML_SRC_DIR}/Graphics/*.cpp")
+add_library(${SFML_GRAPHICS_LIB} ${SFML_GRAPHICS_SOURCES})
+target_link_libraries(${WO_GRAPHICS_LIB} ${SFML_SYSTEM_LIB} ${SFML_WINDOW_LIB} ${SFML_GRAPHICS_LIB})
+
+#endif()
 
 # Create the executable, wymon_orion.
 set(WO_EXEC "${PROJECT_NAME}")

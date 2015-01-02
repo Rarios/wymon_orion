@@ -77,8 +77,9 @@ if [ "$os"="Darwin" ] #OS X is installed
 		printf "http://www.cmake.org/download/. Use the following paths: \n"
 		printf "Where is the source code: $DIR \n"
 		printf "Where to build the binaries: "$DIR"/build/ .\n"
-		printf "After you generated the make file, press any key to continue."
+		printf "After you generated the make file, press any key to continue.\n"
 		read -n 1 -s #Waits for user input
+		printf "Installation running...\n\n"
 		cd build
 		make
 		cd ..

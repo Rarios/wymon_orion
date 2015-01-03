@@ -34,8 +34,8 @@
 #include <SFML/System/Vector2.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace graphics {
 ////////////////////////////////////////////////////////////
 /// \brief 2D camera that defines what region is shown on screen
 ///
@@ -279,7 +279,9 @@ private:
     mutable bool      m_invTransformUpdated; ///< Internal state telling if the inverse transform needs to be updated
 };
 
-} // namespace sf
+} // namespace graphics 
+} // namespace wo
+
 
 
 #endif // SFML_VIEW_HPP

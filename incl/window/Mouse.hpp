@@ -32,8 +32,8 @@
 #include <SFML/System/Vector2.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace window {
 class Window;
 
 ////////////////////////////////////////////////////////////
@@ -117,7 +117,9 @@ public:
     static void setPosition(const Vector2i& position, const Window& relativeTo);
 };
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+
 
 
 #endif // SFML_MOUSE_HPP

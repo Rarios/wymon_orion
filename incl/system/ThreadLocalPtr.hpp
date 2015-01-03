@@ -31,8 +31,8 @@
 #include <SFML/System/ThreadLocal.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace system {
 ////////////////////////////////////////////////////////////
 /// \brief Pointer to a thread-local variable
 ///
@@ -102,7 +102,9 @@ public:
     ThreadLocalPtr<T>& operator =(const ThreadLocalPtr<T>& right);
 };
 
-} // namespace sf
+} // namespace system 
+} // namespace wo
+
 
 #include <SFML/System/ThreadLocalPtr.inl>
 

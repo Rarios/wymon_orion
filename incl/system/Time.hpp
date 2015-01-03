@@ -31,8 +31,8 @@
 #include <SFML/System/Export.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace system {
 ////////////////////////////////////////////////////////////
 /// \brief Represents a time value
 ///
@@ -435,7 +435,9 @@ SFML_SYSTEM_API Time operator %(Time left, Time right);
 ////////////////////////////////////////////////////////////
 SFML_SYSTEM_API Time& operator %=(Time& left, Time right);
 
-} // namespace sf
+} // namespace system 
+} // namespace wo
+
 
 
 #endif // SFML_TIME_HPP

@@ -33,8 +33,8 @@
 #include <graphics/Transform.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace graphics {
 class Shader;
 class Texture;
 
@@ -118,7 +118,9 @@ public:
     const Shader*  shader;    ///< Shader
 };
 
-} // namespace sf
+} // namespace graphics 
+} // namespace wo
+
 
 
 #endif // SFML_RENDERSTATES_HPP

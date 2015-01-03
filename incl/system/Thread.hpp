@@ -33,8 +33,8 @@
 #include <cstdlib>
 
 
-namespace sf
-{
+namespace wo {
+namespace system {
 namespace priv
 {
     class ThreadImpl;
@@ -192,7 +192,9 @@ private:
 
 #include <SFML/System/Thread.inl>
 
-} // namespace sf
+} // namespace system 
+} // namespace wo
+
 
 #endif // SFML_THREAD_HPP
 

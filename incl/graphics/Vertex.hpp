@@ -33,8 +33,8 @@
 #include <SFML/System/Vector2.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace graphics {
 ////////////////////////////////////////////////////////////
 /// \brief Define a point with color and texture coordinates
 ///
@@ -99,7 +99,9 @@ public:
     Vector2f  texCoords; ///< Coordinates of the texture's pixel to map to the vertex
 };
 
-} // namespace sf
+} // namespace graphics 
+} // namespace wo
+
 
 
 #endif // SFML_VERTEX_HPP

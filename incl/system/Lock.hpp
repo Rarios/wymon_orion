@@ -32,8 +32,8 @@
 #include <SFML/System/NonCopyable.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace system {
 class Mutex;
 
 ////////////////////////////////////////////////////////////
@@ -70,7 +70,9 @@ private:
     Mutex& m_mutex; ///< Mutex to lock / unlock
 };
 
-} // namespace sf
+} // namespace system 
+} // namespace wo
+
 
 
 #endif // SFML_LOCK_HPP

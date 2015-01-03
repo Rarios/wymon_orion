@@ -35,8 +35,8 @@
 #include <string>
 
 
-namespace sf
-{
+namespace wo {
+namespace graphics {
 ////////////////////////////////////////////////////////////
 /// \brief Window that can serve as a target for 2D drawing
 ///
@@ -162,7 +162,9 @@ private:
     virtual bool activate(bool active);
 };
 
-} // namespace sf
+} // namespace graphics 
+} // namespace wo
+
 
 
 #endif // SFML_RENDERWINDOW_HPP

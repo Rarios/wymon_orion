@@ -32,8 +32,8 @@
 #include <SFML/System/Time.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace system {
 ////////////////////////////////////////////////////////////
 /// \brief Utility class that measures the elapsed time
 ///
@@ -81,7 +81,9 @@ private:
     Time m_startTime; ///< Time of last reset, in microseconds
 };
 
-} // namespace sf
+} // namespace system 
+} // namespace wo
+
 
 
 #endif // SFML_CLOCK_HPP

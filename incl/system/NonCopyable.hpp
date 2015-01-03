@@ -31,8 +31,8 @@
 #include <SFML/System/Export.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace system {
 ////////////////////////////////////////////////////////////
 /// \brief Utility class that makes any derived
 ///        class non-copyable
@@ -79,7 +79,9 @@ private:
     NonCopyable& operator =(const NonCopyable&);
 };
 
-} // namespace sf
+} // namespace system 
+} // namespace wo
+
 
 
 #endif // SFML_NONCOPYABLE_HPP

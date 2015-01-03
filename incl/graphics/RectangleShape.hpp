@@ -32,8 +32,8 @@
 #include <SFML/Graphics/Shape.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace graphics {
 ////////////////////////////////////////////////////////////
 /// \brief Specialized shape representing a rectangle
 ///
@@ -102,7 +102,9 @@ private:
     Vector2f m_size; ///< Size of the rectangle
 };
 
-} // namespace sf
+} // namespace graphics 
+} // namespace wo
+
 
 
 #endif // SFML_RECTANGLESHAPE_HPP

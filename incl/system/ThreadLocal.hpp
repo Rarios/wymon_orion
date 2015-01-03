@@ -33,8 +33,8 @@
 #include <cstdlib>
 
 
-namespace sf
-{
+namespace wo {
+namespace system {
 namespace priv
 {
     class ThreadLocalImpl;
@@ -86,7 +86,9 @@ private:
     priv::ThreadLocalImpl* m_impl; ///< Pointer to the OS specific implementation
 };
 
-} // namespace sf
+} // namespace system 
+} // namespace wo
+
 
 
 #endif // SFML_THREADLOCAL_HPP

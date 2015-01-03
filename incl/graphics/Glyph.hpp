@@ -32,8 +32,8 @@
 #include <SFML/Graphics/Rect.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace graphics {
 ////////////////////////////////////////////////////////////
 /// \brief Structure describing a glyph
 ///
@@ -56,7 +56,9 @@ public:
     IntRect   textureRect; ///< Texture coordinates of the glyph inside the font's texture
 };
 
-} // namespace sf
+} // namespace graphics 
+} // namespace wo
+
 
 
 #endif // SFML_GLYPH_HPP

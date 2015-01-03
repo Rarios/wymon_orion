@@ -31,8 +31,8 @@
 #include <SFML/Config.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace system {
 ////////////////////////////////////////////////////////////
 /// \brief Abstract class for custom file input streams
 ///
@@ -88,7 +88,9 @@ public:
     virtual Int64 getSize() = 0;
 };
 
-} // namespace sf
+} // namespace system 
+} // namespace wo
+
 
 
 #endif // SFML_INPUTSTREAM_HPP

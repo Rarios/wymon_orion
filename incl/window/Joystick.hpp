@@ -32,8 +32,8 @@
 #include <SFML/System/String.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace window {
 ////////////////////////////////////////////////////////////
 /// \brief Give access to the real-time state of the joysticks
 ///
@@ -165,7 +165,9 @@ public:
     static void update();
 };
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+
 
 
 #endif // SFML_JOYSTICK_HPP

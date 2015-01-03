@@ -26,8 +26,8 @@
 #define SFML_CONTEXTSETTINGS_HPP
 
 
-namespace sf
-{
+namespace wo {
+namespace window {
 ////////////////////////////////////////////////////////////
 /// \brief Structure defining the settings of the OpenGL
 ///        context attached to a window
@@ -64,7 +64,9 @@ struct ContextSettings
     unsigned int minorVersion;      ///< Minor number of the context version to create
 };
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+
 
 
 #endif // SFML_CONTEXTSETTINGS_HPP

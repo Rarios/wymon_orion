@@ -31,8 +31,8 @@
 #include <SFML/Window/Export.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace window {
 ////////////////////////////////////////////////////////////
 /// \brief Base class for classes that require an OpenGL context
 ///
@@ -60,7 +60,9 @@ protected:
     static void ensureGlContext();
 };
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+
 
 
 #endif // SFML_GLRESOURCE_HPP

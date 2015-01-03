@@ -33,8 +33,8 @@
 #include <SFML/Graphics/RenderTarget.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace graphics {
 namespace priv
 {
     class RenderTextureImpl;
@@ -208,7 +208,9 @@ private:
     Texture                  m_texture; ///< Target texture to draw on
 };
 
-} // namespace sf
+} // namespace graphics 
+} // namespace wo
+
 
 
 #endif // SFML_RENDERTEXTURE_HPP

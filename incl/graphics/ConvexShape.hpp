@@ -33,8 +33,8 @@
 #include <vector>
 
 
-namespace sf
-{
+namespace wo {
+namespace graphics {
 ////////////////////////////////////////////////////////////
 /// \brief Specialized shape representing a convex polygon
 ///
@@ -115,7 +115,9 @@ private:
     std::vector<Vector2f> m_points; ///< Points composing the convex polygon
 };
 
-} // namespace sf
+} // namespace graphics 
+} // namespace wo
+
 
 
 #endif // SFML_CONVEXSHAPE_HPP

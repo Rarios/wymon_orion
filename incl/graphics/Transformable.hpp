@@ -32,8 +32,8 @@
 #include <SFML/Graphics/Transform.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace graphics {
 ////////////////////////////////////////////////////////////
 /// \brief Decomposed transform defined by a position, a rotation and a scale
 ///
@@ -326,7 +326,9 @@ private:
     mutable bool      m_inverseTransformNeedUpdate; ///< Does the transform need to be recomputed?
 };
 
-} // namespace sf
+} // namespace graphics 
+} // namespace wo
+
 
 
 #endif // SFML_TRANSFORMABLE_HPP

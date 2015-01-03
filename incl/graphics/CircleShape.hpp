@@ -32,8 +32,8 @@
 #include <SFML/Graphics/Shape.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace graphics {
 ////////////////////////////////////////////////////////////
 /// \brief Specialized shape representing a circle
 ///
@@ -115,7 +115,9 @@ private:
     unsigned int m_pointCount; ///< Number of points composing the circle
 };
 
-} // namespace sf
+} // namespace graphics 
+} // namespace wo
+
 
 
 #endif // SFML_CIRCLESHAPE_HPP

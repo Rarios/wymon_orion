@@ -26,8 +26,8 @@
 #define SFML_WINDOWSTYLE_HPP
 
 
-namespace sf
-{
+namespace wo {
+namespace window {
 namespace Style
 {
     ////////////////////////////////////////////////////////////
@@ -47,7 +47,9 @@ namespace Style
     };
 }
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+
 
 
 #endif // SFML_WINDOWSTYLE_HPP

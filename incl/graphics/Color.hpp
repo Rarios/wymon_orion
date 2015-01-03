@@ -31,8 +31,8 @@
 #include <SFML/Graphics/Export.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace graphics {
 ////////////////////////////////////////////////////////////
 /// \brief Utility class for manipulating RGBA colors
 ///
@@ -208,7 +208,9 @@ SFML_GRAPHICS_API Color& operator -=(Color& left, const Color& right);
 ////////////////////////////////////////////////////////////
 SFML_GRAPHICS_API Color& operator *=(Color& left, const Color& right);
 
-} // namespace sf
+} // namespace graphics 
+} // namespace wo
+
 
 
 #endif // SFML_COLOR_HPP

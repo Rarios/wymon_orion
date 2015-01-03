@@ -34,8 +34,8 @@
 #include <string>
 
 
-namespace sf
-{
+namespace wo {
+namespace system {
 ////////////////////////////////////////////////////////////
 /// \brief Utility string class that automatically handles
 ///        conversions between types and encodings
@@ -612,7 +612,9 @@ SFML_SYSTEM_API String operator +(const String& left, const String& right);
 
 #include <system/String.inl>
 
-} // namespace sf
+} // namespace system 
+} // namespace wo
+
 
 
 #endif // SFML_STRING_HPP

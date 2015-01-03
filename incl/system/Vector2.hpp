@@ -26,8 +26,8 @@
 #define SFML_VECTOR2_HPP
 
 
-namespace sf
-{
+namespace wo {
+namespace system {
 ////////////////////////////////////////////////////////////
 /// \brief Utility template class for manipulating
 ///        2-dimensional vectors
@@ -254,7 +254,9 @@ typedef Vector2<int>          Vector2i;
 typedef Vector2<unsigned int> Vector2u;
 typedef Vector2<float>        Vector2f;
 
-} // namespace sf
+} // namespace system 
+} // namespace wo
+
 
 
 #endif // SFML_VECTOR2_HPP

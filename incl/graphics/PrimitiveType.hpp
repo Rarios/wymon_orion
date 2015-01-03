@@ -25,8 +25,8 @@
 #ifndef SFML_PRIMITIVETYPE_HPP
 #define SFML_PRIMITIVETYPE_HPP
 
-namespace sf
-{
+namespace wo {
+namespace graphics {
 ////////////////////////////////////////////////////////////
 /// \ingroup graphics
 /// \brief Types of primitives that a sf::VertexArray can render
@@ -47,7 +47,9 @@ enum PrimitiveType
     Quads           ///< List of individual quads (deprecated, don't work with OpenGL ES)
 };
 
-} // namespace sf
+} // namespace graphics 
+} // namespace wo
+
 
 
 #endif // SFML_PRIMITIVETYPE_HPP

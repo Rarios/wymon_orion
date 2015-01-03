@@ -39,8 +39,8 @@
 #include <string>
 
 
-namespace sf
-{
+namespace wo {
+namespace graphics {
 class InputStream;
 class Texture;
 
@@ -544,7 +544,9 @@ private:
     ParamTable   m_params;         ///< Parameters location cache
 };
 
-} // namespace sf
+} // namespace graphics 
+} // namespace wo
+
 
 
 #endif // SFML_SHADER_HPP

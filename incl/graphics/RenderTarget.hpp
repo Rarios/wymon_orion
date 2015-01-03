@@ -40,8 +40,8 @@
 #include <system/NonCopyable.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace graphics {
 class Drawable;
 
 ////////////////////////////////////////////////////////////
@@ -418,7 +418,9 @@ private:
     StatesCache m_cache;       ///< Render states cache
 };
 
-} // namespace sf
+} // namespace graphics 
+} // namespace wo
+
 
 
 #endif // SFML_RENDERTARGET_HPP

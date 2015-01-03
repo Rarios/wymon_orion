@@ -33,8 +33,8 @@
 #include <SFML/Window/GlResource.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace graphics {
 class Window;
 class RenderTarget;
 class RenderTexture;
@@ -500,7 +500,9 @@ private:
     Uint64       m_cacheId;       ///< Unique number that identifies the texture to the render target's cache
 };
 
-} // namespace sf
+} // namespace graphics 
+} // namespace wo
+
 
 
 #endif // SFML_TEXTURE_HPP

@@ -35,8 +35,8 @@
 #include <vector>
 
 
-namespace sf
-{
+namespace wo {
+namespace graphics {
 class InputStream;
 
 ////////////////////////////////////////////////////////////
@@ -270,7 +270,9 @@ private:
     #endif
 };
 
-} // namespace sf
+} // namespace graphics 
+} // namespace wo
+
 
 
 #endif // SFML_IMAGE_HPP

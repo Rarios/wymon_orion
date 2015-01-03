@@ -36,8 +36,8 @@
 #include <vector>
 
 
-namespace sf
-{
+namespace wo {
+namespace graphics {
 ////////////////////////////////////////////////////////////
 /// \brief Define a set of one or more 2D primitives
 ///
@@ -191,7 +191,9 @@ private:
     PrimitiveType       m_primitiveType; ///< Type of primitives to draw
 };
 
-} // namespace sf
+} // namespace graphics 
+} // namespace wo
+
 
 
 #endif // SFML_VERTEXARRAY_HPP

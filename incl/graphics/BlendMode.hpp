@@ -31,8 +31,8 @@
 #include <SFML/Graphics/Export.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace graphics {
 
 ////////////////////////////////////////////////////////////
 /// \brief Blending modes for drawing
@@ -151,7 +151,9 @@ SFML_GRAPHICS_API extern const BlendMode BlendAdd;      ///< Add source to dest
 SFML_GRAPHICS_API extern const BlendMode BlendMultiply; ///< Multiply source and dest
 SFML_GRAPHICS_API extern const BlendMode BlendNone;     ///< Overwrite dest with source
 
-} // namespace sf
+} // namespace graphics 
+} // namespace wo
+
 
 
 #endif // SFML_BLENDMODE_HPP

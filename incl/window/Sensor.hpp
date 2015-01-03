@@ -33,8 +33,8 @@
 #include <SFML/System/Time.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace window {
 ////////////////////////////////////////////////////////////
 /// \brief Give access to the real-time state of the sensors
 ///
@@ -95,7 +95,9 @@ public:
     static Vector3f getValue(Type sensor);
 };
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+
 
 
 #endif // SFML_SENSOR_HPP

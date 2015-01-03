@@ -32,8 +32,8 @@
 #include <SFML/System/NonCopyable.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace system {
 namespace priv
 {
     class MutexImpl;
@@ -88,7 +88,9 @@ private:
     priv::MutexImpl* m_mutexImpl; ///< OS-specific implementation
 };
 
-} // namespace sf
+} // namespace system 
+} // namespace wo
+
 
 
 #endif // SFML_MUTEX_HPP

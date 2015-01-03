@@ -32,8 +32,8 @@
 #include <algorithm>
 
 
-namespace sf
-{
+namespace wo {
+namespace graphics {
 ////////////////////////////////////////////////////////////
 /// \brief Utility class for manipulating 2D axis aligned rectangles
 ///
@@ -190,7 +190,9 @@ bool operator !=(const Rect<T>& left, const Rect<T>& right);
 typedef Rect<int>   IntRect;
 typedef Rect<float> FloatRect;
 
-} // namespace sf
+} // namespace graphics 
+} // namespace wo
+
 
 
 #endif // SFML_RECT_HPP

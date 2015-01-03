@@ -40,8 +40,8 @@
 #include <SFML/System/String.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace window {
 namespace priv
 {
     class GlContext;
@@ -520,7 +520,9 @@ private:
     Vector2u          m_size;           ///< Current size of the window
 };
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+
 
 
 #endif // SFML_WINDOW_HPP

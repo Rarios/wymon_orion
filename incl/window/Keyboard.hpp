@@ -31,8 +31,8 @@
 #include <SFML/Window/Export.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace window {
 ////////////////////////////////////////////////////////////
 /// \brief Give access to the real-time state of the keyboard
 ///
@@ -179,7 +179,9 @@ public:
     static void setVirtualKeyboardVisible(bool visible);
 };
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+
 
 
 #endif // SFML_KEYBOARD_HPP

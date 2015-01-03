@@ -32,8 +32,8 @@
 #include <SFML/Graphics/RenderStates.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace graphics {
 class RenderTarget;
 
 ////////////////////////////////////////////////////////////
@@ -69,7 +69,9 @@ protected:
     virtual void draw(RenderTarget& target, RenderStates states) const = 0;
 };
 
-} // namespace sf
+} // namespace graphics 
+} // namespace wo
+
 
 
 #endif // SFML_DRAWABLE_HPP

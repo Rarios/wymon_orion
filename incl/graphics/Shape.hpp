@@ -35,8 +35,8 @@
 #include <SFML/System/Vector2.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace graphics {
 ////////////////////////////////////////////////////////////
 /// \brief Base class for textured shapes with outline
 ///
@@ -309,7 +309,9 @@ private:
     FloatRect      m_bounds;           ///< Bounding rectangle of the whole shape (outline + fill)
 };
 
-} // namespace sf
+} // namespace graphics 
+} // namespace wo
+
 
 
 #endif // SFML_SHAPE_HPP

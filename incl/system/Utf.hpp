@@ -35,8 +35,8 @@
 #include <cstdlib>
 
 
-namespace sf
-{
+namespace wo {
+namespace system {
 template <unsigned int N>
 class Utf;
 
@@ -735,7 +735,9 @@ typedef Utf<8>  Utf8;
 typedef Utf<16> Utf16;
 typedef Utf<32> Utf32;
 
-} // namespace sf
+} // namespace system 
+} // namespace wo
+
 
 
 #endif // SFML_UTF_HPP

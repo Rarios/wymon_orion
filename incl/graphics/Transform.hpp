@@ -33,8 +33,8 @@
 #include <SFML/System/Vector2.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace graphics {
 ////////////////////////////////////////////////////////////
 /// \brief Define a 3x3 transform matrix
 ///
@@ -403,7 +403,9 @@ SFML_GRAPHICS_API Transform& operator *=(Transform& left, const Transform& right
 ////////////////////////////////////////////////////////////
 SFML_GRAPHICS_API Vector2f operator *(const Transform& left, const Vector2f& right);
 
-} // namespace sf
+} // namespace graphics 
+} // namespace wo
+
 
 
 #endif // SFML_TRANSFORM_HPP

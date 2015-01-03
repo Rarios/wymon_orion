@@ -35,8 +35,8 @@
     struct HWND__;
 #endif
 
-namespace sf
-{
+namespace wo {
+namespace window {
 ////////////////////////////////////////////////////////////
 /// Define a low-level window handle type, specific to
 /// each platform
@@ -68,7 +68,9 @@ namespace sf
 
 #endif
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+
 
 
 #endif // SFML_WINDOWHANDLE_HPP

@@ -35,8 +35,8 @@
 #include <window/Sensor.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace window {
 ////////////////////////////////////////////////////////////
 /// \brief Defines a system event and its parameters
 ///
@@ -218,7 +218,9 @@ public:
     };
 };
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+
 
 
 #endif // SFML_EVENT_HPP

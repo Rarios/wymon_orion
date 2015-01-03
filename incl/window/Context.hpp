@@ -34,8 +34,8 @@
 #include <SFML/System/NonCopyable.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace window {
 namespace priv
 {
     class GlContext;
@@ -98,7 +98,9 @@ private:
     priv::GlContext* m_context; ///< Internal OpenGL context
 };
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+
 
 
 #endif // SFML_CONTEXT_HPP

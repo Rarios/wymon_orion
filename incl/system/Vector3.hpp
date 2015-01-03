@@ -26,8 +26,8 @@
 #define SFML_VECTOR3_HPP
 
 
-namespace sf
-{
+namespace wo {
+namespace system {
 ////////////////////////////////////////////////////////////
 /// \brief Utility template class for manipulating
 ///        3-dimensional vectors
@@ -255,7 +255,9 @@ bool operator !=(const Vector3<T>& left, const Vector3<T>& right);
 typedef Vector3<int>   Vector3i;
 typedef Vector3<float> Vector3f;
 
-} // namespace sf
+} // namespace system 
+} // namespace wo
+
 
 
 #endif // SFML_VECTOR3_HPP

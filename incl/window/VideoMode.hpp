@@ -32,8 +32,8 @@
 #include <vector>
 
 
-namespace sf
-{
+namespace wo {
+namespace window {
 ////////////////////////////////////////////////////////////
 /// \brief VideoMode defines a video mode (width, height, bpp)
 ///
@@ -176,7 +176,9 @@ SFML_WINDOW_API bool operator <=(const VideoMode& left, const VideoMode& right);
 ////////////////////////////////////////////////////////////
 SFML_WINDOW_API bool operator >=(const VideoMode& left, const VideoMode& right);
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+
 
 
 #endif // SFML_VIDEOMODE_HPP

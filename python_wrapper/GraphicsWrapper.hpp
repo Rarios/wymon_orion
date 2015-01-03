@@ -111,7 +111,7 @@ BOOST_PYTHON_MODULE(Graphics) {
 		.def("setOrigin2", &setOrigin2)
 		.def("setPosition", &setPosition1)
 		.def("setPosition", &setPosition2)
-		.def("setRotation", &setRotation)
+		.def("setRotation", &graphics::Transformable::setRotation)
 		.def("setScale", &setScale1)
 		.def("setScale", &setScale2)
 		;
@@ -174,7 +174,7 @@ BOOST_PYTHON_MODULE(Graphics) {
 		.def("scale", &scale6, python::return_internal_reference<>())
 		.def("transformPoint", &transformPoint1)
 		.def("transformPoint", &transformPoint2)
-		.def("transformRect", &transformRect)
+		.def("transformRect", &graphics::Transform::transformRect)
 		.def("translate", &translate1, 
 			 python::return_internal_reference<>())
 		.def("translate", &translate2,
@@ -183,11 +183,112 @@ BOOST_PYTHON_MODULE(Graphics) {
 		.def(const python::self& * const system::Vector2f&)
 		.def(python::self& * const python::self&, 
 			 python::return_internal_reference<>())
-		.def("Identity", &Identity)
+		.def("Identity", &graphics::Transform::Identity)
 		;
 
+	//Shape;
+	//warning: protected!!
+
 	
+
+	// Wrapper for class with pure virtual function.
+	class ShapeWrapper : public Shape, public wrapper<Shape> {
+
+		system::Vector2f getPoint(void) {
+		
+			return this->get_override("getPoint")() ;
+		
+		}
+
+		unsigned int getPointCount(void) {
+		
+			return this->get_override("getPointCount")() ;
+		
+		}
+
+	} ;
+
+	void setTexture1(const graphics::Texture* texture){
+		return ShapeWrapper::setTexture(texture);
+	}
+
+	void setTexture2(const graphics::Transform* texture, bool resetRect){
+		return ShapeWrapper::setTexture(texture, resetRect);
+	}
+
+	python::class_<ShapeWrapper, noncopyable>("Shape", python::no_init)
+		.def("getFillColor", &getFillColor, 
+			 python::return_internal_reference<>())
+		.def("getGlobalBounds", &ShapeWrapper::getGlobalBounds)
+		.def("getLocalBounds", &ShapeWrapper::getLocalBounds)
+		.def("getOutlineColor", &ShapeWrapper::getOutlineColor,
+			 python::return_internal_reference<>())
+		.def("getOutlineThickness", &ShapeWrapper::getOutlineThickness)
+		.def("getPoint", python::pure_virtual(&graphics::Shape::getPoint)) //pure virtual
+		.def("getPointCount", python::purevirtual(&graphics::Shape::getPointCount)) //pure virtual
+		.def("getTexture", &ShapeWrapper::getTexture, 
+			 python::return_internal_reference<>())
+		.def("getTextureRect", &ShapeWrapper::getTextureRect, 
+			 python::return_internal_reference<>())
+		.def("setFillColor", &ShapeWrapper::setFillColor)
+		.def("setOutlineColor", &ShapeWrapper::setOutlineColor)
+		.def("setOutlineThickness", &ShapeWrapper::setOutlineThickness)
+		.def("setTexture", &setTexture1) //default value implementation?
+		.def("setTexture", &setTexture2)
+		.def("setTextureRect", &ShapeWrapper::setTextureRect)
+		;
+
+	/*
+	//To be implemented later...
+	python::class_<graphics::Rect<int>>("IntRect")
+		.def_readwrite("left", &graphics::Rect<int>::left)
+		.def
+	*/
+
+/*
+	python::class_<graphics::Shape>("Shape", python::no_init)
+		.def("getFillColor", &getFillColor, 
+			 python::return_internal_reference<>())
+		.def("getGlobalBounds", &graphics::Shape::getGlobalBounds)
+		.def("getLocalBounds", &graphics::Shape::getLocalBounds)
+		.def("getOutlineColor", &graphics::Shape::getOutlineColor,
+			 python::return_internal_reference<>())
+		.def("getOutlineThickness", &graphics::Shape::getOutlineThickness)
+		.def("getPoint", &graphics::Shape::getPoint) //pure virtual
+		.def("getPointCount", &graphics::Shape::getPointCount) //pure virtual
+		.def("getTexture", &graphics::Shape::getTexture, 
+			 python::return_internal_reference<>())
+		.def("getTextureRect", &graphics::Shape::getTextureRect, 
+			 python::return_internal_reference<>())
+		.def("setFillColor", &graphics::Shape::setFillColor)
+		.def("setOutlineColor", &graphics::Shape::setOutlineColor)
+		.def("setOutlineThickness", &graphics::Shape::setOutlineThickness)
+		.def("setTexture", &setTexture1)
+		.def("setTexture", &setTexture2)
+		;
+
+	void setTexture1(const graphics::Texture* texture){
+		return graphics::Shape::setTexture(texture);
+	}
+
+	void setTexture2(const graphics::Transform* texture, bool resetRect){
+		return graphics::Shape::setTexture(texture, resetRect);
+	}
+
+*/
 
 }
 
 #endif
+
+/*
+Die erste Zeile ergibt wenig Sinn,
+In der zweiten Zeile steht nicht viel drin,
+Die dritte Zeile ist irgendwie drangeleimt,
+und die vierte steht nur da, damit es sich reimt.
+
+Die fünfte Zeile ist überflüssig,
+Die sechte ist ziemlich müßig,
+Auch die siebte ist kein Genuss,
+Doch zum Glück: nach der achten ist Schluss!
+*/

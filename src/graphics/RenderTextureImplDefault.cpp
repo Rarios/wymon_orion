@@ -32,8 +32,8 @@
 #include <system/Err.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace graphics {
 namespace priv
 {
 ////////////////////////////////////////////////////////////
@@ -88,4 +88,5 @@ void RenderTextureImplDefault::updateTexture(unsigned int textureId)
 
 } // namespace priv
 
-} // namespace sf
+} // namespace graphics
+} // namespace wo

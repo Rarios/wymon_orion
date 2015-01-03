@@ -35,8 +35,8 @@
 #include <cstring>
 
 
-namespace sf
-{
+namespace wo {
+namespace graphics {
 ////////////////////////////////////////////////////////////
 Image::Image() :
 m_size(0, 0)
@@ -341,4 +341,5 @@ void Image::flipVertically()
     }
 }
 
-} // namespace sf
+} // namespace graphics
+} // namespace wo

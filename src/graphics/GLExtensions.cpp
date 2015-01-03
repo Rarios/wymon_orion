@@ -29,8 +29,8 @@
 #include <system/Err.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace graphics {
 namespace priv
 {
 ////////////////////////////////////////////////////////////
@@ -55,4 +55,5 @@ void ensureExtensionsInit()
 
 } // namespace priv
 
-} // namespace sf
+} // namespace graphics
+} // namespace wo

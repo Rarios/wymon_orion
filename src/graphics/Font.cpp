@@ -63,8 +63,8 @@ namespace
 }
 
 
-namespace sf
-{
+namespace wo {
+namespace graphics {
 ////////////////////////////////////////////////////////////
 Font::Font() :
 m_library  (NULL),
@@ -716,4 +716,5 @@ nextRow(3)
     texture.setSmooth(true);
 }
 
-} // namespace sf
+} // namespace graphics
+} // namespace wo

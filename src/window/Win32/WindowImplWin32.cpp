@@ -115,8 +115,8 @@ namespace
     }
 }
 
-namespace sf
-{
+namespace wo {
+namespace window {
 namespace priv
 {
 ////////////////////////////////////////////////////////////
@@ -1021,5 +1021,7 @@ LRESULT CALLBACK WindowImplWin32::globalOnEvent(HWND handle, UINT message, WPARA
 
 } // namespace priv
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+
 

@@ -28,8 +28,8 @@
 #include <SFML/Window/JoystickImpl.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace window {
 namespace priv
 {
 ////////////////////////////////////////////////////////////
@@ -94,4 +94,6 @@ JoystickState JoystickImpl::update()
 
 } // namespace priv
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+

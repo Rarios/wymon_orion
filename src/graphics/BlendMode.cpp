@@ -28,8 +28,8 @@
 #include <graphics/BlendMode.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace graphics {
 ////////////////////////////////////////////////////////////
 // Commonly used blending modes
 ////////////////////////////////////////////////////////////
@@ -100,4 +100,5 @@ bool operator !=(const BlendMode& left, const BlendMode& right)
     return !(left == right);
 }
 
-} // namespace sf
+} // namespace graphics
+} // namespace wo

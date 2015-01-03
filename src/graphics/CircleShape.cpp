@@ -29,8 +29,8 @@
 #include <cmath>
 
 
-namespace sf
-{
+namespace wo {
+namespace graphics {
 ////////////////////////////////////////////////////////////
 CircleShape::CircleShape(float radius, unsigned int pointCount) :
 m_radius    (radius),
@@ -81,4 +81,5 @@ Vector2f CircleShape::getPoint(unsigned int index) const
     return Vector2f(m_radius + x, m_radius + y);
 }
 
-} // namespace sf
+} // namespace graphics
+} // namespace wo

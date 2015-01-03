@@ -28,8 +28,8 @@
 #include <SFML/Graphics/Vertex.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace graphics {
 ////////////////////////////////////////////////////////////
 Vertex::Vertex() :
 position (0, 0),
@@ -74,4 +74,5 @@ texCoords(theTexCoords)
 {
 }
 
-} // namespace sf
+} // namespace graphics
+} // namespace wo

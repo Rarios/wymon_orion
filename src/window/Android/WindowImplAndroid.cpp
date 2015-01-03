@@ -40,8 +40,8 @@
 ////////////////////////////////////////////////////////////
 // Private data
 ////////////////////////////////////////////////////////////
-namespace sf
-{
+namespace wo {
+namespace window {
 namespace priv
 {
 WindowImplAndroid* WindowImplAndroid::singleInstance = NULL;
@@ -700,4 +700,6 @@ int WindowImplAndroid::getUnicode(AInputEvent* event)
 }
 
 } // namespace priv
-} // namespace sf
+} // namespace window 
+} // namespace wo
+

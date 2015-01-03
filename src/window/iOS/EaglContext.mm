@@ -36,8 +36,8 @@
 #include <QuartzCore/CAEAGLLayer.h>
 
 
-namespace sf
-{
+namespace wo {
+namespace window {
 namespace priv
 {
 ////////////////////////////////////////////////////////////
@@ -230,5 +230,7 @@ void EaglContext::createContext(EaglContext* shared,
 
 } // namespace priv
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+
 

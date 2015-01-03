@@ -30,8 +30,8 @@
 #include <SFML/System/Err.hpp>
 #include <AppKit/AppKit.h>
 
-namespace sf
-{
+namespace wo {
+namespace window {
 namespace priv
 {
 ////////////////////////////////////////////////////////////
@@ -866,5 +866,7 @@ Keyboard::Key HIDInputManager::nonLocalizedKeys(UniChar virtualKeycode)
 
 } // namespace priv
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+
 

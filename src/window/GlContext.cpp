@@ -114,8 +114,8 @@ namespace
 }
 
 
-namespace sf
-{
+namespace wo {
+namespace window {
 namespace priv
 {
 ////////////////////////////////////////////////////////////
@@ -297,4 +297,6 @@ void GlContext::initialize()
 
 } // namespace priv
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+

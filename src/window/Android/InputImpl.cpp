@@ -32,8 +32,8 @@
 #include <jni.h>
 
 
-namespace sf
-{
+namespace wo {
+namespace window {
 namespace priv
 {
 ////////////////////////////////////////////////////////////
@@ -201,4 +201,6 @@ Vector2i InputImpl::getTouchPosition(unsigned int finger, const Window& relative
 
 } // namespace priv
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+

@@ -34,8 +34,8 @@
 #endif
 
 
-namespace sf
-{
+namespace wo {
+namespace system {
 ////////////////////////////////////////////////////////////
 void sleep(Time duration)
 {
@@ -43,4 +43,6 @@ void sleep(Time duration)
         priv::sleepImpl(duration);
 }
 
-} // namespace sf
+} // namespace system 
+} // namespace wo
+

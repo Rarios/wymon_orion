@@ -29,8 +29,8 @@
 #include <window/GlContext.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace window {
 ////////////////////////////////////////////////////////////
 Context::Context()
 {
@@ -60,4 +60,6 @@ Context::Context(const ContextSettings& settings, unsigned int width, unsigned i
     setActive(true);
 }
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+

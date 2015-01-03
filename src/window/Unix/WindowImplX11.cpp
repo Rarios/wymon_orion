@@ -85,8 +85,8 @@ namespace
 }
 
 
-namespace sf
-{
+namespace wo {
+namespace window {
 namespace priv
 {
 ////////////////////////////////////////////////////////////
@@ -1106,4 +1106,6 @@ Keyboard::Key WindowImplX11::keysymToSF(KeySym symbol)
 
 } // namespace priv
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+

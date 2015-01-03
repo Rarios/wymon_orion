@@ -32,8 +32,8 @@
 #include <system/Err.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace window {
 namespace priv
 {
 ////////////////////////////////////////////////////////////
@@ -338,4 +338,6 @@ void GlxContext::createContext(GlxContext* shared, unsigned int bitsPerPixel, co
 
 } // namespace priv
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+

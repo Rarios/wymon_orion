@@ -42,8 +42,8 @@
 #include <queue>
 #include <set>
 
-namespace sf
-{
+namespace wo {
+namespace window {
 class WindowListener;
 
 namespace priv
@@ -260,7 +260,9 @@ private:
 
 } // namespace priv
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+
 
 
 #endif // SFML_WINDOWIMPL_HPP

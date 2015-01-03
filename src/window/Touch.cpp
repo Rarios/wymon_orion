@@ -29,8 +29,8 @@
 #include <window/InputImpl.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace window {
 ////////////////////////////////////////////////////////////
 bool Touch::isDown(unsigned int finger)
 {
@@ -51,4 +51,6 @@ Vector2i Touch::getPosition(unsigned int finger, const Window& relativeTo)
     return priv::InputImpl::getTouchPosition(finger, relativeTo);
 }
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+

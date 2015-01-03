@@ -34,8 +34,8 @@
 #endif
 
 
-namespace sf
-{
+namespace wo {
+namespace system {
 ////////////////////////////////////////////////////////////
 ThreadLocal::ThreadLocal(void* value)
 {
@@ -64,4 +64,6 @@ void* ThreadLocal::getValue() const
     return m_impl->getValue();
 }
 
-} // namespace sf
+} // namespace system 
+} // namespace wo
+

@@ -26,8 +26,8 @@
 #define SFML_SENSORIMPLOSX_HPP
 
 
-namespace sf
-{
+namespace wo {
+namespace window {
 namespace priv
 {
 ////////////////////////////////////////////////////////////
@@ -95,7 +95,9 @@ public:
 
 } // namespace priv
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+
 
 
 #endif // SFML_SENSORIMPLOSX_HPP

@@ -31,8 +31,8 @@
 #include <graphics/GLCheck.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace graphics {
 namespace priv
 {
 ////////////////////////////////////////////////////////////
@@ -69,7 +69,8 @@ private:
 
 } // namespace priv
 
-} // namespace sf
+} // namespace graphics
+} // namespace wo
 
 
 #endif // SFML_TEXTURESAVER_HPP

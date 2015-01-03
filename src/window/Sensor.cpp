@@ -29,8 +29,8 @@
 #include <window/SensorManager.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace window {
     
 ////////////////////////////////////////////////////////////
 bool Sensor::isAvailable(Type sensor)
@@ -50,4 +50,6 @@ Vector3f Sensor::getValue(Type sensor)
     return priv::SensorManager::getInstance().getValue(sensor);
 }
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+

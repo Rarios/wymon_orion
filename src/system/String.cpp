@@ -31,8 +31,8 @@
 #include <cstring>
 
 
-namespace sf
-{
+namespace wo {
+namespace system {
 ////////////////////////////////////////////////////////////
 const std::size_t String::InvalidPos = std::basic_string<Uint32>::npos;
 
@@ -397,4 +397,6 @@ String operator +(const String& left, const String& right)
     return string;
 }
 
-} // namespace sf
+} // namespace system 
+} // namespace wo
+

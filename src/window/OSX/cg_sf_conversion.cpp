@@ -29,8 +29,8 @@
 #include <SFML/Window/OSX/cg_sf_conversion.hpp>
 #include <SFML/System/Err.hpp>
 
-namespace sf
-{
+namespace wo {
+namespace window {
 namespace priv
 {
 
@@ -121,4 +121,6 @@ CGDisplayModeRef convertSFModeToCGMode(VideoMode sfmode)
 }
 
 } // namespace priv
-} // namespace sf
+} // namespace window 
+} // namespace wo
+

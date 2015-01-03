@@ -39,8 +39,8 @@ namespace
 }
 
 
-namespace sf
-{
+namespace wo {
+namespace window {
 ////////////////////////////////////////////////////////////
 GlResource::GlResource()
 {
@@ -82,4 +82,6 @@ void GlResource::ensureGlContext()
     priv::GlContext::ensureContext();
 }
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+

@@ -31,8 +31,8 @@
 #include <SFML/System/Err.hpp>
 #include <algorithm>
 
-namespace sf
-{
+namespace wo {
+namespace window {
 namespace priv
 {
 
@@ -81,4 +81,6 @@ VideoMode VideoModeImpl::getDesktopMode()
 
 } // namespace priv
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+

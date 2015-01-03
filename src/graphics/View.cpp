@@ -29,8 +29,8 @@
 #include <cmath>
 
 
-namespace sf
-{
+namespace wo {
+namespace graphics {
 ////////////////////////////////////////////////////////////
 View::View() :
 m_center             (),
@@ -237,4 +237,5 @@ const Transform& View::getInverseTransform() const
     return m_inverseTransform;
 }
 
-} // namespace sf
+} // namespace graphics
+} // namespace wo

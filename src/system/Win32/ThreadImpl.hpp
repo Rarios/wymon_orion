@@ -43,8 +43,8 @@
 #endif
 
 
-namespace sf
-{
+namespace wo {
+namespace system {
 class Thread;
 
 namespace priv
@@ -103,7 +103,9 @@ private:
 
 } // namespace priv
 
-} // namespace sf
+} // namespace system 
+} // namespace wo
+
 
 
 #endif // SFML_THREADIMPL_HPP

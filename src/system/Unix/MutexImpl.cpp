@@ -28,8 +28,8 @@
 #include <system/Unix/MutexImpl.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace system {
 namespace priv
 {
 ////////////////////////////////////////////////////////////
@@ -66,4 +66,6 @@ void MutexImpl::unlock()
 
 } // namespace priv
 
-} // namespace sf
+} // namespace system 
+} // namespace wo
+

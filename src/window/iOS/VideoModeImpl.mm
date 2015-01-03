@@ -29,8 +29,8 @@
 #include <UIKit/UIKit.h>
 
 
-namespace sf
-{
+namespace wo {
+namespace window {
 namespace priv
 {
 ////////////////////////////////////////////////////////////
@@ -55,4 +55,6 @@ VideoMode VideoModeImpl::getDesktopMode()
 
 } // namespace priv
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+

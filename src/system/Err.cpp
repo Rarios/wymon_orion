@@ -95,8 +95,8 @@ private:
 };
 }
 
-namespace sf
-{
+namespace wo {
+namespace system {
 ////////////////////////////////////////////////////////////
 std::ostream& err()
 {
@@ -107,4 +107,6 @@ std::ostream& err()
 }
 
 
-} // namespace sf
+} // namespace system 
+} // namespace wo
+

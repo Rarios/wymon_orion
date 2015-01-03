@@ -31,8 +31,8 @@
 #include <SFML/System/Sleep.hpp>
 #include <SFML/System/Lock.hpp>
 
-namespace sf
-{
+namespace wo {
+namespace window {
 namespace priv
 {
 ////////////////////////////////////////////////////////////
@@ -60,4 +60,6 @@ VideoMode VideoModeImpl::getDesktopMode()
 
 } // namespace priv
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+

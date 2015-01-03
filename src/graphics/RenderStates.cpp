@@ -29,8 +29,8 @@
 #include <cstddef>
 
 
-namespace sf
-{
+namespace wo {
+namespace graphics {
 ////////////////////////////////////////////////////////////
 // We cannot use the default constructor here, because it accesses BlendAlpha, which is also global (and dynamically
 // initialized). Initialization order of global objects in different translation units is not defined.
@@ -99,4 +99,5 @@ shader   (theShader)
 {
 }
 
-} // namespace sf
+} // namespace graphics
+} // namespace wo

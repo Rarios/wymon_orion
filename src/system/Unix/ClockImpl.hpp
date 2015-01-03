@@ -32,8 +32,8 @@
 #include <system/Time.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace system {
 namespace priv
 {
 ////////////////////////////////////////////////////////////
@@ -55,7 +55,9 @@ public:
 
 } // namespace priv
 
-} // namespace sf
+} // namespace system 
+} // namespace wo
+
 
 
 #endif // SFML_CLOCKIMPLUNIX_HPP

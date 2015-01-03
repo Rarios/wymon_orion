@@ -70,8 +70,8 @@ namespace
 }
 
 
-namespace sf
-{
+namespace wo {
+namespace graphics {
 ////////////////////////////////////////////////////////////
 RenderTarget::RenderTarget() :
 m_defaultView(),
@@ -473,7 +473,8 @@ void RenderTarget::applyShader(const Shader* shader)
     Shader::bind(shader);
 }
 
-} // namespace sf
+} // namespace graphics
+} // namespace wo
 
 
 ////////////////////////////////////////////////////////////

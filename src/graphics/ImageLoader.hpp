@@ -34,8 +34,8 @@
 #include <vector>
 
 
-namespace sf
-{
+namespace wo {
+namespace graphics {
 class InputStream;
 
 namespace priv
@@ -135,7 +135,8 @@ private:
 
 } // namespace priv
 
-} // namespace sf
+} // namespace graphics
+} // namespace wo
 
 
 #endif // SFML_IMAGELOADER_HPP

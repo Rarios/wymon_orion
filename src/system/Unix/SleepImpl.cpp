@@ -30,8 +30,8 @@
 #include <time.h>
 
 
-namespace sf
-{
+namespace wo {
+namespace system {
 namespace priv
 {
 ////////////////////////////////////////////////////////////
@@ -56,4 +56,6 @@ void sleepImpl(Time time)
 
 } // namespace priv
 
-} // namespace sf
+} // namespace system 
+} // namespace wo
+

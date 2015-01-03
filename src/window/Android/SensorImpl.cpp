@@ -43,8 +43,8 @@ namespace
 }
 
 
-namespace sf
-{
+namespace wo {
+namespace window {
 namespace priv
 {
 ////////////////////////////////////////////////////////////
@@ -211,4 +211,6 @@ int SensorImpl::processSensorEvents(int fd, int events, void* data)
 
 } // namespace priv
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+

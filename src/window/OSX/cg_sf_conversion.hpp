@@ -32,8 +32,8 @@
 #include <SFML/Window/VideoMode.hpp>
 #include <ApplicationServices/ApplicationServices.h>
 
-namespace sf
-{
+namespace wo {
+namespace window {
 namespace priv
 {
 ////////////////////////////////////////////////////////////
@@ -67,6 +67,8 @@ VideoMode convertCGModeToSFMode(CGDisplayModeRef cgmode);
 CGDisplayModeRef convertSFModeToCGMode(VideoMode sfmode);
 
 } // namespace priv
-} // namespace sf
+} // namespace window 
+} // namespace wo
+
 
 #endif

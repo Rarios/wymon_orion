@@ -34,8 +34,8 @@
 #endif
 
 
-namespace sf
-{
+namespace wo {
+namespace system {
 ////////////////////////////////////////////////////////////
 Mutex::Mutex()
 {
@@ -63,4 +63,6 @@ void Mutex::unlock()
     m_mutexImpl->unlock();
 }
 
-} // namespace sf
+} // namespace system 
+} // namespace wo
+

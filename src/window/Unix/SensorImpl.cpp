@@ -28,8 +28,8 @@
 #include <window/SensorImpl.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace window {
 namespace priv
 {
 ////////////////////////////////////////////////////////////
@@ -85,4 +85,6 @@ void SensorImpl::setEnabled(bool /*enabled*/)
 
 } // namespace priv
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+

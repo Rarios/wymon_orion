@@ -123,8 +123,8 @@ namespace
 }
 
 
-namespace sf
-{
+namespace wo {
+namespace graphics {
 ////////////////////////////////////////////////////////////
 Shader::CurrentTextureType Shader::CurrentTexture;
 
@@ -628,14 +628,15 @@ int Shader::getParamLocation(const std::string& name)
     }
 }
 
-} // namespace sf
+} // namespace graphics
+} // namespace wo
 
 #else // SFML_OPENGL_ES
 
 // OpenGL ES 1 doesn't support GLSL shaders at all, we have to provide an empty implementation
 
-namespace sf
-{
+namespace wo {
+namespace graphics {
 ////////////////////////////////////////////////////////////
 Shader::CurrentTextureType Shader::CurrentTexture;
 
@@ -781,6 +782,7 @@ void Shader::bindTextures() const
 {
 }
 
-} // namespace sf
+} // namespace graphics
+} // namespace wo
 
 #endif // SFML_OPENGL_ES

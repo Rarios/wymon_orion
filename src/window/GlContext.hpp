@@ -33,8 +33,8 @@
 #include <SFML/System/NonCopyable.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace window {
 namespace priv
 {
 class WindowImpl;
@@ -228,7 +228,9 @@ private:
 
 } // namespace priv
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+
 
 
 #endif // SFML_GLCONTEXT_HPP

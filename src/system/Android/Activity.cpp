@@ -52,8 +52,8 @@ std::streambuf::int_type LogcatStream::overflow (std::streambuf::int_type c)
     return traits_type::not_eof(c);
 }
 
-namespace sf
-{
+namespace wo {
+namespace system {
 namespace priv
 {
 ActivityStates* getActivity(ActivityStates* initializedStates, bool reset)

@@ -29,8 +29,8 @@
 #include <SFML/Graphics/RenderTarget.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace graphics {
 ////////////////////////////////////////////////////////////
 VertexArray::VertexArray() :
 m_vertices     (),
@@ -147,4 +147,5 @@ void VertexArray::draw(RenderTarget& target, RenderStates states) const
         target.draw(&m_vertices[0], static_cast<unsigned int>(m_vertices.size()), m_primitiveType, states);
 }
 
-} // namespace sf
+} // namespace graphics
+} // namespace wo

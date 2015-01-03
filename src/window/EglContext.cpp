@@ -69,8 +69,8 @@ namespace
 }
 
 
-namespace sf
-{
+namespace wo {
+namespace window {
 namespace priv
 {
 ////////////////////////////////////////////////////////////
@@ -304,4 +304,6 @@ XVisualInfo EglContext::selectBestVisual(::Display* XDisplay, unsigned int bitsP
 
 } // namespace priv
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+

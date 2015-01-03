@@ -61,8 +61,8 @@
 #endif
 
 
-namespace sf
-{
+namespace wo {
+namespace window {
 namespace priv
 {
 ////////////////////////////////////////////////////////////
@@ -254,4 +254,6 @@ void WindowImpl::processSensorEvents()
 
 } // namespace priv
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+

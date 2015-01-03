@@ -33,8 +33,8 @@
 #endif
 
 
-namespace sf
-{
+namespace wo {
+namespace system {
 namespace priv
 {
 ////////////////////////////////////////////////////////////
@@ -61,4 +61,6 @@ Time ClockImpl::getCurrentTime()
 
 } // namespace priv
 
-} // namespace sf
+} // namespace system 
+} // namespace wo
+

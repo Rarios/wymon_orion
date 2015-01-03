@@ -30,8 +30,8 @@
 #include <SFML/System/Err.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace window {
 namespace priv
 {
 ////////////////////////////////////////////////////////////
@@ -158,4 +158,6 @@ void eglCheckError(const char* file, unsigned int line)
 }
 
 } // namespace priv
-} // namespace sf
+} // namespace window 
+} // namespace wo
+

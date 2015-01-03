@@ -29,8 +29,8 @@
 #include <system/Err.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace window {
 namespace priv
 {
 ////////////////////////////////////////////////////////////
@@ -126,4 +126,6 @@ SensorManager::~SensorManager()
 
 } // namespace priv
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+

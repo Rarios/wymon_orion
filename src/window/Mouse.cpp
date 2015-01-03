@@ -30,8 +30,8 @@
 #include <window/Window.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace window {
 ////////////////////////////////////////////////////////////
 bool Mouse::isButtonPressed(Button button)
 {
@@ -66,4 +66,6 @@ void Mouse::setPosition(const Vector2i& position, const Window& relativeTo)
     priv::InputImpl::setMousePosition(position, relativeTo);
 }
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+

@@ -38,8 +38,8 @@ namespace
     unsigned int referenceCount = 0;
 }
 
-namespace sf
-{
+namespace wo {
+namespace window {
 namespace priv
 {
 ////////////////////////////////////////////////////////////
@@ -75,4 +75,6 @@ void CloseDisplay(Display* display)
 
 } // namespace priv
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+

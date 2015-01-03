@@ -38,8 +38,8 @@
 #import <SFML/Window/OSX/SFViewController.h>
 #import <SFML/Window/OSX/SFWindowController.h>
 
-namespace sf
-{
+namespace wo {
+namespace window {
 namespace priv
 {
 
@@ -568,4 +568,6 @@ bool WindowImplCocoa::hasFocus() const
 
 } // namespace priv
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+

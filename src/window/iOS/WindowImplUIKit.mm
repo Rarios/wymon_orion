@@ -34,8 +34,8 @@
 #include <UIKit/UIKit.h>
 
 
-namespace sf
-{
+namespace wo {
+namespace window {
 namespace priv
 {
 ////////////////////////////////////////////////////////////
@@ -216,4 +216,6 @@ void WindowImplUIKit::setVirtualKeyboardVisible(bool visible)
 
 } // namespace priv
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+

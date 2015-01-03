@@ -29,8 +29,8 @@
 #include <window/InputImpl.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace window {
 ////////////////////////////////////////////////////////////
 bool Keyboard::isKeyPressed(Key key)
 {
@@ -44,4 +44,6 @@ void Keyboard::setVirtualKeyboardVisible(bool visible)
     priv::InputImpl::setVirtualKeyboardVisible(visible);
 }
     
-} // namespace sf
+} // namespace window 
+} // namespace wo
+

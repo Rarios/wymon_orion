@@ -31,8 +31,8 @@
 #include <system/Err.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace graphics {
 namespace priv
 {
 ////////////////////////////////////////////////////////////
@@ -144,4 +144,5 @@ void RenderTextureImplFBO::updateTexture(unsigned int)
 
 } // namespace priv
 
-} // namespace sf
+} // namespace graphics
+} // namespace wo

@@ -34,8 +34,8 @@
 #endif
 
 
-namespace sf
-{
+namespace wo {
+namespace system {
 ////////////////////////////////////////////////////////////
 Clock::Clock() :
 m_startTime(priv::ClockImpl::getCurrentTime())
@@ -60,4 +60,6 @@ Time Clock::restart()
     return elapsed;
 }
 
-} // namespace sf
+} // namespace system 
+} // namespace wo
+

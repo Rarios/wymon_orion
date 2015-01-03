@@ -31,8 +31,8 @@
 #include <X11/Xlib.h>
 
 
-namespace sf
-{
+namespace wo {
+namespace window {
 namespace priv
 {
 ////////////////////////////////////////////////////////////
@@ -56,7 +56,9 @@ void CloseDisplay(Display* display);
 
 } // namespace priv
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+
 
 
 #endif // SFML_SHAREDDISPLAY_HPP

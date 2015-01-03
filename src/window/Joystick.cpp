@@ -29,8 +29,8 @@
 #include <window/JoystickManager.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace window {
 ////////////////////////////////////////////////////////////
 bool Joystick::isConnected(unsigned int joystick)
 {
@@ -89,4 +89,6 @@ productId(0)
 
 }
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+

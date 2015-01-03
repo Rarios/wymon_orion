@@ -35,8 +35,8 @@
 #endif
 
 
-namespace sf
-{
+namespace wo {
+namespace system {
 ////////////////////////////////////////////////////////////
 Thread::~Thread()
 {
@@ -83,4 +83,6 @@ void Thread::run()
     m_entryPoint->run();
 }
 
-} // namespace sf
+} // namespace system 
+} // namespace wo
+

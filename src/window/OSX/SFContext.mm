@@ -32,8 +32,8 @@
 
 #import <SFML/Window/OSX/AutoreleasePoolWrapper.h>
 
-namespace sf
-{
+namespace wo {
+namespace window {
 namespace priv
 {
 
@@ -248,5 +248,7 @@ void SFContext::createContext(SFContext* shared,
 
 } // namespace priv
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+
 

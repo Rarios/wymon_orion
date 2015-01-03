@@ -34,8 +34,8 @@
 #include <algorithm>
 
 
-namespace sf
-{
+namespace wo {
+namespace window {
 namespace priv
 {
 ////////////////////////////////////////////////////////////
@@ -75,7 +75,9 @@ struct JoystickState
 
 } // namespace priv
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+
 
 
 #if defined(SFML_SYSTEM_WINDOWS)

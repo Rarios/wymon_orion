@@ -29,8 +29,8 @@
 #include <cmath>
 
 
-namespace sf
-{
+namespace wo {
+namespace graphics {
 ////////////////////////////////////////////////////////////
 RectangleShape::RectangleShape(const Vector2f& size)
 {
@@ -73,4 +73,5 @@ Vector2f RectangleShape::getPoint(unsigned int index) const
     }
 }
 
-} // namespace sf
+} // namespace graphics
+} // namespace wo

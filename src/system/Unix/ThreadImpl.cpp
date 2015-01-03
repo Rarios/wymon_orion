@@ -31,8 +31,8 @@
 #include <cassert>
 
 
-namespace sf
-{
+namespace wo {
+namespace system {
 namespace priv
 {
 ////////////////////////////////////////////////////////////
@@ -91,4 +91,6 @@ void* ThreadImpl::entryPoint(void* userData)
 
 } // namespace priv
 
-} // namespace sf
+} // namespace system 
+} // namespace wo
+

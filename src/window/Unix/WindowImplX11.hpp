@@ -35,8 +35,8 @@
 #include <set>
 
 
-namespace sf
-{
+namespace wo {
+namespace window {
 namespace priv
 {
 ////////////////////////////////////////////////////////////
@@ -244,7 +244,9 @@ private:
 
 } // namespace priv
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+
 
 
 #endif // SFML_WINDOWIMPLX11_HPP

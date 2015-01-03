@@ -32,8 +32,8 @@
 #include <windows.h>
 
 
-namespace sf
-{
+namespace wo {
+namespace system {
 namespace priv
 {
 ////////////////////////////////////////////////////////////
@@ -81,7 +81,9 @@ private:
 
 } // namespace priv
 
-} // namespace sf
+} // namespace system 
+} // namespace wo
+
 
 
 #endif // SFML_THREADLOCALIMPL_HPP

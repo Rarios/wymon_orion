@@ -28,8 +28,8 @@
 #include <window/JoystickManager.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace window {
 namespace priv
 {
 ////////////////////////////////////////////////////////////
@@ -120,4 +120,6 @@ JoystickManager::~JoystickManager()
 
 } // namespace priv
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+

@@ -52,8 +52,8 @@ namespace
 }
 
 
-namespace sf
-{
+namespace wo {
+namespace graphics {
 ////////////////////////////////////////////////////////////
 Shape::~Shape()
 {
@@ -302,4 +302,5 @@ void Shape::updateOutlineColors()
         m_outlineVertices[i].color = m_outlineColor;
 }
 
-} // namespace sf
+} // namespace graphics
+} // namespace wo

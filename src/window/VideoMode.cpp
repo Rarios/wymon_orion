@@ -31,8 +31,8 @@
 #include <functional>
 
 
-namespace sf
-{
+namespace wo {
+namespace window {
 ////////////////////////////////////////////////////////////
 VideoMode::VideoMode() :
 width       (0),
@@ -143,4 +143,6 @@ bool operator >=(const VideoMode& left, const VideoMode& right)
     return !(left < right);
 }
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+

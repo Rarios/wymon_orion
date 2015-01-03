@@ -31,8 +31,8 @@
 #include <SFML/System/NonCopyable.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace graphics {
 namespace priv
 {
 ////////////////////////////////////////////////////////////
@@ -83,7 +83,8 @@ public:
 
 } // namespace priv
 
-} // namespace sf
+} // namespace graphics
+} // namespace wo
 
 
 #endif // SFML_RENDERTEXTUREIMPL_HPP

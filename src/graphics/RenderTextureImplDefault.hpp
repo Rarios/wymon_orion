@@ -33,8 +33,8 @@
 #include <window/Context.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace graphics {
 namespace priv
 {
 ////////////////////////////////////////////////////////////
@@ -101,7 +101,8 @@ private:
 
 } // namespace priv
 
-} // namespace sf
+} // namespace graphics
+} // namespace wo
 
 
 #endif // SFML_RENDERTEXTUREIMPLDEFAULT_HPP

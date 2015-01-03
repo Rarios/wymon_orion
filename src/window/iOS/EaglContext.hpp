@@ -38,8 +38,8 @@
 SFML_DECLARE_OBJC_CLASS(EAGLContext);
 SFML_DECLARE_OBJC_CLASS(SFView);
 
-namespace sf
-{
+namespace wo {
+namespace window {
 namespace priv
 {
 class WindowImplUIKit;
@@ -160,6 +160,8 @@ private:
 
 } // namespace priv
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+
 
 #endif // SFML_EAGLCONTEXT_HPP

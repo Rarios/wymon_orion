@@ -29,8 +29,8 @@
 #include <graphics/GLCheck.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace graphics {
 ////////////////////////////////////////////////////////////
 RenderWindow::RenderWindow()
 {
@@ -114,4 +114,5 @@ void RenderWindow::onResize()
     setView(getView());
 }
 
-} // namespace sf
+} // namespace graphics
+} // namespace wo

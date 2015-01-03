@@ -32,8 +32,8 @@
 #include <system/Time.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace system {
 namespace priv
 {
 ////////////////////////////////////////////////////////////
@@ -46,7 +46,9 @@ void sleepImpl(Time time);
 
 } // namespace priv
 
-} // namespace sf
+} // namespace system 
+} // namespace wo
+
 
 
 #endif // SFML_SLEEPIMPLUNIX_HPP

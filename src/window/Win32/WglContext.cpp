@@ -33,8 +33,8 @@
 #include <SFML/System/Err.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace window {
 namespace priv
 {
 ////////////////////////////////////////////////////////////
@@ -322,4 +322,6 @@ void WglContext::createContext(WglContext* shared, unsigned int bitsPerPixel, co
 
 } // namespace priv
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+

@@ -29,8 +29,8 @@
 #include <SFML/System/Mutex.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace system {
 ////////////////////////////////////////////////////////////
 Lock::Lock(Mutex& mutex) :
 m_mutex(mutex)
@@ -45,4 +45,6 @@ Lock::~Lock()
     m_mutex.unlock();
 }
 
-} // namespace sf
+} // namespace system 
+} // namespace wo
+

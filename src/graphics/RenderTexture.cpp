@@ -31,8 +31,8 @@
 #include <system/Err.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace graphics {
 ////////////////////////////////////////////////////////////
 RenderTexture::RenderTexture() :
 m_impl(NULL)
@@ -152,4 +152,5 @@ bool RenderTexture::activate(bool active)
     return setActive(active);
 }
 
-} // namespace sf
+} // namespace graphics
+} // namespace wo

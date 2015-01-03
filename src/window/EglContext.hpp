@@ -35,8 +35,8 @@
 #include <SFML/OpenGL.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace window {
 namespace priv
 {
 class EglContext : public GlContext
@@ -177,7 +177,9 @@ private:
 
 } // namespace priv
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+
 
 
 #endif // SFML_EGLCONTEXT_HPP

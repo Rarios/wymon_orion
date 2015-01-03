@@ -28,8 +28,8 @@
 #include <SFML/System/Time.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace system {
 ////////////////////////////////////////////////////////////
 const Time Time::Zero;
 
@@ -257,4 +257,6 @@ Time& operator %=(Time& left, Time right)
     return left = left % right;
 }
 
-} // namespace sf
+} // namespace system 
+} // namespace wo
+

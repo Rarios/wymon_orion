@@ -29,8 +29,8 @@
 #include <cmath>
 
 
-namespace sf
-{
+namespace wo {
+namespace graphics {
 ////////////////////////////////////////////////////////////
 Transformable::Transformable() :
 m_origin                    (0, 0),
@@ -216,4 +216,5 @@ const Transform& Transformable::getInverseTransform() const
     return m_inverseTransform;
 }
 
-} // namespace sf
+} // namespace graphics
+} // namespace wo

@@ -33,8 +33,8 @@
 #include <SFML/Window/Mouse.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace window {
 namespace priv
 {
 ////////////////////////////////////////////////////////////
@@ -163,7 +163,9 @@ public:
 
 } // namespace priv
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+
 
 
 #endif // SFML_INPUTIMPLOSX_HPP

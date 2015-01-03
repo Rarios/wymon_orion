@@ -38,8 +38,8 @@ namespace
 }
 
 
-namespace sf
-{
+namespace wo {
+namespace window {
 ////////////////////////////////////////////////////////////
 Window::Window() :
 m_impl          (NULL),
@@ -430,4 +430,6 @@ void Window::initialize()
     onCreate();
 }
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+

@@ -29,8 +29,8 @@
 #include <algorithm>
 
 
-namespace sf
-{
+namespace wo {
+namespace graphics {
 ////////////////////////////////////////////////////////////
 // Static member data
 ////////////////////////////////////////////////////////////
@@ -134,4 +134,5 @@ Color& operator *=(Color& left, const Color& right)
     return left = left * right;
 }
 
-} // namespace sf
+} // namespace graphics
+} // namespace wo

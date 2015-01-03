@@ -68,8 +68,8 @@ namespace
 }
 
 
-namespace sf
-{
+namespace wo {
+namespace graphics {
 namespace priv
 {
 ////////////////////////////////////////////////////////////
@@ -318,4 +318,5 @@ bool ImageLoader::writeJpg(const std::string& filename, const std::vector<Uint8>
 
 } // namespace priv
 
-} // namespace sf
+} // namespace graphics
+} // namespace wo

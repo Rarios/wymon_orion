@@ -28,8 +28,8 @@
 #include <system/Unix/ThreadLocalImpl.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace system {
 namespace priv
 {
 ////////////////////////////////////////////////////////////
@@ -61,4 +61,6 @@ void* ThreadLocalImpl::getValue() const
 
 } // namespace priv
 
-} // namespace sf
+} // namespace system 
+} // namespace wo
+

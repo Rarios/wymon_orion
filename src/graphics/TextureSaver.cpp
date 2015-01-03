@@ -28,8 +28,8 @@
 #include <graphics/TextureSaver.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace graphics {
 namespace priv
 {
 ////////////////////////////////////////////////////////////
@@ -47,4 +47,5 @@ TextureSaver::~TextureSaver()
 
 } // namespace priv
 
-} // namespace sf
+} // namespace graphics
+} // namespace wo

@@ -33,8 +33,8 @@
 #include <string>
 
 
-namespace sf
-{
+namespace wo {
+namespace graphics {
 namespace priv
 {
 ////////////////////////////////////////////////////////////
@@ -63,7 +63,8 @@ void glCheckError(const char* file, unsigned int line);
 
 } // namespace priv
 
-} // namespace sf
+} // namespace graphics
+} // namespace wo
 
 
 #endif // SFML_GLCHECK_HPP

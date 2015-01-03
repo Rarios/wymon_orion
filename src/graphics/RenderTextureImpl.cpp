@@ -28,8 +28,8 @@
 #include <graphics/RenderTextureImpl.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace graphics {
 namespace priv
 {
 ////////////////////////////////////////////////////////////
@@ -40,4 +40,5 @@ RenderTextureImpl::~RenderTextureImpl()
 
 } // namespace priv
 
-} // namespace sf
+} // namespace graphics
+} // namespace wo

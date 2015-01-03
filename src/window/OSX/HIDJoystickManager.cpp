@@ -40,8 +40,8 @@ namespace
 }
 
 
-namespace sf
-{
+namespace wo {
+namespace window {
 namespace priv
 {
 ////////////////////////////////////////////////////////////
@@ -148,5 +148,7 @@ void HIDJoystickManager::pluggedOut(void* context, IOReturn, void*, IOHIDDeviceR
 
 } // namespace priv
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+
 

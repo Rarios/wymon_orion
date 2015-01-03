@@ -28,8 +28,8 @@
 #include <SFML/Graphics/ConvexShape.hpp>
 
 
-namespace sf
-{
+namespace wo {
+namespace graphics {
 ////////////////////////////////////////////////////////////
 ConvexShape::ConvexShape(unsigned int pointCount)
 {
@@ -66,4 +66,5 @@ Vector2f ConvexShape::getPoint(unsigned int index) const
     return m_points[index];
 }
 
-} // namespace sf
+} // namespace graphics
+} // namespace wo

@@ -38,8 +38,8 @@
 #include <windows.h>
 
 
-namespace sf
-{
+namespace wo {
+namespace window {
 namespace priv
 {
 ////////////////////////////////////////////////////////////
@@ -253,4 +253,6 @@ Vector2i InputImpl::getTouchPosition(unsigned int /*finger*/, const Window& /*re
 
 } // namespace priv
 
-} // namespace sf
+} // namespace window 
+} // namespace wo
+

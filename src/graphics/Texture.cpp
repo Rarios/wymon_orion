@@ -68,8 +68,8 @@ namespace
 }
 
 
-namespace sf
-{
+namespace wo {
+namespace graphics {
 ////////////////////////////////////////////////////////////
 Texture::Texture() :
 m_size         (0, 0),
@@ -588,4 +588,5 @@ unsigned int Texture::getValidSize(unsigned int size)
     }
 }
 
-} // namespace sf
+} // namespace graphics
+} // namespace wo

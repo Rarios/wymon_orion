@@ -6,6 +6,18 @@ The project is currently in its first major release state: **angad 0.0.0**
 This is the WymonOrion project repository. It consits of two major parts:
 The first part is a set of general purpose libraries. The second part is a set of code files utilizing those libs to build an application.
 
+# Project Branches
+
+Within the project's repository, you will find a couple of different branches. All of which have their own purpose, a short description is listed below:
+
+* **master** - Latest official release, consider it stable.
+* **dev** - Latest developement snapshot, may or may not be stable.
+* **agx_1** - Personal developer branch.
+* **simmac** - Personal developer branch.
+* **yozoon** - Personal developer branch.
+
+The **master** branch will always provide you with the latest version of WymonOrion that you can use to work with. However, if you want the latest development snapshot, use the **dev** branch. Internally, we use this branch to work on the next release, merge independent work on the codebase, etc., so the code within this branch may not be fully stable. The other three branches are listed as 'Personal developer branch', because they are used by members of the developing team to work independently on different parts of the project. If you want to get insight into their current work, feel free to dive into one of these branches.
+
 # Libraries
 
 The libraries consist of the _graphics_ and the _utils_ library. The _graphics_ library partly uses the **SFML**, reimplements different classes provided by the **SFML** and adds an animation class on top of it. In addition to that, the _graphics_ lib has special data structures, not provided by the **SFML** itself, taking care of memory management for textures and animation frames.

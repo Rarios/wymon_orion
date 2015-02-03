@@ -210,7 +210,7 @@ void Orion::run() {
 	m_win.clear(); 
 
 	// Font.
-	if (!m_font.loadFromFile("res/NotoSerif-Regular.ttf")) {
+	if (!m_font.loadFromFile("Resources/NotoSerif-Regular.ttf")) {
 	
 		std::cerr << "Could not load Noto font\n";
 		std::cin.get();
@@ -219,7 +219,7 @@ void Orion::run() {
 	}
 
 	// Background.
-	if (!m_background.load("res/background.jpg")) {
+	if (!m_background.load("Resources/background.jpg")) {
 	
 		std::cerr << "Could not load background.jpg\n";
 		std::cin.get();
@@ -234,7 +234,7 @@ void Orion::run() {
 	m_win.draw(m_background);
 
 	// Wymon animation.
-	if (!m_wymon.load("res/wymon.png", sf::IntRect(0, 0, 106, 96))) {
+	if (!m_wymon.load("Resources/wymon.png", sf::IntRect(0, 0, 106, 96))) {
 	
 		std::cerr << "Could not load wymon.png\n";
 		std::cin.get();

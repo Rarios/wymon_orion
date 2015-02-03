@@ -1,0 +1,5 @@
+Version: angad 1.0.0
+
+	-) Made a Changelog.
+	-) Renamed folders. Written names out and changed them to uppercase, so it
+	fits the coding conventions.

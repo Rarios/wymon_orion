@@ -1,12 +1,17 @@
 // texture_repository.hpp
 
-#ifndef _TEXTUREREPOSITORY_
-#define _TEXTUREREPOSITORY_
+#ifndef GRAPHICS_TEXTUREREPOSITORY
+#define GRAPHICS_TEXTUREREPOSITORY
 
-#include <SFML/Graphics.hpp>
 #include <string>
 #include <list>
 #include <memory>
+#include <Graphics.hpp>
+#ifndef WO_NAMESPACE
+	#include "Namespace.hpp"
+#endif
+
+OPEN_WO_GFX
 
 //! Type to conveniently work with shared textures.
 /*!
@@ -14,11 +19,11 @@
 * references currently in use. If only the texture container refers to the
 * texture, it will be deleted out of the memory.
 */
-typedef std::shared_ptr<sf::Texture> texture_ptr;
+typedef std::shared_ptr<Texture> TexturePointer;
 
 //! Static class to automatically handle textures.
 /*!
-* In the SFML, a sprite only holds a pointer to a sf::Texture object, which
+* In the SFML, a sprite only holds a pointer to a Texture object, which
 * means this object must not be destroyed as long as the sprite uses it. Since
 * it is sometimes difficult to manage those textures and keep them alive as long
 * as they are needed, this conveniece class has been created. It holds a static
@@ -27,31 +32,33 @@ typedef std::shared_ptr<sf::Texture> texture_ptr;
 * be much cleaner an easier to handle; Sprite objects should most likely be the
 * only object which has to be taken care of.
 */
-class texture_repository {
+class TextureRepository {
 
 public :
 
 	// Member functions
 
-	static bool load(texture_ptr* tex_ptr, const std::string& filename,
-					 const sf::IntRect& area = sf::IntRect());
-	static bool load(texture_ptr* tex_ptr, const void* data, std::size_t size,
-					 const sf::IntRect& area = sf::IntRect());
-	static bool load(texture_ptr* tex_ptr, sf::InputStream& stream,
-					 const sf::IntRect& area = sf::IntRect());
-	static bool load(texture_ptr* tex_ptr, const sf::Image& image,
-					 const sf::IntRect& area = sf::IntRect());
+	static bool loadFromFile(TexturePointer* texturePtr, const std::string& filename,
+					 const IntRect& area = IntRect());
+	static bool loadFromMemory(TexturePointer* texturePtr, const void* data, std::size_t size,
+					 const IntRect& area = IntRect());
+	static bool loadFromStream(TexturePointer* texturePtr, InputStream& stream,
+					 const IntRect& area = IntRect());
+	static bool loadFromImage(TexturePointer* texturePtr, const Image& image,
+					 const IntRect& area = IntRect());
 
-    static bool remove_texture(const texture_ptr& tex_ptr);
+    static bool removeTexture(const TexturePointer& texturePtr);
 	static void tidy();
 
 private :
 
 	// Member variables
 
-	static std::list<texture_ptr> m_textures;
-	static std::size_t destruct_count;
+	static std::list<TexturePointer> mTextures;
+	static std::size_t mDestructionCount;
 
 };
 
-#endif
+CLOSE_WO_GFX
+
+#endimDestructionCountf

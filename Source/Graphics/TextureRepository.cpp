@@ -1,9 +1,11 @@
-// texture_repository.cpp
+// TextureRepository.cpp
 
-#include "texture_repos.hpp"
 #include <iostream>
+#include "TextureRepository.hpp"
 
-// ADD texture_repository HANDLING FUNCTIONS TO THE SPRITE CLASS:
+OPEN_WO_GFX
+
+// ADD TextureRepository HANDLING FUNCTIONS TO THE SPRITE CLASS:
 // REMEMBER - OVERLOAD THE COPY CONSTRUCTOR AND CALL inc_ref INSIDE OF IT
 // AND CALL dec_ref BEFORE destroy INSIDE OF THE SPRITE DESTRUCTOR
 
@@ -13,14 +15,14 @@
 /*!
 * At first, it should be an empty list.
 */
-std::list<texture_ptr> texture_repository::m_textures;
+std::list<TexturePointer> TextureRepository::mTextures;
 
 //! Internal counter of destructed texture holding objects.
 /*!
 * Holds the number of objects destructed which had a reference to a texture
 * pointer.
 */
-std::size_t texture_repository::destruct_count = 0 ;
+std::size_t TextureRepository::mDestructCount = 0;
 
 // Member functions
 
@@ -29,18 +31,18 @@ std::size_t texture_repository::destruct_count = 0 ;
 * Loads a texture from a file. The area argument can be used to load only a
 * sub-rectangle of the image. If the whole image should be loaded, leave this
 * parameter by its default value. After the texture is successfully loaded, a
-* pointer is stored in the texture_ptr.
-* \param tex_ptr Shared pointer which will hold reference to texture.
+* pointer is stored in the TexturePointer.
+* \param texturePtr Shared pointer which will hold reference to texture.
 * \param filename Path of the image file to load.
 * \param area Area of the image to load.
 * \return True on success.
 */
-bool texture_repository::load(texture_ptr* tex_ptr, const std::string& filename,
-                              const sf::IntRect& area) {
+bool TextureRepository::loadFromFile(TexturePointer* texturePtr, const std::string& filename,
+                              const IntRect& area) {
 
-	m_textures.emplace_back(new sf::Texture);
+	mTextures.emplace_back(new Texture);
 
-	if (!m_textures.back()->loadFromFile(filename, area)) {
+	if (!mTextures.back()->loadFromFile(filename, area)) {
 
         // Could not load file.
         return false;
@@ -48,11 +50,11 @@ bool texture_repository::load(texture_ptr* tex_ptr, const std::string& filename,
 	}
 
     // Reference the stored texture, increases use_count().
-    *tex_ptr = m_textures.back();
+    *texturePtr = mTextures.back();
 
     /*std::cout << "Size of the texture: ";
-    std::cout << m_textures.back()->getSize().x << ", ";
-    std::cout << m_textures.back()->getSize().y << std::endl;*/
+    std::cout << mTextures.back()->getSize().x << ", ";
+    std::cout << mTextures.back()->getSize().y << std::endl;*/
 
     return true;
 
@@ -63,19 +65,19 @@ bool texture_repository::load(texture_ptr* tex_ptr, const std::string& filename,
 * Loads a texture from a file in memory. The area argument can be used to load
 * only a sub-rectangle of the image. If the whole image should be loaded, leave
 * this parameter by its default value. After the texture is successfully loaded,
-* a pointer is stored in the texture_ptr.
-* \param tex_pointer Shared pointer which will hold reference to texture.
+* a pointer is stored in the TexturePointer.
+* \param texturePtr Shared pointer which will hold reference to texture.
 * \param data Data in memory from which to load.
 * \param size Size of the block of data.
 * \param area Area of the image to load.
 * \return True on success.
 */
-bool texture_repository::load(texture_ptr* tex_ptr, const void* data,
-                              std::size_t size, const sf::IntRect& area) {
+bool TextureRepository::loadFromMemory(TexturePointer* texturePtr, const void* data,
+                              std::size_t size, const IntRect& area) {
 
-	m_textures.emplace_back(new sf::Texture);
+	mTextures.emplace_back(new Texture);
 
-	if (!m_textures.back()->loadFromMemory(data, size, area)) {
+	if (!mTextures.back()->loadFromMemory(data, size, area)) {
 
         // Could not load file.
         return false;
@@ -83,7 +85,7 @@ bool texture_repository::load(texture_ptr* tex_ptr, const void* data,
 	}
 
     // Reference the stored texture, increases use_count().
-    *tex_ptr = m_textures.back();
+    *texturePtr = mTextures.back();
 
     return true;
 
@@ -94,19 +96,19 @@ bool texture_repository::load(texture_ptr* tex_ptr, const void* data,
 * Loads a texture from a custom stream. The area argument can be used to load
 * only a sub-rectangle of the image. If the whole image should be loaded, leave
 * this parameter by its default value. After the texture is successfully loaded,
-* a pointer is stored in the texture_ptr.
-* \param tex_pointer Shared pointer which will hold reference to texture.
+* a pointer is stored in the TexturePointer.
+* \param texturePtr Shared pointer which will hold reference to texture.
 * \param stream Custom stream from which to load.
 * \param area Area of the image to load.
 * \return True on success.
 */
-bool texture_repository::load(texture_ptr* tex_ptr,
-                                      sf::InputStream& stream,
-                                      const sf::IntRect& area) {
+bool TextureRepository::loadFromStream(TexturePointer* texturePtr,
+                                      InputStream& stream,
+                                      const IntRect& area) {
 
-	m_textures.emplace_back(new sf::Texture);
+	mTextures.emplace_back(new Texture);
 
-	if (!m_textures.back()->loadFromStream(stream, area)) {
+	if (!mTextures.back()->loadFromStream(stream, area)) {
 
         // Could not load file.
         return false;
@@ -114,7 +116,7 @@ bool texture_repository::load(texture_ptr* tex_ptr,
 	}
 
     // Reference the stored texture, increases use_count().
-    *tex_ptr = m_textures.back();
+    *texturePtr = mTextures.back();
 
     return true;
 
@@ -125,19 +127,19 @@ bool texture_repository::load(texture_ptr* tex_ptr,
 * Loads a texture from an image. The area argument can be used to load only a
 * sub-rectangle of the image. If the whole image should be loaded, leave this
 * parameter by its default value. After the texture is successfully loaded, a
-* pointer is stored in the texture_ptr.
-* \param tex_pointer Shared pointer which will hold reference to texture.
+* pointer is stored in the TexturePointer.
+* \param texturePtr Shared pointer which will hold reference to texture.
 * \param image Image from which to load.
 * \param area Area of the image to load.
 * \return True on success.
 */
-bool texture_repository::load(texture_ptr* tex_ptr,
-                                      const sf::Image& image,
-                                      const sf::IntRect& area) {
+bool TextureRepository::loadFromImage(TexturePointer* texturePtr,
+                                      const Image& image,
+                                      const IntRect& area) {
 
-	m_textures.emplace_back(new sf::Texture);
+	mTextures.emplace_back(new Texture);
 
-	if (!m_textures.back()->loadFromImage(image, area)) {
+	if (!mTextures.back()->loadFromImage(image, area)) {
 
         // Could not load file.
         return false;
@@ -145,7 +147,7 @@ bool texture_repository::load(texture_ptr* tex_ptr,
 	}
 
     // Reference the stored texture, increases use_count().
-    *tex_ptr = m_textures.back();
+    *texturePtr = mTextures.back();
 
     return true;
 
@@ -157,12 +159,13 @@ bool texture_repository::load(texture_ptr* tex_ptr,
 * which a texture is removed from the list. If the use count of a texture
 * pointer is one, only the std::list refers to it anymore, so it can be
 * destructed without any damage.
-* \param tex_ptr Texture pointer to the texture object.
+* \param texturePtr Texture pointer to the texture object.
 * \return True if std::shared_ptr::use_count() equals 1.
 */
-bool texture_repository::remove_texture(const texture_ptr& tex_ptr) {
+bool TextureRepository::removeTexture(const TexturePointer& texturePtr) {
 
-    return 1 == tex_ptr.use_count();
+	// 1, because 'use_count()' counts the pointer that calls it as user too.
+    return 1 == texturePtr.use_count();
 
 }
 
@@ -174,15 +177,17 @@ bool texture_repository::remove_texture(const texture_ptr& tex_ptr) {
 * half the size of the internal texture list, a function is called to garbage
 * collect all unused textures.
 */
-void texture_repository::tidy() {
+void TextureRepository::tidy() {
 
-    ++ destruct_count;
+    ++ mDestructionCount;
 
-	if (m_textures.size() < destruct_count) {
+	if (mTextures.size()/2 <= mDestructionCount) {
 
-        m_textures.remove_if(remove_texture);
-        destruct_count = 0;
+        mTextures.remove_if(removeTexture);
+        mDestructionCount = 0;
 
 	}
 
 }
+
+CLOSE_WO_GFX

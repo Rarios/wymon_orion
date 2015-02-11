@@ -25,19 +25,24 @@
 
 // This file has been modified by LIN for WymonOrion.
 
-#ifndef TEXT_HPP
-#define TEXT_HPP
+#ifndef GRAPHICS_TEXT
+#define GRAPHICS_TEXT
 
-#include <SFML/Graphics/Export.hpp>
-#include <SFML/Graphics/Drawable.hpp>
-#include <SFML/Graphics/Transformable.hpp>
-#include <SFML/Graphics/Font.hpp>
-#include <SFML/Graphics/Rect.hpp>
-#include <SFML/Graphics/VertexArray.hpp>
-#include <SFML/System/String.hpp>
 #include <string>
 #include <vector>
 #include <memory>
+#include <Graphics/Export.hpp>
+#include <Graphics/Drawable.hpp>
+#include <Graphics/Transformable.hpp>
+#include <Graphics/Font.hpp>
+#include <Graphics/Rect.hpp>
+#include <Graphics/VertexArray.hpp>
+#include <System/String.hpp>
+#ifndef WO_NAMESPACE
+	#include "Namespace.hpp"
+#endif
+
+OPEN_WO_GFX
 
 //! Type to handle shared fonts.
 /*!
@@ -45,14 +50,14 @@
 * longer needed. It uses the std::shared_ptr ability to count the number of
 * uses with use_count().
 */
-typedef std::shared_ptr<sf::Font> font_ptr;
+typedef std::shared_ptr<Font> FontPointer;
 
 //! Type to handle constant shared fonts.
 /*!
 * This type is used with shared fonts, which are not allowed to be modified and
-* thus have to be constant. Works like font_ptr.
+* thus have to be constant. Works like FontPointer.
 */
-typedef std::shared_ptr<const sf::Font> const_font_ptr;
+typedef std::shared_ptr<const Font> ConstFontPointer;
 
 //! Class to draw text onto the screen.
 /*!
@@ -60,80 +65,82 @@ typedef std::shared_ptr<const sf::Font> const_font_ptr;
 * It offers different options to mutate the way the characters are drawn on the
 * screen, such as fonts.
 */
-class text : public sf::Drawable, public sf::Transformable {
+class Text : public Drawable, public Transformable {
 
 public:
 
     // Member types.
 
     //! Enumeration of the text drawing styles.
-    enum style {
+    enum Style {
 
 	//! Regular characters, no style.
-        reg    = 0, 
+        REGULAR = 0, 
 	//! bold characters.
-        bold       = 1 << 0,
+        BOLD = 1 << 0,
 	//! Italic characters.
-        italic     = 1 << 1,
+        ITALIC = 1 << 1,
 	//! Underlined characters.
-        underline = 1 << 2
+        UNDERLINED = 1 << 2
 
     };
 
     // Member functions.
 
-    text();
-    text(const sf::String& str, const sf::Font* font,
-	const sf::Color& color = sf::Color::Black, unsigned int char_size = 30);
-	text(const text& other);
-    ~text();
+    Text();
+    Text(const String& string, const Font* font,
+		 const Color& color = Color::Black, unsigned int characterSize = 30);
+	Text(const text& other);
+    ~Text();
 
-    void str(const sf::String& str);
-    void font(const sf::Font* font);
-    void font_ptr(const_font_ptr font);
-    void char_size(unsigned int size);
-    void style(sf::Uint32 styl);
-    void color(const sf::Color& clr);
+    void setString(const String& string);
+    void setFont(const Font* font);
+    void setFontPointer(const_FontPointer font);
+    void setCharacterSize(unsigned int size);
+    void setStyle(Uint32 style);
+    void setColor(const Color& color);
 
-    const sf::String& str() const;
-    const sf::Font* font() const;
-    const_font_ptr font_ptr() const;
-    unsigned int char_size() const;
-    sf::Uint32 style() const;
-    const sf::Color& color() const;
+    const String& getString() const;
+    const Font* getFont() const;
+    const_FontPointer getFontPointer() const;
+    unsigned int getCharacterSize() const;
+    Uint32 getStlye() const;
+    const Color& getColor() const;
 
-    sf::Vector2f find_char_pos(std::size_t index) const;
+    Vector2f findCharacterPosition(std::size_t index) const;
 
-	sf::Vector2f obj_size() const;
-    sf::Vector2f size() const;
-    sf::FloatRect loc_bound() const;
-    sf::FloatRect glob_bound() const;
+	Vector2f getObjectSize() const;
+    Vector2f getSize() const;
+    FloatRect getLocalBounds() const;
+    FloatRect getGlobalBounds() const;
 
 private :
 
     // Member functions.
 
-    virtual void draw(sf::RenderTarget& targt, sf::RenderStates stat) const;
+    virtual void draw(RenderTarget& target, RenderStates states) const;
 
-    void updt_geom();
+    void updateGeometry();
 
     // Member variables.
 
     //! String to display.
-    sf::String m_str;
+    String mString;
     //! Font used to display the string.
-    const_font_ptr m_font;
+    ConstFontPointer mFont;
     //! Base size of characters in pixel.
-    unsigned int m_char_size;
+    unsigned int mCharacterSize;
     //! Text style, see style enum. 
-    sf::Uint32 m_style;
+    Uint32 mStyle;
     //! Text color.
-    sf::Color m_color;
+    Color mColor;
     //! Vertex array containing the text's geometry.
-    sf::VertexArray m_vertices;
+    VertexArray mVertices;
     //! Bounding rectangle of the text (in local coordinates).
-    sf::FloatRect m_bound;
+    FloatRect mBounds;
 
 };
 
-#endif // TEXT_HPP
+CLOSE_WO_GFX
+
+#endif // GRAPHICS_TEXT

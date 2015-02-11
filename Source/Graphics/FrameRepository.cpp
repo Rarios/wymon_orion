@@ -1,26 +1,26 @@
-// frame_repository.cpp
+// FrameRepository.cpp
 
-#include "frame_repos.hpp"
-#include <iostream>
 #include <cassert>
+#include <iostream>
+#include "FrameRepository.hpp"
 
 // Member variables
 
 // ATTENTION: Do NOT change the "operator[]()" calls to just "[]". Implicit
-// calls to the overloaded operator generates compiler errors.
+// calls to the overloaded operator generate compiler errors.
 
 //! List holding all frames.
 /*!
 * At first, it should be an empty list.
 */
-std::list<frames_ptr> frame_repository::m_frames;
+std::list<FramesPointer> FrameRepository::mFrames;
 
 //! Internal counter of destructed frame holding objects.
 /*!
 * Holds the number of objects destructed which had a reference to a frame
 * pointer.
 */
-std::size_t frame_repository::destruct_count = 0 ;
+std::size_t FrameRepository::mDestructionCount = 0;
 
 // Member functions
 
@@ -31,26 +31,26 @@ std::size_t frame_repository::destruct_count = 0 ;
 *
 * NOTE: Since every instance of the animation class only needs one of these
 * pointers, this function should be called inside the constructor.
-* \param frm_ptr Pointer which will point to frame storing structure.
+* \param framePtr Pointer which will point to frame storing structure.
 */
-void frame_repository::create(frames_ptr* frm_ptr) {
+void FrameRepository::initialize(FramesPointer* framePtr) {
 
     // Create new frame storage and assign pointer for the animation.
     // ATTENTION: Do not use emplace_back() here, it causes problems due to
     // an error while initializing. Since temp is only valid in this scope, it
     // won't cause any errors when dealing with use_count().
-/* \todo (lin#9#2014-08-15): The error was, that the intance of the shared_ptr
-which has been push backed was not initialized properly.
-This is fixed now, maybe try to simplify the code a little
-by making some typedefs.
+	/* \todo (lin#9#2014-08-15): The error was, that the intance of the shared_ptr
+	which has been push backed was not initialized properly.
+	This is fixed now, maybe try to simplify the code a little
+	by making some typedefs.
 
-Also try to use emplace_back again. */
-	std::vector<frame> temp_vec;
-    frames_ptr temp(new std::array<std::vector<frame>, 2>);
-	temp->operator[](ORIG_FRM) = temp_vec;
-	temp->operator[](TEX_RECT_FRM) = temp_vec;
+	Also try to use emplace_back again. */
+	std::vector<Frame> tempVector;
+    FramesPointer temp(new std::array<std::vector<frame>, 2>);
+	temp->operator[](ORIGINAL_FRAME) = tempVector;
+	temp->operator[](TEXTURE_RECT_FRAME) = tempVector;
     m_frames.push_back(temp);
-    *frm_ptr = m_frames.back();
+    *framePtr = mFrames.back();
 
 }
 
@@ -59,29 +59,29 @@ Also try to use emplace_back again. */
 * Inserts given frame into the repository list at the end. If a texture
 * rectangle other than an empty one is given, it is also applied to the frame
 * and stored inside.
-* \param frm_ptr Pointer to where the frames are stored for the animation.
-* \param frm Frame to store.
-* \param tex_rect Texture rectangle to apply.
+* \param framePtr Pointer to where the frames are stored for the animation.
+* \param frame Frame to store.
+* \param textureRect Texture rectangle to apply.
 * \return Index where the frame has been inserted.
 */
-std::size_t frame_repository::insert(frames_ptr* frm_ptr, const frame& frm,
-                                     const sf::IntRect& tex_rect) {
+std::size_t FrameRepository::insert(FramesPointer* framePtr, const Frame& frame,
+                                     const IntRect& textureRect) {
 
-    (*frm_ptr)->operator[](ORIG_FRM).push_back(frm);
+    (*framePtr)->operator[](ORIGINAL_FRAME).push_back(frame);
 
     // If no texture rectangle is given, store the unmodified frame inside the
     // texture rectangle storage as well. If one is given, apply and store.
-    if (sf::IntRect() == tex_rect) {
+    if (IntRect() == textureRect) {
 
-        (*frm_ptr)->operator[](TEX_RECT_FRM).push_back(frm);
+        (*framePtr)->operator[](TEXTURE_RECT_FRAME).push_back(frame);
 
     } else {
 
-        (*frm_ptr)->operator[](TEX_RECT_FRM).push_back(intersect(frm, tex_rect));
+        (*framePtr)->operator[](TEXTURE_RECT_FRAME).push_back(getIntersection(frame, textureRect));
 
     }
 
-    return ((*frm_ptr)->operator[](ORIG_FRM).size() - 1);
+    return ((*framePtr)->operator[](ORIGINAL_FRAME).size() - 1);
 
 }
 
@@ -98,36 +98,36 @@ std::size_t frame_repository::insert(frames_ptr* frm_ptr, const frame& frm,
 * considered O(index), linear complexity. Try to use the other overload, since
 * it is O(1), constsant complexity. Try to use the O(1) function.
 * the container.
-* \param frm_ptr Pointer to where the frames are stored for the animation.
-* \param frm Frame to store.
+* \param framePtr Pointer to where the frames are stored for the animation.
+* \param frame Frame to store.
 * \param index Index of where to store it.
-* \param tex_rect Texture rectangle to apply.
+* \param textureRect Texture rectangle to apply.
 * \return Index where the frame has been inserted (just returns index).
 */
-std::size_t frame_repository::insert(frames_ptr* frm_ptr, const frame& frm,
+std::size_t FrameRepository::insert(FramesPointer* framePtr, const Frame& frame,
                                      std::size_t index,
-                                     const sf::IntRect& tex_rect) {
+                                     const IntRect& textureRect) {
 
     // Get iterator at position index. Do it AFTER the emplace, to make sure
     // that back() has an element to access.
-    auto it = (*frm_ptr)->operator[](ORIG_FRM).begin();
+    auto it = (*framePtr)->operator[](ORIGINAL_FRAME).begin();
     for (std::size_t i = 0; i <= index; ++ i) {
 
         ++ it;
 
     }
 
-    (*frm_ptr)->operator[](ORIG_FRM).insert(it, frm);
+    (*framePtr)->operator[](ORIGINAL_FRAME).insert(it, frame);
 
     // If no texture rectangle is given, store the unmodified frame inside the
     // texture rectangle storage as well. If one is given, apply and store.
-    if (sf::IntRect() == tex_rect) {
+    if (IntRect() == textureRect) {
 
-        (*frm_ptr)->operator[](TEX_RECT_FRM).insert(it, frm);
+        (*framePtr)->operator[](TEXTURE_RECT_FRAME).insert(it, frame);
 
     } else {
 
-        (*frm_ptr)->operator[](TEX_RECT_FRM).insert(it, intersect(frm, tex_rect));
+        (*framePtr)->operator[](TEXTURE_RECT_FRAME).insert(it, getIntersection(frame, textureRect));
 
     }
 
@@ -135,29 +135,29 @@ std::size_t frame_repository::insert(frames_ptr* frm_ptr, const frame& frm,
 
 }
 
-//! Checks whether frame and texture rectangle intersect.
+//! Checks whether frame and texture rectangle getIntersection.
 /*!
-* Checks if the given frame intersects with the texture rectangle. Returns the
-* intersection. In the case there is no intersection, an empty frame is
+* Checks if the given frame getIntersections with the texture rectangle. Returns the
+* getIntersectionion. In the case there is no getIntersectionion, an empty frame is
 * returned.
-* \param frm Frame of animation.
+* \param frame Frame of animation.
 * \param rect Texture rectangle of animation.
 * \return Intersecting rectangle as a frame.
 */
-frame frame_repository::intersect(const frame& frm,
-                                               const sf::IntRect& rect) {
+frame FrameRepository::getIntersection(const frame& frame,
+                                 	   const IntRect& rect) {
 
-    // Create temporary rectangle to use intersection function.
-    auto temp = sf::IntRect(0, 0, frm.w, frm.h);
-    auto result = sf::IntRect();
+    // Create temporary rectangle to use getIntersectionion function.
+    auto temp = IntRect(0, 0, frame.w, frame.h);
+    auto result = IntRect();
 
-    // Check for intersection and store if there is one.
+    // Check for getIntersectionion and store if there is one.
     temp.intersects(rect, result);
 
     // Convert to frame.
-    frame res_frame(frm.x, frm.y, result.width, result.height);
+    Frame resultFrame(frame.x, frame.y, result.width, result.height);
 
-    return res_frame;
+    return resultFrame;
 
 }
 
@@ -166,24 +166,24 @@ frame frame_repository::intersect(const frame& frm,
 * Replaces frame at position index with new index.
 *
 * ATTENTION: No range checking for frame.
-* \param frm_ptr Pointer to storage in which frame is.
+* \param framePtr Pointer to storage in which frame is.
 * \param other Frame which replaces frame at index position.
 * \param index Position of the frame which should be replaced.
 */
-void frame_repository::replace(frames_ptr* frm_ptr, const frame& other,
-                               std::size_t index, const sf::IntRect& rect) {
+void FrameRepository::replace(FramesPointer* framePtr, const frame& other,
+                               std::size_t index, const IntRect& rect) {
 
     // Store frame in original storage and then apply texture rectangle and
     // store.
-    (*frm_ptr)->operator[](ORIG_FRM).operator[](index) = other;
-    if (sf::IntRect() == rect) {
+    (*framePtr)->operator[](ORIGINAL_FRAME).operator[](index) = other;
+    if (IntRect() == rect) {
 
         // No rect to apply.
-        (*frm_ptr)->operator[](TEX_RECT_FRM).operator[](index) = other;
+        (*framePtr)->operator[](TEXTURE_RECT_FRAME).operator[](index) = other;
 
     } else {
 
-        (*frm_ptr)->operator[](TEX_RECT_FRM).operator[](index) = intersect(other, rect);
+        (*framePtr)->operator[](TEXTURE_RECT_FRAME).operator[](index) = getIntersection(other, rect);
 
     }
 
@@ -193,19 +193,19 @@ void frame_repository::replace(frames_ptr* frm_ptr, const frame& other,
 /*!
 * Applies texture rectangle to all frames currently stores inside the given
 * repository and then stores them in the texture rectangle frame storage.
-* \param frm_ptr Pointer to storage of frames which should be used.
-* \param tex_rect Texture rectangle which should be applied.
+* \param framePtr Pointer to storage of frames which should be used.
+* \param textureRect Texture rectangle which should be applied.
 */
-void frame_repository::apply_tex_rect(frames_ptr* frm_ptr,
-                                      const sf::IntRect& tex_rect) {
+void FrameRepository::applyTextureRect(FramesPointer* framePtr,
+                                      const IntRect& textureRect) {
 
     // Iterate through both vectors of frames (they are of the same size) and
     // calculate the texture rectangle for each original frame.
-    auto orig_it = (*frm_ptr)->operator[](ORIG_FRM).begin();
-    auto tex_it = (*frm_ptr)->operator[](TEX_RECT_FRM).begin();
-    while (orig_it != (*frm_ptr)->operator[](ORIG_FRM).end()) {
+    auto orig_it = (*framePtr)->operator[](ORIGINAL_FRAME).begin();
+    auto tex_it = (*framePtr)->operator[](TEXTURE_RECT_FRAME).begin();
+    while (orig_it != (*framePtr)->operator[](ORIGINAL_FRAME).end()) {
 
-        *tex_it = intersect(*orig_it, tex_rect);
+        *tex_it = getIntersection(*orig_it, textureRect);
 
         // Increment iterators for next loop run.
         ++ orig_it;
@@ -221,12 +221,12 @@ void frame_repository::apply_tex_rect(frames_ptr* frm_ptr,
 * which a frame is removed from the list. If the use count of a frame
 * pointer is one, only the std::list refers to it anymore, so it can be
 * destructed without any damage.
-* \param frm_ptr Frame pointer to the frame object.
+* \param framePtr Frame pointer to the frame object.
 * \return True if std::shared_ptr::use_count() equals 1.
 */
-bool frame_repository::remove_frame(const frames_ptr& frm_ptr) {
+bool FrameRepository::removeFrame(const FramesPointer& framePtr) {
 
-    return 1 == frm_ptr.use_count();
+    return 1 == framePtr.use_count();
 
 }
 
@@ -238,14 +238,14 @@ bool frame_repository::remove_frame(const frames_ptr& frm_ptr) {
 *  size of the internal frame list, a function is called to garbage collect all
 * unused textures.
 */
-void frame_repository::tidy() {
+void FrameRepository::tidy() {
 
-    ++ destruct_count;
+    ++ mDestructionCount;
 
-	if (m_frames.size() < destruct_count) {
+	if (mFrames.size() / 2 <= mDestructionCount) {
 
-        m_frames.remove_if(remove_frame);
-        destruct_count = 0;
+        mFrames.remove_if(removeFrame);
+        mDestructionCount = 0;
 
 	}
 

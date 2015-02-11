@@ -23,11 +23,13 @@
 //
 ////////////////////////////////////////////////////////////
 
-#include <SFML/Graphics/Texture.hpp>
-#include <SFML/Graphics/RenderTarget.hpp>
 #include <cassert>
 #include <iostream>
-#include "text.hpp"
+#include <Graphics/Texture.hpp>
+#include <Graphics/RenderTarget.hpp>
+#include "Text.hpp"
+
+OPEN_WO_GFX
 
 // Member functions.
 
@@ -40,21 +42,21 @@
 * with the fonts. The solution to this error was to create this custom deleter
 * function. This might not be the best way, so this problem should be review
 * later on again. 
-* \param font_ptr Raw font pointer to delete.
+* \param fontPtr Raw font pointer to delete.
 */
 
-void font_del(const sf::Font* font_ptr) {
+void deleteFontPointer(const Font* fontPtr) {
 
 	//std::cout << "Calling the font pointer deleter function." << std::endl;
 
-	if (font_ptr) {
+	if (fontPtr) {
 	
 		//std::cout << "Font pointer is already nullptr." << std::endl;
 		return;
 	
 	}
 
-	delete font_ptr;
+	delete fontPtr;
 	//std::cout << "Deleted the font pointer." << std::endl;
 
 }
@@ -63,11 +65,11 @@ void font_del(const sf::Font* font_ptr) {
 /*!
 * Creates an empty text.
 */
-text::text() : m_str(), m_font(nullptr, &font_del), 
-m_char_size(30), m_style(reg), m_color(sf::Color::Black), 
-m_vertices(sf::Quads), m_bound() {
+Text::Text() : mString(), mFont(nullptr, &deleteFontPointer), 
+mCharacterSize(30), mStyle(REGULAR), mColor(Color::Black), mVertices(Quads),
+mBounds() {
 
-	updt_geom();
+	updateGeometry();
 
 }
 
@@ -77,14 +79,14 @@ m_vertices(sf::Quads), m_bound() {
 * \param string String holding characters which are drawn on the screen.
 * \param font Font which is used to draw the string.
 * \param color Color used to draw the string.
-* \param char_size Character size for drawing, in pixel.
+* \param characterSize Character size for drawing, in pixel.
 */
-text::text(const sf::String& str, const sf::Font* font, const sf::Color& color,
-		   unsigned int char_size) :
-m_str(str), m_font(font, &font_del), m_char_size(char_size), 
-m_style(reg), m_color(color), m_vertices(sf::Quads), m_bound() {
+Text::Text(const String& string, const Font* font, const Color& color,
+		   unsigned int characterSize) :
+mString(string), mFont(font, &deleteFontPointer), mCharacterSize(characterSize), 
+mStyle(REGULAR), mColor(color), mVertices(Quads), mBounds() {
 
-    updt_geom();
+    updateGeometry();
 
 }
 
@@ -93,28 +95,28 @@ m_style(reg), m_color(color), m_vertices(sf::Quads), m_bound() {
 * Constructs the text object from another one.
 * \param other Other text object from which this one is constructed.
 */
-text::text(const text& other) : m_str(other.str()), 
-m_font(other.font(), &font_del), m_char_size(other.char_size()), 
-m_style(other.style()), m_color(other.color()),
-m_vertices(sf::Quads), m_bound() {
+Text::Text(const Text& other) : mString(other.getString()), 
+mFont(other.getFont(), &deleteFontPointer), 
+mCharacterSize(other.getCharacterSize()), mStyle(other.getStyle()),
+mColor(other.getColor()), mVertices(Quads), mBounds() {
 		
-	updt_geom();
+	updateGeometry();
 
 }
 
 //! Default destructor.
-text::~text() {
+Text::~Text() {
 }
 
 //! Set internal string.
 /*!
 * Set a new string which holds data to be displayed on the screen.
-* \param str New string to be displayed.
+* \param string New string to be displayed.
 */
-void text::str(const sf::String& str) {
+void Text::setString(const String& string) {
 
-    m_str = str;
-    updt_geom();
+    mString = string;
+    updateGeometry();
 
 }
 
@@ -127,12 +129,12 @@ void text::str(const sf::String& str) {
 * that does not exist anymore, the behaviour is undefined.
 * \param font New font which is used for drawing.
 */
-void text::font(const sf::Font* font) {
+void Text::setFont(const Font* font) {
 
-    if (m_font.get() != font) {
+    if (mFont.get() != font) {
 
-        m_font.reset(font, &font_del);
-        updt_geom();
+        mFont.reset(font, &deleteFontPointer);
+        updateGeometry();
 
     }
 
@@ -146,9 +148,9 @@ void text::font(const sf::Font* font) {
 * unused fonts and deletes them if necessary.
 * \param font New reference counted font.
 */
-void text::font_ptr(const_font_ptr font) {
+void Text::setFontPointer(ConstFontPointer font) {
 
-    m_font = font;
+    mFont = font;
 
 }
 
@@ -158,12 +160,12 @@ void text::font_ptr(const_font_ptr font) {
 * pixel.
 * \param size New character size, in pixel.
 */
-void text::char_size(unsigned int size) {
+void Text::setCharacterSize(unsigned int size) {
 
-    if (m_char_size != size) {
+    if (mCharacterSize != size) {
 
-        m_char_size = size;
-        updt_geom();
+        mCharacterSize = size;
+        updateGeometry();
 
     }
 
@@ -172,14 +174,14 @@ void text::char_size(unsigned int size) {
 //! Set the text's style.
 /*!
 * Set a new text style. You can also pass different cominations of styles, such
-* as text::bold | text::italic. The default style is text::regular.
+* as Text::bold | Text::italic. The default style is Text::regular.
 * \param style New text style.
 */
-void text::style(sf::Uint32 styl) {
+void Text::setStyle(Uint32 style) {
 
-    if (m_style != styl) {
-        m_style = styl;
-        updt_geom();
+    if (mStyle != style) {
+        mStyle = style;
+        updateGeometry();
     }
 
 }
@@ -189,12 +191,12 @@ void text::style(sf::Uint32 styl) {
 * Set a new color for the text. By default, the text color is opaque white.
 * \param color New text color.
 */
-void text::color(const sf::Color& clr) {
+void Text::setColor(const Color& color) {
 
-    if (clr != m_color) {
-        m_color = clr;
-        for (unsigned int i = 0; i < m_vertices.getVertexCount(); ++i)
-            m_vertices[i].color = m_color;
+    if (color != mColor) {
+        mColor = color;
+        for (unsigned int i = 0; i < mVertices.getVertexCount(); ++i)
+            mVertices[i].color = mColor;
     }
     
 }
@@ -204,9 +206,9 @@ void text::color(const sf::Color& clr) {
 * Get the internal string holding the displayed data.
 * \return Internal string.
 */
-const sf::String& text::str() const {
+const String& Text::getString() const {
 
-    return m_str;
+    return mString;
 
 }
 
@@ -218,9 +220,9 @@ const sf::String& text::str() const {
 * is returned.
 * \return Plain pointer to the text's font.
 */
-const sf::Font* text::font() const {
+const Font* Text::getFont() const {
 
-    return m_font.get();
+    return mFont.get();
 
 }
 
@@ -229,9 +231,9 @@ const sf::Font* text::font() const {
 * Get the internal reference counted pointer to the used font.
 * \return Reference counted font.
 */
-const_font_ptr text::font_ptr() const {
+ConstFontPointer Text::getFontPointer() const {
 
-    return m_font;
+    return mFont;
 
 }
 
@@ -240,9 +242,9 @@ const_font_ptr text::font_ptr() const {
 * Get the character size currently in use by the text.
 * \return Current character size.
 */
-unsigned int text::char_size() const {
+unsigned int Text::getCharacterSize() const {
 
-    return m_char_size;
+    return mCharacterSize;
 
 }
 
@@ -251,9 +253,9 @@ unsigned int text::char_size() const {
 * Get the style currently in use by the texture.
 * \return Current text style.
 */
-sf::Uint32 text::style() const {
+Uint32 Text::getStyle() const {
 	
-    return m_style;
+    return mStyle;
 
 }
 
@@ -262,9 +264,9 @@ sf::Uint32 text::style() const {
 * Get the color currently in use by the text.
 * \return Current text color.
 */
-const sf::Color& text::color() const {
+const Color& Text::getColor() const {
 
-    return m_color;
+    return mColor;
 
 }
 
@@ -277,87 +279,87 @@ const sf::Color& text::color() const {
 * \param index Index of character for which to compute.
 * \return Visual position of index-th character.
 */
-sf::Vector2f text::find_char_pos(std::size_t index) const {
+Vector2f Text::findCharacterPosition(std::size_t index) const {
 
     // Make sure that we have a valid font.
-    if (m_font) {
+    if (mFont) {
 
-        return sf::Vector2f();
+        return Vector2f();
 
     }
 
     // Adjust the index if it's out of range.
-    if (index > m_str.getSize()) {
+    if (index > mString.getSize()) {
 
-        index = m_str.getSize();
+        index = mString.getSize();
 
     }
 
     // Precompute the variables needed by the algorithm.
-    bool bold = (m_style & this->bold) != 0;
-    float h_space = static_cast<float>(m_font->getGlyph(L' ', m_char_size, bold).advance);
-    float v_space = static_cast<float>(m_font->getLineSpacing(m_char_size));
+    bool bold = (mStyle & this->BOLD) != 0;
+    float hSpace = static_cast<float>(mFont->getGlyph(L' ', mCharacterSize, bold).advance);
+    float vSpace = static_cast<float>(mFont->getLineSpacing(mCharacterSize));
 
     // Compute the position.
-    sf::Vector2f pos;
-    sf::Uint32 prev_char = 0;
+    Vector2f position;
+    Uint32 previousCharacter = 0;
     for (std::size_t i = 0; i < index; ++i) {
 
-	sf::Uint32 cur_char = m_str[i];
+		Uint32 currentCharacter = mString[i];
 
         // Apply the kerning offset.
-        pos.x += static_cast<float>(m_font->getKerning(prev_char, cur_char, m_char_size));
-        prev_char = cur_char;
+        position.x += static_cast<float>(mFont->getKerning(previousCharacter, currentCharacter, mCharacterSize));
+        previousCharacter = currentCharacter;
 
         // Handle special characters.
-        switch (cur_char) {
+        switch (currentCharacter) {
 
-            case ' ' :  pos.x += h_space; continue;
-            case '\t' : pos.x += h_space * 4; continue;
-            case '\n' : pos.y += v_space; pos.x = 0; continue;
-            case '\v' : pos.y += v_space * 4; continue;
+            case ' ' :  position.x += hSpace; continue;
+            case '\t' : position.x += hSpace * 4; continue;
+            case '\n' : position.y += vSpace; position.x = 0; continue;
+            case '\v' : position.y += vSpace * 4; continue;
 
         }
 
         // For regular characters, add the advance offset of the glyph.
-        pos.x += static_cast<float>(m_font->getGlyph(cur_char, m_char_size, bold).advance);
+        position.x += static_cast<float>(mFont->getGlyph(currentCharacter, mCharacterSize, bold).advance);
 
     }
 
     // Transform the position to global coordinates.
-    pos = getTransform().transformPoint(pos);
+    position = getTransform().transformPoint(position);
 
-    return pos;
+    return position;
 
 }
 
 //! Get local size of the object.
 /*!
 * Get the local size of the text. This is a convenience function for
-* loc_bound().
+* getLocalBounds().
 * \return Visual size of text.
 */
-sf::Vector2f text::obj_size() const {
+Vector2f Text::getObjectSize() const {
 
     // Bounds of text without transformations.
-    auto bound = loc_bound();
+    auto bound = getLocalBounds();
 
-    return sf::Vector2f(bound.width, bound.height);
+    return Vector2f(bound.width, bound.height);
 
 }
 
 //! Get global size of the object.
 /*!
 * This returns the global size of the text. It is a conveniece function for
-* glob_bound(), so that only the size can be requested.
+* getGlobalBounds(), so that only the size can be requested.
 * \return global size of the object
 */
-sf::Vector2f text::size() const {
+Vector2f Text::getSize() const {
 
     // Bounds of text with transformations.
-    auto bound = glob_bound();
+    auto bound = getGlobalBounds();
 
-    return sf::Vector2f(bound.width, bound.height);
+    return Vector2f(bound.width, bound.height);
 
 }
 
@@ -367,9 +369,9 @@ sf::Vector2f text::size() const {
 * transformations, rotations and the like.
 * \return Local bounding rectangle of the object.
 */
-sf::FloatRect text::loc_bound() const {
+FloatRect Text::getLocalBounds() const {
 	
-    return m_bound;
+    return mBounds;
 
 }
 
@@ -380,9 +382,9 @@ sf::FloatRect text::loc_bound() const {
 * bounding of the object in the 2D world's coordinate system.
 * \return Global bounding rectangle of the object.
 */
-sf::FloatRect text::glob_bound() const {
+FloatRect Text::getGlobalBounds() const {
 
-    return getTransform().transformRect(loc_bound());
+    return getTransform().transformRect(getLocalBounds());
 
 }
 
@@ -392,13 +394,13 @@ sf::FloatRect text::glob_bound() const {
 * \param target Render target to draw to.
 * \param states Current render states used while drawing.
 */
-void text::draw(sf::RenderTarget& targt, sf::RenderStates stat) const {
+void Text::draw(RenderTarget& target, RenderStates states) const {
 
-    if (nullptr != m_font) {
+    if (nullptr != mFont) {
 
-        stat.transform *= getTransform();
-        stat.texture = &m_font->getTexture(m_char_size);
-        targt.draw(m_vertices, stat);
+        states.transform *= getTransform();
+        states.texture = &mFont->getTexture(mCharacterSize);
+        target.draw(mVertices, states);
 
     }
 
@@ -406,85 +408,85 @@ void text::draw(sf::RenderTarget& targt, sf::RenderStates stat) const {
 
 //! Update the text's geometry.
 // \todo Update this function for coding conventions.
-void text::updt_geom() {
+void Text::updateGeometry() {
 
     // Clear the previous geometry.
-    m_vertices.clear();
-    m_bound = sf::FloatRect();
+    mVertices.clear();
+    mBounds = FloatRect();
 
     // No font: nothing to draw.
-    if (!m_font) {
-
+    if (!mFont) {
         return;
     }
 
     // No text: nothing to draw.
-    if (m_str.isEmpty())
+    if (mString.isEmpty()) {
         return;
+	}
 
     // Compute values related to the text style.
-    bool bold = (m_style & this->bold) != 0;
+    bool bold = (mStyle & this->BOLD) != 0;
     // Underline.
-    bool unln = (m_style & underline) != 0;
+    bool underline = (mStyle & UNDERLINED) != 0;
     // Italic.
-    float ital = (m_style & italic) ? 0.208f : 0.f; // 12 degrees.
+    float italic = (mStyle & ITALIC) ? 0.208f : 0.f; // 12 degrees.
     // Underline offset.
-    float unln_offst= m_char_size * 0.1f;
+    float underlineOffset = mCharacterSize * 0.1f;
     // Underline thickness.
-    float unln_thick = m_char_size * (bold ? 0.1f : 0.07f);
+    float underlineThickness = mCharacterSize * (bold ? 0.1f : 0.07f);
 
     // Precompute the variables needed by the algorithm.
-    float h_space = static_cast<float>(m_font->getGlyph(L' ', m_char_size, bold).advance);
-    float v_space = static_cast<float>(m_font->getLineSpacing(m_char_size));
+    float hSpace = static_cast<float>(mFont->getGlyph(L' ', mCharacterSize, bold).advance);
+    float vSpace = static_cast<float>(mFont->getLineSpacing(mCharacterSize));
     float x = 0.f;
-    float y = static_cast<float>(m_char_size);
+    float y = static_cast<float>(mCharacterSize);
 
     // Create one quad for each character.
-    float min_x = static_cast<float>(m_char_size);
-    float min_y = static_cast<float>(m_char_size);
-    float max_x = 0.f;
-    float max_y = 0.f;
-    sf::Uint32 prev_char = 0;
-    for (std::size_t i = 0; i < m_str.getSize(); ++i) {
+    float minX = static_cast<float>(mCharacterSize);
+    float minY = static_cast<float>(mCharacterSize);
+    float maxX = 0.f;
+    float maxY = 0.f;
+    Uint32 previousCharacter = 0;
+    for (std::size_t i = 0; i < mString.getSize(); ++i) {
 
-        sf::Uint32 cur_char = m_str[i];
+        Uint32 currentCharacter = mString[i];
 
         // Apply the kerning offset.
-        x += static_cast<float>(m_font->getKerning(prev_char, cur_char, m_char_size));
-        prev_char = cur_char;
+        x += static_cast<float>(mFont->getKerning(previousCharacter, currentCharacter, mCharacterSize));
+        previousCharacter = currentCharacter;
 
         // If we're using the underlined style and there's a new line, draw a line.
-        if (underline && (cur_char == L'\n')) {
+        if (underline && (currentCharacter == L'\n')) {
 
-            float top = y + unln_offst;
-            float bot = top + unln_thick;
+            float top = y + underlineOffset;
+            float bottom = top + underlineThickness;
 
-            m_vertices.append(sf::Vertex(sf::Vector2f(0, top), m_color, sf::Vector2f(1, 1)));
-            m_vertices.append(sf::Vertex(sf::Vector2f(x, top), m_color, sf::Vector2f(1, 1)));
-            m_vertices.append(sf::Vertex(sf::Vector2f(x, bot), m_color, sf::Vector2f(1, 1)));
-            m_vertices.append(sf::Vertex(sf::Vector2f(0, bot), m_color, sf::Vector2f(1, 1)));
+            mVertices.append(Vertex(Vector2f(0, top), mColor, Vector2f(1, 1)));
+            mVertices.append(Vertex(Vector2f(x, top), mColor, Vector2f(1, 1)));
+            mVertices.append(Vertex(Vector2f(x, bottom), mColor, Vector2f(1, 1)));
+            mVertices.append(Vertex(Vector2f(0, bottom), mColor, Vector2f(1, 1)));
 
         }
 
         // Handle special characters.
-        if ((cur_char == ' ') || (cur_char == '\t') || (cur_char == '\n') || (cur_char == '\v')) {
+        if ((currentCharacter == ' ') || (currentCharacter == '\t') || (currentCharacter == '\n') || (currentCharacter == '\v')) {
 
             // Update the current bounds (min coordinates).
-            min_x = std::min(min_x, x);
-            min_y = std::min(min_y, y);
+            minX = std::min(minX, x);
+            minY = std::min(minY, y);
 
-            switch (cur_char) {
+            switch (currentCharacter) {
 
-                case ' ' :  x += h_space; break;
-                case '\t' : x += h_space * 4; break;
-                case '\n' : y += v_space; x = 0; break;
-                case '\v' : y += v_space * 4; break;
+                case ' ' :  x += hSpace; break;
+                case '\t' : x += hSpace * 4; break;
+                case '\n' : y += vSpace; x = 0; break;
+                case '\v' : y += vSpace * 4; break;
 
             }
 
             // Update the current bounds (max coordinates).
-            max_x = std::max(max_x, x);
-            max_y = std::max(max_y, y);
+            maxX = std::max(maxX, x);
+            maxY = std::max(maxY, y);
 
             // Next glyph, no need to create a quad for whitespace.
             continue;
@@ -492,12 +494,12 @@ void text::updt_geom() {
         }
 
         // Extract the current glyph's description.
-        const sf::Glyph& glyph = m_font->getGlyph(cur_char, m_char_size, bold);
+        const Glyph& glyph = mFont->getGlyph(currentCharacter, mCharacterSize, bold);
 
         int left = glyph.bounds.left;
         int top = glyph.bounds.top;
         int right = glyph.bounds.left + glyph.bounds.width;
-        int bot = glyph.bounds.top  + glyph.bounds.height;
+        int bottom = glyph.bounds.top  + glyph.bounds.height;
 
         float u1 = static_cast<float>(glyph.textureRect.left);
         float v1 = static_cast<float>(glyph.textureRect.top);
@@ -505,16 +507,16 @@ void text::updt_geom() {
         float v2 = static_cast<float>(glyph.textureRect.top  + glyph.textureRect.height);
 
         // Add a quad for the current character.
-        m_vertices.append(sf::Vertex(sf::Vector2f(x + left  - ital * top,    y + top),    m_color, sf::Vector2f(u1, v1)));
-        m_vertices.append(sf::Vertex(sf::Vector2f(x + right - ital * top,    y + top),    m_color, sf::Vector2f(u2, v1)));
-        m_vertices.append(sf::Vertex(sf::Vector2f(x + right - ital * bot, y + bot), m_color, sf::Vector2f(u2, v2)));
-        m_vertices.append(sf::Vertex(sf::Vector2f(x + left  - ital * bot, y + bot), m_color, sf::Vector2f(u1, v2)));
+        mVertices.append(Vertex(Vector2f(x + left  - italic * top,    y + top),    mColor, Vector2f(u1, v1)));
+        mVertices.append(Vertex(Vector2f(x + right - italic * top,    y + top),    mColor, Vector2f(u2, v1)));
+        mVertices.append(Vertex(Vector2f(x + right - italic * bottom, y + bottom), mColor, Vector2f(u2, v2)));
+        mVertices.append(Vertex(Vector2f(x + left  - italic * bottom, y + bottom), mColor, Vector2f(u1, v2)));
 
         // Update the current bounds.
-        min_x = std::min(min_x, x + left - ital * bot);
-        max_x = std::max(max_x, x + right - ital * top);
-        min_y = std::min(min_y, y + top);
-        max_y = std::max(max_y, y + bot);
+        minX = std::min(minX, x + left - italic * bottom);
+        maxX = std::max(maxX, x + right - italic * top);
+        minY = std::min(minY, y + top);
+        maxY = std::max(maxY, y + bottom);
 
         // Advance to the next character.
         x += glyph.advance;
@@ -522,22 +524,24 @@ void text::updt_geom() {
     }
 
     // If we're using the underlined style, add the last line.
-    if (unln) {
+    if (underline) {
 
-        float top = y + unln_offst;
-        float bot = top + unln_thick;
+        float top = y + underlineOffset;
+        float bottom = top + underlineThickness;
 
-        m_vertices.append(sf::Vertex(sf::Vector2f(0, top), m_color, sf::Vector2f(1, 1)));
-        m_vertices.append(sf::Vertex(sf::Vector2f(x, top), m_color, sf::Vector2f(1, 1)));
-        m_vertices.append(sf::Vertex(sf::Vector2f(x, bot), m_color, sf::Vector2f(1, 1)));
-        m_vertices.append(sf::Vertex(sf::Vector2f(0, bot), m_color, sf::Vector2f(1, 1)));
+        mVertices.append(Vertex(Vector2f(0, top), mColor, Vector2f(1, 1)));
+        mVertices.append(Vertex(Vector2f(x, top), mColor, Vector2f(1, 1)));
+        mVertices.append(Vertex(Vector2f(x, bottom), mColor, Vector2f(1, 1)));
+        mVertices.append(Vertex(Vector2f(0, bottom), mColor, Vector2f(1, 1)));
 
     }
 
     // Update the bounding rectangle.
-    m_bound.left = min_x;
-    m_bound.top = min_y;
-    m_bound.width = max_x - min_x;
-    m_bound.height = max_y - min_y;
+    m_bound.left = minX;
+    m_bound.top = minY;
+    m_bound.width = maxX - minX;
+    m_bound.height = maxY - minY;
 
 }
+
+CLOSE_WO_GFX

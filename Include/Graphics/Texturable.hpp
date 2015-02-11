@@ -25,19 +25,22 @@
 // The code of the "Sprite" class has been copied from the SFML2.1
 // and altered in case it was needed.
 
-#ifndef _TEXTUREABLE_
-#define _TEXTUREABLE_
+#ifndef GRAPHICS_TEXTURABLE
+#define GRAPHICS_TEXTURABLE
 
-#include <SFML/Graphics/Export.hpp>
-#include <SFML/Graphics/Drawable.hpp>
-#include <SFML/Graphics/Transformable.hpp>
-#include <SFML/Graphics/Vertex.hpp>
-#include <SFML/Graphics/Rect.hpp>
-#ifndef _TEXTUREREPOSITORY_
-#include "texture_repos.hpp"
+#include <Graphics/Export.hpp>
+#include <Graphics/Drawable.hpp>
+#include <Graphics/Transformable.hpp>
+#include <Graphics/Vertex.hpp>
+#include <Graphics/Rect.hpp>
+#ifndef WO_NAMESPACE
+	#include "Namespace.hpp"
+#endif
+#ifndef GRAPHICS_TEXTUREREPOSITORY
+	#include "texture_repos.hpp"
 #endif
 
-//class sf::Texture;
+OPEN_WO_GFX
 
 //! Base class for texture handling.
 /*!
@@ -46,60 +49,61 @@
 * Its purpose is to be inherited and extended, like the Sprite
 * class will do.
 */
-class Textureable : public sf::Drawable, public sf::Transformable {
+class Texturable : public Drawable, public Transformable {
 
 public :
 
 	// Member functions.
 
-	virtual ~Textureable(void) {}
+	virtual ~Textureable(void) {
+	}
 
-	bool load(const std::string& filename,
-              const sf::IntRect& displ_rect = sf::IntRect(),
-			  const sf::IntRect& load_rect = sf::IntRect());
-	bool load(const void* data, std::size_t size,
-              const sf::IntRect& displ_rect = sf::IntRect(),
-			  const sf::IntRect& load_rect = sf::IntRect());
-	bool load(sf::InputStream& stream,
-			  const sf::IntRect& displ_rect = sf::IntRect(),
-			  const sf::IntRect& load_rect = sf::IntRect());
-	bool load(const sf::Image& image,
-			  const sf::IntRect& displ_rect = sf::IntRect(),
-			  const sf::IntRect& load_rect = sf::IntRect());
+	bool loadFromFile(const std::string& filename,
+              const IntRect& displ_rect = IntRect(),
+			  const IntRect& load_rect = IntRect());
+	bool loadFromMemory(const void* data, std::size_t size,
+              const IntRect& displ_rect = IntRect(),
+			  const IntRect& load_rect = IntRect());
+	bool loadFromStream(InputStream& stream,
+			  const IntRect& displ_rect = IntRect(),
+			  const IntRect& load_rect = IntRect());
+	bool loadFromImage(const Image& image,
+			  const IntRect& displ_rect = IntRect(),
+			  const IntRect& load_rect = IntRect());
 
-	void setTexture(const sf::Texture& texture, bool resetRect = false);
+	void setTexture(const Texture& texture, bool resetRect = false);
 	//! Set the render rectangle, which the sprite will display.
 	/*!
 	* ATTENTION: This is a pure virtual function. The classes
 	* inheriting by this one should implement this funtion.
 	*/
-	virtual void setTexRect(const sf::IntRect& rect) = 0;
-    void setColor(const sf::Color& color);
+	virtual void setTextureRect(const IntRect& rect) = 0;
+    void setColor(const Color& color);
 
-	const sf::Texture* getTexture() const;
-	const sf::IntRect& getTexRect() const;
-    const sf::Color& getColor() const;
+	const Texture* getTexture() const;
+	const IntRect& getTextureRect() const;
+    const Color& getColor() const;
 	//! Get the local boundaries rectangle.
 	/*!
 	* ATTENTION: This is a pure virtual function. The classes
 	* inheriting by this one should implement this funtion.
 	*/
-	virtual sf::FloatRect loc_bound() const = 0;
-	sf::FloatRect glob_bound() const;
-	sf::Vector2f obj_size() const;
-    sf::Vector2f size() const;
+	virtual FloatRect getLocalBounds() const = 0;
+	FloatRect getGlobalBounds() const;
+	Vector2f getObjectSize() const;
+    Vector2f getSize() const;
 
 protected :
 
-	void updatePos();
+	void updatePosition();
 	//! Update the vertices' texture coordinates.
 	/*!
 	* ATTENTION: This is a pure virtual function. The classes
 	* inheriting by this one should implement this funtion.
 	*/
-    virtual void updateTexCoords() = 0;
+    virtual void updateTextureCoordinates() = 0;
 
-	void appl_displ_rect(const sf::IntRect& displ_rect);
+	void applyDisplayRect(const IntRect& displ_rect);
 
 	//! Draw the sprite to a render target.
 	/*!
@@ -108,26 +112,28 @@ protected :
 	* \param target Render target to draw to.
 	* \param states Current render states.
 	*/
-	virtual void draw(sf::RenderTarget& target,
-                      sf::RenderStates states) const = 0;
+	virtual void draw(RenderTarget& target,
+                      RenderStates states) const = 0;
 
 	// Member variables.
 
 	//! Vertices defining the sprite's geometry
 	/*!
 	* The geometry of a sprite is defined by an array of
-	* four vertices, which means it is of type "sf::Quads".
+	* four vertices, which means it is of type "Quads".
 	*/
-    sf::Vertex m_vertices[4];
+    Vertex mVertices[4];
 	//! Pointer to the texture of the sprite.
-    texture_ptr m_texture;
+    texture_ptr mTexture;
 	//! Texture rectangle.
 	/*!
 	* Rectangle defining the area of the source texture to
 	* display.
 	*/
-    sf::IntRect mTexRect;
+    IntRect mTextureRect;
 
 };
 
-#endif // _TEXTURABLE_
+CLOSE_WO_GFX
+
+#endif // GRAPHICS_TEXTURABLE

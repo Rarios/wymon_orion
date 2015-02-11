@@ -2,30 +2,35 @@
 // frame_repository
 // frame_repository.hpp
 
-#ifndef _FRAMEREPOSITORY_
-#define _FRAMEREPOSITORY_
+#ifndef GRAPHICS_FRAMEREPOSITORY
+#define GRAPHICS_FRAMEREPOSITORY
 
-#include <SFML/Graphics.hpp>
 #include <string>
 #include <list>
 #include <vector>
 #include <array>
 #include <memory>
-#ifndef _FRAME_
-#include "frame.hpp"
+#include <Graphics.hpp>
+#ifndef WO_NAMESPACE
+	#include "Namespace.hpp"
 #endif
+#ifndef GRAPHICS_FRAME
+	#include "Frame.hpp"
+#endif
+
+OPEN_WO_GFX
 
 //! Index for original frames.
 /*!
 * Index of storage for original, unmodified frames.
 */
-const std::size_t ORIG_FRM = 0;
+const std::size_t ORIGINAL_FRAME = 0;
 
 //! Index for modified frames.
 /*!
 * Index of storage for modified (applied texture rectangle) frames.
 */
-const std::size_t TEX_RECT_FRM = 1;
+const std::size_t TEXTURE_RECT_FRAME = 1;
 
 //! Type to simplify the storage of frames.
 /*!
@@ -44,14 +49,14 @@ const std::size_t TEX_RECT_FRM = 1;
 * corrupted data occures.
 *
 * Reason why these types are used:
-* std::list - Later used as frames_ptr container, allowes fast element insertion
+* std::list - Later used as FramesPointer container, allowes fast element insertion
 * and removal.
 * std::shared_ptr - sharing and use_count() of objects
 * std::array - fast for a fixed amount of elements; perfect since we allways
 * need two.
 * std::vector - random access, so the order of appearance can be abitrary.
 */
-typedef std::shared_ptr<std::array<std::vector<frame>, 2>> frames_ptr;
+typedef std::shared_ptr<std::array<std::vector<Frame>, 2>> FramesPointer;
 
 //! Static class to automatically handle animation frames.
 /*!
@@ -64,39 +69,40 @@ typedef std::shared_ptr<std::array<std::vector<frame>, 2>> frames_ptr;
 * animation instance will always be the same, holding only a pointer to the
 * random access frame container.
 */
-class frame_repository {
+class FrameRepository {
 
 public :
 
 	// Member functions
 
-	static void create(frames_ptr* frm_ptr);
+	static void initialize(FramesPointer* framePtr);
 
-    static std::size_t insert(frames_ptr* frm_ptr, const frame& frm,
-                              const sf::IntRect& tex_rect = sf::IntRect());
-	static std::size_t insert(frames_ptr* frm_ptr, const frame& frm,
+    static std::size_t insert(FramesPointer* framePtr, const frame& frame,
+                              const IntRect& tex_rect = IntRect());
+	static std::size_t insert(FramesPointer* framePtr, const frame& frame,
                               std::size_t index,
-                              const sf::IntRect& tex_rect = sf::IntRect());
+                              const IntRect& tex_rect = IntRect());
 
-    static void replace(frames_ptr* frm_ptr, const frame& other,
+    static void replace(FramesPointer* framePtr, const frame& other,
                         std::size_t index,
-                        const sf::IntRect& rect = sf::IntRect());
-    static void apply_tex_rect(frames_ptr* frm_ptr, const sf::IntRect& tex_rect);
+                        const IntRect& rect = IntRect());
+    static void applyTextureRect(FramesPointer* framePtr, const IntRect& tex_rect);
 
-	static bool remove_frame(const frames_ptr& frm_ptr);
+	static bool removeFrame(const FramesPointer& framePtr);
 	static void tidy();
 
-	static frame intersect(const frame& lhs,
-                           const sf::IntRect& rhs);
+	static frame getIntersection(const frame& lhs,
+                           		const IntRect& rhs);
 
 private :
 
 	// Member variables
 
-	static std::list<frames_ptr> m_frames;
-	static std::size_t destruct_count;
+	static std::list<FramesPointer> mFrames;
+	static std::size_t mDestructionCount;
 	
 };
 
-#endif
+CLOSE_WO_GFX
 
+#endif

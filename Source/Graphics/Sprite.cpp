@@ -22,8 +22,10 @@
 ////
 //////////////////////////////////////////////////////////////
 
-#include "sprite.hpp"
 #include <iostream>
+#include "Sprite.hpp"
+
+OPEN_WO_GFX
 
 //! Default constructor.
 /*!
@@ -31,8 +33,8 @@
 */
 Sprite::Sprite() {
 
-	m_texture = nullptr;
-	mTexRect = sf::IntRect();
+	mTexture = nullptr;
+	mTextureRect = IntRect();
 
 }
 
@@ -42,10 +44,10 @@ Sprite::Sprite() {
 * \param texture Source texture.
 * \sa setTexture
 */
-Sprite::Sprite(const sf::Texture& texture) {
+Sprite::Sprite(const Texture& texture) {
 
-	m_texture = nullptr;
-	mTexRect = sf::IntRect();
+	mTexture = nullptr;
+	mTextureRect = IntRect();
     setTexture(texture) ;
 
 }
@@ -57,14 +59,13 @@ Sprite::Sprite(const sf::Texture& texture) {
 * on screen.
 * \param texture Source texture.
 * \param rect Rectangle which defines the visible part of the texture.
-* \sa setTexture, setTexRect
 */
-Sprite::Sprite(const sf::Texture& texture, const sf::IntRect& rect) {
+Sprite::Sprite(const Texture& texture, const IntRect& rect) {
 
-	m_texture = NULL;
-	mTexRect = sf::IntRect();
+	mTexture = NULL;
+	mTextureRect = IntRect();
     setTexture(texture) ;
-    setTexRect(rect) ;
+    setTextureRect(rect) ;
 
 }
 
@@ -76,7 +77,7 @@ Sprite::Sprite(const sf::Texture& texture, const sf::IntRect& rect) {
 */
 Sprite::~Sprite(void) {
 
-	texture_repository::tidy();
+	TextureRepository::tidy();
 
 }
 
@@ -85,15 +86,15 @@ Sprite::~Sprite(void) {
 * The texture rect is useful in cases in which not the whole,
 * but rather a part of the texture should be drawn. By default,
 * the rectangle is equal to the size of the texture.
-* \param rectangle Rectangle defining the visible region of the texture.
+* \param rect Rectangle defining the visible region of the texture.
 */
-void Sprite::setTexRect(const sf::IntRect& rect) {
+void Sprite::setTextureRect(const IntRect& rect) {
 
-    if (rect != mTexRect) {
+    if (rect != mTextureRect) {
 
-        mTexRect = rect ;
-        updatePos() ;
-        updateTexCoords() ;
+        mTextureRect = rect;
+        updatePosition();
+        updateTextureCoordinates();
 
     }
 
@@ -107,12 +108,12 @@ void Sprite::setTexRect(const sf::IntRect& rect) {
 * bounds of the entity in the entitiy's coordinate system are returned.
 * \return Local boundaries rectangle.
 */
-sf::FloatRect Sprite::loc_bound() const {
+FloatRect Sprite::getLocalBounds() const {
 
-    float width = static_cast<float>(std::abs(mTexRect.width)) ;
-    float height = static_cast<float>(std::abs(mTexRect.height)) ;
+    float width = static_cast<float>(std::abs(mTextureRect.width)) ;
+    float height = static_cast<float>(std::abs(mTextureRect.height)) ;
 
-    return sf::FloatRect(0.f, 0.f, width, height) ;
+    return FloatRect(0.f, 0.f, width, height) ;
 
 }
 
@@ -121,18 +122,18 @@ sf::FloatRect Sprite::loc_bound() const {
 * The coordinates are retrieved by the texture rect member and
 * assigned anticlockwise.
 */
-void Sprite::updateTexCoords() {
+void Sprite::updateTextureCoordinates() {
 
-    float left   = static_cast<float>(mTexRect.left) ;
-    float right  = left + mTexRect.width ;
-    float top    = static_cast<float>(mTexRect.top) ;
-    float bottom = top + mTexRect.height ;
+    float left   = static_cast<float>(mTextureRect.left) ;
+    float right  = left + mTextureRect.width ;
+    float top    = static_cast<float>(mTextureRect.top) ;
+    float bottom = top + mTextureRect.height ;
 
 	// Coordinates, defined anticlockwise.
-    m_vertices[0].texCoords = sf::Vector2f(left, top) ;
-    m_vertices[1].texCoords = sf::Vector2f(left, bottom) ;
-    m_vertices[2].texCoords = sf::Vector2f(right, bottom) ;
-    m_vertices[3].texCoords = sf::Vector2f(right, top) ;
+    mVertices[0].texCoords = Vector2f(left, top) ;
+    mVertices[1].texCoords = Vector2f(left, bottom) ;
+    mVertices[2].texCoords = Vector2f(right, bottom) ;
+    mVertices[3].texCoords = Vector2f(right, top) ;
 
 }
 
@@ -141,12 +142,11 @@ void Sprite::updateTexCoords() {
 * \param target Render target to draw to.
 * \param states Current render states.
 */
-void Sprite::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+void Sprite::draw(RenderTarget& target, RenderStates states) const {
 
-    if (nullptr != m_texture)
-    {
+    if (nullptr != mTexture) {
+
         states.transform *= getTransform();
-
 
     /*std::cout << "Size of the texture which will be drawn: ";
     std::cout << m_texture.get()->getSize().x << ", ";
@@ -155,8 +155,10 @@ void Sprite::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     std::cout << m_texture.use_count();
     std::cin.get();*/
 
-        states.texture = m_texture.get();
-        target.draw(m_vertices, 4, sf::Quads, states);
+        states.texture = mTexture.get();
+        target.draw(mVertices, 4, Quads, states);
     }
 
 }
+
+CLOSE_WO_GFX

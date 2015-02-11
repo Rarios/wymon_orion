@@ -25,10 +25,12 @@
 // The code of the "Sprite" class has been copied from the SFML2.1
 // and altered in case it was needed.
 
-#include <SFML/Graphics/Texture.hpp>
-#include <SFML/Graphics/RenderTarget.hpp>
 #include <cstdlib>
-#include "texturable.hpp"
+#include <Graphics/Texture.hpp>
+#include <Graphics/RenderTarget.hpp>
+#include "Texturable.hpp"
+
+OPEN_WO_GFX
 
 //! Load a texture from file into the sprite.
 /*!
@@ -37,17 +39,17 @@
 * much of the image should be loaded, and how much of the loaded content should
 * be displayed.
 * \param filename Name of the file from which to load.
-* \param displ_rect Area of texture (applied load_rect) to display.
-* \param load_rect Area of image (file) to load.
+* \param displayRect Area of texture (applied loadRect) to display.
+* \param loadRect Area of image (file) to load.
 * \return True on success.
 */
 /* \todo Apply the better style of the load function (below) to all other
 load functions */
-bool Textureable::load(const std::string& filename,
-					   const sf::IntRect& displ_rect,
-					   const sf::IntRect& load_rect) {
+bool Texturable::loadFromFile(const std::string& filename,
+					   const IntRect& displayRect,
+					   const IntRect& loadRect) {
 
-    if (!texture_repository::load(&this->m_texture, filename, load_rect)) {
+    if (!TextureRepository::loadFromFile(&this->mTexture, filename, loadRect)) {
 
         return false;
 
@@ -55,9 +57,9 @@ bool Textureable::load(const std::string& filename,
 
 	// THIS LINE CAUSE THE SPRITE NOT TO APPEAR ON SCREEN. UNCOMMENT IT TO FIX
 	// THE ERROR.
-	//setTexture(*(m_texture.get()));
+	//setTexture(*(mTexture.get()));
 	
-	appl_displ_rect(displ_rect);	
+	applyDisplayRect(displayRect);	
 
 	return true;
 
@@ -71,21 +73,21 @@ bool Textureable::load(const std::string& filename,
 * be displayed.
 * \param data Data in memory from which to load.
 * \param size Size of the block of data.
-* \param displ_rect Area of texture (applied load_rect) to display.
-* \param load_rect Area of image (file) to load.
+* \param displayRect Area of texture (applied loadRect) to display.
+* \param loadRect Area of image (file) to load.
 * \return True on success.
 */
-bool Textureable::load(const void* data, std::size_t size,
-					   const sf::IntRect& displ_rect,
-					   const sf::IntRect& load_rect) {
+bool Texturable::loadFromMemory(const void* data, std::size_t size,
+					   const IntRect& displayRect,
+					   const IntRect& loadRect) {
 
-    if (!texture_repository::load(&this->m_texture, data, size, load_rect)) {
+    if (!TextureRepository::load(&this->mTexture, data, size, loadRect)) {
 
         return false;
 
     }
 
-	appl_displ_rect(displ_rect);
+	applyDisplayRect(displayRect);
 
 	return true;
 
@@ -98,20 +100,20 @@ bool Textureable::load(const void* data, std::size_t size,
 * much of the image should be loaded, and how much of the loaded content should
 * be displayed.
 * \param stream Custom stream from which to load.
-* \param displ_rect Area of texture (applied load_rect) to display.
-* \param load_rect Area of image (file) to load.
+* \param displayRect Area of texture (applied loadRect) to display.
+* \param loadRect Area of image (file) to load.
 * \return True on success.
 */
-bool Textureable::load(sf::InputStream& stream, const sf::IntRect& displ_rect,
-					   const sf::IntRect& load_rect) {
+bool Texturable::loadFromStream(InputStream& stream, const IntRect& displayRect,
+					   const IntRect& loadRect) {
 
-    if (!texture_repository::load(&this->m_texture, stream, load_rect)) {
+    if (!TextureRepository::load(&this->mTexture, stream, loadRect)) {
 
         return false;
 
     }
 
-	appl_displ_rect(displ_rect);
+	applyDisplayRect(displayRect);
 
 	return true;
 
@@ -124,21 +126,21 @@ bool Textureable::load(sf::InputStream& stream, const sf::IntRect& displ_rect,
 * much of the image should be loaded, and how much of the loaded content should
 * be displayed.
 * \param image Image from which to load.
-* \param displ_rect Area of texture (applied load_rect) to display.
-* \param load_rect Area of image (file) to load.
+* \param displayRect Area of texture (applied loadRect) to display.
+* \param loadRect Area of image (file) to load.
 * \return True on success.
 */
-bool Textureable::load(const sf::Image& image, 
-					   const sf::IntRect& displ_rect,
-					   const sf::IntRect& load_rect) {
+bool Texturable::loadFromImage(const Image& image, 
+					   const IntRect& displayRect,
+					   const IntRect& loadRect) {
 
-    if (!texture_repository::load(&this->m_texture, image, load_rect)) {
+    if (!TextureRepository::load(&this->mTexture, image, loadRect)) {
 
         return false;
 
     }
 
-	appl_displ_rect(displ_rect);
+	applyDisplayRect(displayRect);
 
 	return true;
 
@@ -155,19 +157,19 @@ bool Textureable::load(const sf::Image& image,
 * is adjusted to the size of the new texture; otherwise left
 * unchanged.
 * \param texture New source texture.
-* \param If true, the visible (drawn) rectangle is adjusted.
-* \sa setTexRect
+* \param resetRect If true, the visible (drawn) rectangle is adjusted.
+* \sa setTextureRect
 */
-void Textureable::setTexture(const sf::Texture& texture, bool reset_rect)
+void Texturable::setTexture(const Texture& texture, bool resetRect)
 {
 
     // Recompute the texture area if requested, or if there is a valid texture,
     // but there has not been a rect before.
-	if (reset_rect || (nullptr != m_texture && (mTexRect == sf::IntRect())))
-        setTexRect(sf::IntRect(0, 0, texture.getSize().x, texture.getSize().y));
+	if (resetRect || (nullptr != mTexture && (mTextureRect == IntRect())))
+        setTextureRect(IntRect(0, 0, texture.getSize().x, texture.getSize().y));
 
     // Assign the new texture.
-    m_texture = std::make_shared<sf::Texture>(texture);
+    mTexture = std::make_shared<Texture>(texture);
 
 }
 
@@ -179,16 +181,15 @@ void Textureable::setTexture(const sf::Texture& texture, bool reset_rect)
 * opacity.
 * By default, the sprite's color is opaque white.
 * \param color New color of the sprite.
-* \sa get_color
 */
-void Textureable::setColor(const sf::Color& color)
+void Texturable::setColor(const Color& color)
 {
 
     // Update the vertices' color.
-    m_vertices[0].color = color ;
-    m_vertices[1].color = color ;
-    m_vertices[2].color = color ;
-    m_vertices[3].color = color ;
+    mVertices[0].color = color ;
+    mVertices[1].color = color ;
+    mVertices[2].color = color ;
+    mVertices[3].color = color ;
 
 }
 
@@ -199,12 +200,11 @@ void Textureable::setColor(const sf::Color& color)
 * pointer is const, the texture is not modifyable if retrieved
 * with this funtion.
 * \return Pointer to the sprite's texture.
-* \sa get_tex_rect
 */
-const sf::Texture* Textureable::getTexture() const
+const Texture* Texturable::getTexture() const
 {
 
-    return m_texture.get() ;
+    return mTexture.get() ;
 
 }
 
@@ -213,11 +213,10 @@ const sf::Texture* Textureable::getTexture() const
 * The render rectangle defines the part of the texture,
 * which is actually drawn on screen.
 * \return Render rectangle of the sprite.
-* \sa set_tex_rect
 */
-const sf::IntRect& Textureable::getTexRect() const {
+const IntRect& Texturable::getTextureRect() const {
 
-    return mTexRect ;
+    return mTextureRect;
 
 }
 
@@ -225,10 +224,10 @@ const sf::IntRect& Textureable::getTexRect() const {
 /*!
 * \return Global color of the sprite.
 */
-const sf::Color& Textureable::getColor() const
+const Color& Texturable::getColor() const
 {
 
-    return m_vertices[0].color ;
+    return mVertices[0].color ;
 
 }
 
@@ -241,39 +240,39 @@ const sf::Color& Textureable::getColor() const
 * sprite in the global 2D world's coordinate system.
 * \return Global boundaries rectangle.
 */
-sf::FloatRect Textureable::glob_bound() const {
+FloatRect Texturable::getGlobalBounds() const {
 
-    return getTransform().transformRect(loc_bound()) ;
+    return getTransform().transformRect(getLocalBounds());
 
 }
 
 //! Get the local object size.
 /*!
 * This is a convenience function. It just return the width and height from the
-* loc_bound() function, so less data has to be passed if only the size is
+* getLocalBounds() function, so less data has to be passed if only the size is
 * needed.
 * \return Object size (size without transformations).
 */
-sf::Vector2f Textureable::obj_size() const {
+Vector2f Texturable::getObjectSize() const {
 
-	auto size = loc_bound();
+	auto size = getLocalBounds();
 
-    return sf::Vector2f(size.width, size.height);
+    return Vector2f(size.width, size.height);
 
 }
 
 //! Get the global size.
 /*!
 * This is a convenience function. It just return the width and height from the
-* glob_bound() function, so less data has to be passed if only the size is
+* getGlobalBounds() function, so less data has to be passed if only the size is
 * needed.
 * \return Global boundaries rectangle.
 */
-sf::Vector2f Textureable::size() const {
+Vector2f Texturable::getSize() const {
 
-	auto size = glob_bound();
+	auto size = getGlobalBounds();
 
-    return sf::Vector2f(size.width, size.height);
+    return Vector2f(size.width, size.height);
 
 }
 
@@ -282,16 +281,16 @@ sf::Vector2f Textureable::size() const {
 * The position is retrieved by the local bounds and
 * assigned anticlockwise.
 */
-void Textureable::updatePos()
+void Texturable::updatePos()
 {
 
-    sf::FloatRect bounds = loc_bound() ;
+    FloatRect bounds = getLocalBounds() ;
 
 	// Position, defined anticlockwise.
-    m_vertices[0].position = sf::Vector2f(0, 0) ;
-    m_vertices[1].position = sf::Vector2f(0, bounds.height) ;
-    m_vertices[2].position = sf::Vector2f(bounds.width, bounds.height) ;
-    m_vertices[3].position = sf::Vector2f(bounds.width, 0) ;
+    mVertices[0].position = Vector2f(0, 0) ;
+    mVertices[1].position = Vector2f(0, bounds.height) ;
+    mVertices[2].position = Vector2f(bounds.width, bounds.height) ;
+    mVertices[3].position = Vector2f(bounds.width, 0) ;
 
 }
 
@@ -301,21 +300,23 @@ void Textureable::updatePos()
 * on the screen. Since there does not necessarily have to be a display
 * rectangle, this function sets one that is big enough to display all of the
 * texture in case there is no given rectangle.
-* \param displ_rect Display rectangle to apply.
+* \param displayRect Display rectangle to apply.
 */
-void Textureable::appl_displ_rect(const sf::IntRect& displ_rect) {
+void Texturable::applyDisplayRect(const IntRect& displayRect) {
 
-	if (sf::IntRect() == displ_rect) {
+	if (IntRect() == displayRect) {
 		
 		// If there is no display rectangle set, create one as big as the
 		// texture.
-		setTexRect(sf::IntRect(0, 0, 
-							   m_texture->getSize().x, m_texture->getSize().y));
+		setTextureRect(IntRect(0, 0, 
+							   mTexture->getSize().x, mTexture->getSize().y));
 
 	} else {
 			
-		setTexRect(displ_rect);
+		setTextureRect(displayRect);
 
 	}
 
 }
+
+CLOSE_WO_GFX

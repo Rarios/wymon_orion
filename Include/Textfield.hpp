@@ -4,22 +4,20 @@
 #ifndef _TEXTFIELD_
 #define _TEXTFIELD_
 
-#include <SFML/Graphics.hpp>
-#ifndef _TEXT_
-#include "text.hpp"
-#endif
-#ifndef _SPRITE_
-#include "sprite.hpp"
-#endif
-#ifndef _CSTDLIB_
 #include <cstdlib>
+#include <string>
+#include <list>
+#include <array>
+#include <SFML/Graphics.hpp>
+#ifndef GRAPHICS_TEXT
+#include "Text.hpp"
+#endif
+#ifndef GRAPHICS_SPRITE
+#include "Sprite.hpp"
 #endif
 #ifndef _UNICODE_
 #include "Unicode.hpp"
 #endif
-#include <string>
-#include <list>
-#include <array>
 
 const std::size_t default_lim = 4;
 const std::size_t default_char_size = 16;
@@ -59,7 +57,7 @@ private :
 	* the user is currently writing. Note that this variable is used to display
 	* the text the user is typing.
 	*/
-	text m_cur_text;
+	wo::gfx::Text m_cur_text;
 	//! Holds current text (the text which is not submitted, but written).
 	/*!
 	* This variable is needed to buffer the user's input text. Without this
@@ -71,13 +69,13 @@ private :
 	sf::String m_text_buff; 
 
 	//! List holding the texts.
-	std::list<text> m_texts;
+	std::list<wo::gfx::Text> m_texts;
 	//! Funny appended text.
 	/*!
 	* This text is appended at the start of every submitted text line. And
 	* yeah, it's some funny arrows :).
 	*/
-	text m_app_text;
+	wo::gfx::Text m_app_text;
 	//! Width of appended text.
 	/*!
 	* NOTE: A generic approach using the obj_size() function in comination with

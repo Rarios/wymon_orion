@@ -4,7 +4,7 @@
 #ifndef GRAPHICS_ANIMATION
 #define GRAPHICS_ANIMATION
 
-#include <Graphics.hpp>
+#include <SFML/Graphics.hpp>
 #ifndef WO_NAMESPACE
 	#include "Namespace.hpp"
 #endif
@@ -17,6 +17,9 @@
 #ifndef GRAPHICS_FRAMEREPOSITORY
 	#include "FrameRepository.hpp"
 #endif
+
+// Only temoparily during integration of coding conventions.
+using namespace sf;
 
 OPEN_WO_GFX
 

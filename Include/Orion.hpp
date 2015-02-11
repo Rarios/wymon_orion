@@ -5,25 +5,25 @@
 #ifndef _ORION_
 #define _ORION_
 
+#include <iostream>
 #ifndef SFML_GRAPHICS_HPP
 #include <SFML/Graphics.hpp>
 #endif
-#ifndef _SPRITE_
-#include "sprite.hpp"
+#ifndef GRAPHICS_SPRITE
+#include "Sprite.hpp"
 #endif
-#ifndef TEXT_HPP
-#include "text.hpp"
+#ifndef GRAPHICS_TEXT
+#include "Text.hpp"
 #endif
 #ifndef _TEXTFIELD_
 #include "Textfield.hpp"
 #endif
-#ifndef _ANIMATION_
-#include "animation.hpp"
+#ifndef GRAPHICS_ANIMATION
+#include "Animation.hpp"
 #endif
 #ifndef _Time_string_
 #include "Time_string.hpp"
 #endif
-#include <iostream>
 
 // Orion //
 // Orion is the name of the m_wymon "Terminal". It's a program
@@ -48,10 +48,10 @@ private :
 	Time_string m_time_str;
 
 	//! Window background.
-	Sprite m_background;
+	wo::gfx::Sprite m_background;
 
 	//! Wymon animation.
-	animation m_wymon;
+	wo::gfx::Animation m_wymon;
 	//! Clock for the Animation
 	sf::Clock m_clock;
 	//! Elapsed time since last frame.
@@ -68,9 +68,9 @@ private :
 	std::string m_fontname;
 
 	//! Text displaying the current time.
-	text m_time_text;
+	wo::gfx::Text m_time_text;
 	//! Text displaying the current date.
-	text m_date_text;
+	wo::gfx::Text m_date_text;
 
 	//! Input field for the user.
 	Textfield m_textfield ;

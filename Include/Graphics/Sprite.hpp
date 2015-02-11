@@ -35,6 +35,9 @@
 	#include "Texturable.hpp"
 #endif
 
+// Only temporarily during integration of conding conventions.
+using namespace sf;
+
 OPEN_WO_GFX
 
 //! Drawable representation of a texture, with its own transformations, color, etc.

@@ -22,7 +22,7 @@ std::list<TexturePointer> TextureRepository::mTextures;
 * Holds the number of objects destructed which had a reference to a texture
 * pointer.
 */
-std::size_t TextureRepository::mDestructCount = 0;
+std::size_t TextureRepository::mDestructionCount = 0;
 
 // Member functions
 

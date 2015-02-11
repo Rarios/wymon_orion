@@ -78,7 +78,7 @@ Animation::Animation(const Texture& texture, const IntRect& rect) :
     FrameRepository::initialize(&mFrames);
 
 	mTextureRect = IntRect();
-	setTexRect(rect);
+	setTextureRect(rect);
 
 	// Refer to default constructor for explenation.
 	mIndex = -1;
@@ -129,7 +129,7 @@ std::size_t Animation::insert(const Frame& frame, IntRect rect) {
 * \param rect Optional texture rectangle for Animation frame.
 * \return Index (position) where the frame has been inserted (returns index).
 */
-std::size_t Animation::insert(const frame& frame, std::size_t index,
+std::size_t Animation::insert(const Frame& frame, std::size_t index,
                               IntRect rect) {
 
 	computeMaximumSize(Vector2f(frame.w, frame.h));
@@ -267,7 +267,7 @@ void Animation::setTextureRect(const IntRect& rect)
     {
 
         mTextureRect = rect;
-		FrameRepository::apply_tex_rect(&mFrames, mTextureRect);
+		FrameRepository::applyTextureRect(&mFrames, mTextureRect);
         updatePosition();
         updateTextureCoordinates();
 
@@ -338,7 +338,7 @@ void Animation::modifySize(std::size_t index, const Vector2i& size) {
 	
 	}
 
-	calc_max_size(Vector2f(newFrame.w, newFrame.h));
+	computeMaximumSize(Vector2f(newFrame.w, newFrame.h));
 
 	mFrames->operator[](TEXTURE_RECT_FRAME).operator[](index) = newFrame;
 
@@ -493,7 +493,7 @@ Vector2f Animation::getMaximumObjectSize() {
 
 	return mMaximumSize;
 
-}s
+}
 
 //! Return maximum global size of Animation.
 /*!
@@ -509,7 +509,7 @@ Vector2f Animation::getMaximumSize() {
 	FloatRect maximumSizeRect(bounds.top, bounds.left, 
 								mMaximumSize.x, mMaximumSize.y);
 
-	auto transformedRect = getTransform().transformRect(max_size_rect);
+	auto transformedRect = getTransform().transformRect(maximumSizeRect);
 
 	return Vector2f(transformedRect.width, transformedRect.height);
 }

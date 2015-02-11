@@ -6,10 +6,13 @@
 #include <string>
 #include <list>
 #include <memory>
-#include <Graphics.hpp>
+#include <SFML/Graphics.hpp>
 #ifndef WO_NAMESPACE
 	#include "Namespace.hpp"
 #endif
+
+// Only temporarily during integration of coding conventions.
+using namespace sf;
 
 OPEN_WO_GFX
 
@@ -61,4 +64,4 @@ private :
 
 CLOSE_WO_GFX
 
-#endimDestructionCountf
+#endif

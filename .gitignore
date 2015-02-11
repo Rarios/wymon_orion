@@ -15,5 +15,3 @@ error_log.txt
 /Build/WymonOrion
 /Build/CMakeCache.txt
 /Build/cmake_install.cmake
-# Ignore CMakeLists file which is used to build test executables.
-CMakeLists.txt

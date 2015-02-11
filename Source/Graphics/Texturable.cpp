@@ -26,8 +26,8 @@
 // and altered in case it was needed.
 
 #include <cstdlib>
-#include <Graphics/Texture.hpp>
-#include <Graphics/RenderTarget.hpp>
+#include <SFML/Graphics/Texture.hpp>
+#include <SFML/Graphics/RenderTarget.hpp>
 #include "Texturable.hpp"
 
 OPEN_WO_GFX
@@ -81,7 +81,7 @@ bool Texturable::loadFromMemory(const void* data, std::size_t size,
 					   const IntRect& displayRect,
 					   const IntRect& loadRect) {
 
-    if (!TextureRepository::load(&this->mTexture, data, size, loadRect)) {
+    if (!TextureRepository::loadFromMemory(&this->mTexture, data, size, loadRect)) {
 
         return false;
 
@@ -107,7 +107,7 @@ bool Texturable::loadFromMemory(const void* data, std::size_t size,
 bool Texturable::loadFromStream(InputStream& stream, const IntRect& displayRect,
 					   const IntRect& loadRect) {
 
-    if (!TextureRepository::load(&this->mTexture, stream, loadRect)) {
+    if (!TextureRepository::loadFromStream(&this->mTexture, stream, loadRect)) {
 
         return false;
 
@@ -134,7 +134,7 @@ bool Texturable::loadFromImage(const Image& image,
 					   const IntRect& displayRect,
 					   const IntRect& loadRect) {
 
-    if (!TextureRepository::load(&this->mTexture, image, loadRect)) {
+    if (!TextureRepository::loadFromImage(&this->mTexture, image, loadRect)) {
 
         return false;
 
@@ -281,7 +281,7 @@ Vector2f Texturable::getSize() const {
 * The position is retrieved by the local bounds and
 * assigned anticlockwise.
 */
-void Texturable::updatePos()
+void Texturable::updatePosition()
 {
 
     FloatRect bounds = getLocalBounds() ;

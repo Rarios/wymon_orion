@@ -31,16 +31,19 @@
 #include <string>
 #include <vector>
 #include <memory>
-#include <Graphics/Export.hpp>
-#include <Graphics/Drawable.hpp>
-#include <Graphics/Transformable.hpp>
-#include <Graphics/Font.hpp>
-#include <Graphics/Rect.hpp>
-#include <Graphics/VertexArray.hpp>
-#include <System/String.hpp>
+#include <SFML/Graphics/Export.hpp>
+#include <SFML/Graphics/Drawable.hpp>
+#include <SFML/Graphics/Transformable.hpp>
+#include <SFML/Graphics/Font.hpp>
+#include <SFML/Graphics/Rect.hpp>
+#include <SFML/Graphics/VertexArray.hpp>
+#include <SFML/System/String.hpp>
 #ifndef WO_NAMESPACE
 	#include "Namespace.hpp"
 #endif
+
+// Only temporarily during integration of conding conventions.
+using namespace sf;
 
 OPEN_WO_GFX
 
@@ -90,21 +93,21 @@ public:
     Text();
     Text(const String& string, const Font* font,
 		 const Color& color = Color::Black, unsigned int characterSize = 30);
-	Text(const text& other);
+	Text(const Text& other);
     ~Text();
 
     void setString(const String& string);
     void setFont(const Font* font);
-    void setFontPointer(const_FontPointer font);
+    void setFontPointer(ConstFontPointer font);
     void setCharacterSize(unsigned int size);
     void setStyle(Uint32 style);
     void setColor(const Color& color);
 
     const String& getString() const;
     const Font* getFont() const;
-    const_FontPointer getFontPointer() const;
+    ConstFontPointer getFontPointer() const;
     unsigned int getCharacterSize() const;
-    Uint32 getStlye() const;
+    Uint32 getStyle() const;
     const Color& getColor() const;
 
     Vector2f findCharacterPosition(std::size_t index) const;

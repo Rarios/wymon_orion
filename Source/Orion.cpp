@@ -56,9 +56,9 @@ void Orion::obj_pos() {
 	// Size variables for calculations.
 	// Size of the render region of the window (excluding borders, etc.)
 	sf::Vector2u render_size = m_win.getSize();
-	sf::Vector2f wymon_size = m_wymon.max_obj_size();
-	sf::Vector2f time_size = m_time_text.size();
-	sf::Vector2f date_size = m_date_text.size();
+	sf::Vector2f wymon_size = m_wymon.getMaximumObjectSize();
+	sf::Vector2f time_size = m_time_text.getSize();
+	sf::Vector2f date_size = m_date_text.getSize();
 	sf::Vector2f textfield_size = m_textfield.size();
 
 	float a = 20.0f ;
@@ -102,16 +102,16 @@ void Orion::obj_pos() {
 */
 void Orion::render() {
 
-	if(m_time_str.time_str(Time_string::TIME) != m_time_text.str()) {
+	if(m_time_str.time_str(Time_string::TIME) != m_time_text.getString()) {
 
 		// Update time text object.
-		m_time_text.str(m_time_str.time_str(Time_string::TIME));
+		m_time_text.setString(m_time_str.time_str(Time_string::TIME));
 
 		// Only update the date if time
 		// is equal to 00:00:00.
-		if (m_time_text.str() == Time_string::NEW_DATE) { /* WORKS !!!!! */
+		if (m_time_text.getString() == Time_string::NEW_DATE) { /* WORKS !!!!! */
 			
-			m_date_text.str(m_time_str.time_str(Time_string::DATE));
+			m_date_text.setString(m_time_str.time_str(Time_string::DATE));
 			
 		}
 
@@ -219,7 +219,7 @@ void Orion::run() {
 	}
 
 	// Background.
-	if (!m_background.load("Resources/background.jpg")) {
+	if (!m_background.loadFromFile("Resources/background.jpg")) {
 	
 		std::cerr << "Could not load background.jpg\n";
 		std::cin.get();
@@ -228,21 +228,21 @@ void Orion::run() {
 	}
 	// Scale background so it fits the maximum desktop size.
 	auto max_win_size = sf::VideoMode::getDesktopMode();
-	auto background_size = m_background.obj_size();
+	auto background_size = m_background.getObjectSize();
 	m_background.setScale(sf::Vector2f(max_win_size.width / background_size.x,
 						  max_win_size.height / background_size.y));
 	m_win.draw(m_background);
 
 	// Wymon animation.
-	if (!m_wymon.load("Resources/wymon.png", sf::IntRect(0, 0, 106, 96))) {
+	if (!m_wymon.loadFromFile("Resources/wymon.png", sf::IntRect(0, 0, 106, 96))) {
 	
 		std::cerr << "Could not load wymon.png\n";
 		std::cin.get();
 		return;
 	
 	}
-	m_wymon.insert(frame(0, 0, 106, 96));
-	m_wymon.insert(frame(107, 0, 108, 96));
+	m_wymon.insert(wo::gfx::Frame(0, 0, 106, 96));
+	m_wymon.insert(wo::gfx::Frame(107, 0, 108, 96));
 	m_win.draw(m_wymon);
 
 	// Textfield
@@ -250,16 +250,16 @@ void Orion::run() {
 	m_win.draw(m_textfield);
 	
 	// Date.
-	m_date_text.str(m_time_str.time_str(Time_string::DATE));
-	m_date_text.font(&m_font);
-	m_date_text.char_size(11) ;
+	m_date_text.setString(m_time_str.time_str(Time_string::DATE));
+	m_date_text.setFont(&m_font);
+	m_date_text.setCharacterSize(11) ;
 	m_win.draw(m_date_text);
 
 	// Time.
-	m_time_text.str(m_time_str.time_str(Time_string::TIME));
-	m_time_text.font(&m_font);
-	m_time_text.char_size(46) ;
-	m_win.draw(m_time_text) ;
+	m_time_text.setString(m_time_str.time_str(Time_string::TIME));
+	m_time_text.setFont(&m_font);
+	m_time_text.setCharacterSize(46) ;
+	m_win.draw(m_time_text);
 
 	// First display of all objects.
 	m_win.display();

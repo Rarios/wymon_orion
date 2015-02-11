@@ -11,7 +11,7 @@ Textfield::Textfield(const sf::Font* font) :
 m_font(),
 m_lim(default_lim),
 m_cur_text(sf::String(L""), nullptr, sf::Color::Black, default_char_size), 
-m_texts(m_lim, text(sf::String(L""), nullptr, sf::Color::Black, default_char_size)),
+m_texts(m_lim, wo::gfx::Text(sf::String(L""), nullptr, sf::Color::Black, default_char_size)),
 m_app_text(sf::String(L">> "), nullptr, sf::Color::Black, default_char_size),
 m_app_w{24.f},
 m_outer_box(), m_text_box(), 
@@ -21,8 +21,8 @@ m_text_height{} {
 
 	m_font = font;
 
-	m_cur_text.font(m_font);
-	m_app_text.font(m_font);
+	m_cur_text.setFont(m_font);
+	m_app_text.setFont(m_font);
 	m_cur_text.setPosition(sf::Vector2f(100.f , 100.f));
 	
 	m_text_height = static_cast<float>(2 * m_line_spacing + default_char_size);
@@ -45,10 +45,10 @@ void Textfield::store_text(const sf::String& str) {
 
 	// Insert user specific text at start of line.
 	auto tmp_str = str;
-	tmp_str.insert(0 , m_app_text.str());
+	tmp_str.insert(0 , m_app_text.getString());
 
 	// Push new text, remove last one.
-	m_texts.push_front(text(tmp_str, m_font, sf::Color::Black, 
+	m_texts.push_front(wo::gfx::Text(tmp_str, m_font, sf::Color::Black, 
 							default_char_size));
 	m_texts.pop_back();
 	
@@ -89,7 +89,7 @@ void Textfield::submit_pos(void) {
 */
 bool Textfield::is_too_wide() {
 
-	return ((m_cur_text.obj_size().x + m_app_w + m_col_spacing)
+	return ((m_cur_text.getObjectSize().x + m_app_w + m_col_spacing)
 			 > 
 			 m_text_box.getSize().x);
 
@@ -131,12 +131,12 @@ void Textfield::put_char(const sf::Uint32& character) {
 		// Store the letter inside buffer and hand it over to the text object,
 		// so it can be displayed as not submitted text.
 		m_text_buff += character;
-		m_cur_text.str(m_text_buff);
+		m_cur_text.setString(m_text_buff);
 
 		if (is_too_wide()) {
 		
 			m_text_buff.erase(m_text_buff.getSize() - 1);
-			m_cur_text.str(m_text_buff);
+			m_cur_text.setString(m_text_buff);
 		
 		}
 
@@ -148,7 +148,7 @@ void Textfield::put_char(const sf::Uint32& character) {
 		store_text(m_text_buff);
 
 		m_text_buff.clear();
-		m_cur_text.str(m_text_buff);
+		m_cur_text.setString(m_text_buff);
 
 	} else {
 
@@ -158,7 +158,7 @@ void Textfield::put_char(const sf::Uint32& character) {
 
 			// Delete last character.
 			m_text_buff.erase(m_text_buff.getSize()-1);
-			m_cur_text.str(m_text_buff);
+			m_cur_text.setString(m_text_buff);
 	
 		}
 	

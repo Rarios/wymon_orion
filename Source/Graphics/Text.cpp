@@ -25,8 +25,8 @@
 
 #include <cassert>
 #include <iostream>
-#include <Graphics/Texture.hpp>
-#include <Graphics/RenderTarget.hpp>
+#include <SFML/Graphics/Texture.hpp>
+#include <SFML/Graphics/RenderTarget.hpp>
 #include "Text.hpp"
 
 OPEN_WO_GFX
@@ -537,10 +537,10 @@ void Text::updateGeometry() {
     }
 
     // Update the bounding rectangle.
-    m_bound.left = minX;
-    m_bound.top = minY;
-    m_bound.width = maxX - minX;
-    m_bound.height = maxY - minY;
+    mBounds.left = minX;
+    mBounds.top = minY;
+    mBounds.width = maxX - minX;
+    mBounds.height = maxY - minY;
 
 }
 

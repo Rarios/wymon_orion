@@ -10,13 +10,16 @@
 #include <vector>
 #include <array>
 #include <memory>
-#include <Graphics.hpp>
+#include <SFML/Graphics.hpp>
 #ifndef WO_NAMESPACE
 	#include "Namespace.hpp"
 #endif
 #ifndef GRAPHICS_FRAME
 	#include "Frame.hpp"
 #endif
+
+// Only temoprarily during integration of coding conventions.
+using namespace sf;
 
 OPEN_WO_GFX
 
@@ -77,13 +80,13 @@ public :
 
 	static void initialize(FramesPointer* framePtr);
 
-    static std::size_t insert(FramesPointer* framePtr, const frame& frame,
+    static std::size_t insert(FramesPointer* framePtr, const Frame& frame,
                               const IntRect& tex_rect = IntRect());
-	static std::size_t insert(FramesPointer* framePtr, const frame& frame,
+	static std::size_t insert(FramesPointer* framePtr, const Frame& frame,
                               std::size_t index,
                               const IntRect& tex_rect = IntRect());
 
-    static void replace(FramesPointer* framePtr, const frame& other,
+    static void replace(FramesPointer* framePtr, const Frame& other,
                         std::size_t index,
                         const IntRect& rect = IntRect());
     static void applyTextureRect(FramesPointer* framePtr, const IntRect& tex_rect);
@@ -91,7 +94,7 @@ public :
 	static bool removeFrame(const FramesPointer& framePtr);
 	static void tidy();
 
-	static frame getIntersection(const frame& lhs,
+	static Frame getIntersection(const Frame& lhs,
                            		const IntRect& rhs);
 
 private :

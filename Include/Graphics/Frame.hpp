@@ -6,7 +6,7 @@
 #define GRAPHICS_FRAME
 
 #include <utility>
-#include <Graphics.hpp>
+#include <SFML/Graphics.hpp>
 #ifndef WO_NAMESPACE
 	#include "Namespace.hpp"
 #endif
@@ -154,7 +154,7 @@ public:
     * \param frameSize General frame size.
     */
     FrameGroup(sf::Vector2i position, sf::Vector2i size, sf::Vector2i frameSize) :
-                x(postion.x), y(postion.y), sw(size.x), sh(size.y), w(frameSize.x),
+                x(position.x), y(position.y), sw(size.x), sh(size.y), w(frameSize.x),
                 h(frameSize.y) {
     }
 

@@ -28,17 +28,20 @@
 #ifndef GRAPHICS_TEXTURABLE
 #define GRAPHICS_TEXTURABLE
 
-#include <Graphics/Export.hpp>
-#include <Graphics/Drawable.hpp>
-#include <Graphics/Transformable.hpp>
-#include <Graphics/Vertex.hpp>
-#include <Graphics/Rect.hpp>
+#include <SFML/Graphics/Export.hpp>
+#include <SFML/Graphics/Drawable.hpp>
+#include <SFML/Graphics/Transformable.hpp>
+#include <SFML/Graphics/Vertex.hpp>
+#include <SFML/Graphics/Rect.hpp>
 #ifndef WO_NAMESPACE
 	#include "Namespace.hpp"
 #endif
 #ifndef GRAPHICS_TEXTUREREPOSITORY
-	#include "texture_repos.hpp"
+	#include "TextureRepository.hpp"
 #endif
+
+// Only temporarily during integration of coding conventions.
+using namespace sf;
 
 OPEN_WO_GFX
 
@@ -55,7 +58,7 @@ public :
 
 	// Member functions.
 
-	virtual ~Textureable(void) {
+	virtual ~Texturable(void) {
 	}
 
 	bool loadFromFile(const std::string& filename,
@@ -124,7 +127,7 @@ protected :
 	*/
     Vertex mVertices[4];
 	//! Pointer to the texture of the sprite.
-    texture_ptr mTexture;
+    TexturePointer mTexture;
 	//! Texture rectangle.
 	/*!
 	* Rectangle defining the area of the source texture to

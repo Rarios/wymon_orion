@@ -4,6 +4,8 @@
 #include <iostream>
 #include "FrameRepository.hpp"
 
+OPEN_WO_GFX
+
 // Member variables
 
 // ATTENTION: Do NOT change the "operator[]()" calls to just "[]". Implicit
@@ -46,10 +48,10 @@ void FrameRepository::initialize(FramesPointer* framePtr) {
 
 	Also try to use emplace_back again. */
 	std::vector<Frame> tempVector;
-    FramesPointer temp(new std::array<std::vector<frame>, 2>);
+    FramesPointer temp(new std::array<std::vector<Frame>, 2>);
 	temp->operator[](ORIGINAL_FRAME) = tempVector;
 	temp->operator[](TEXTURE_RECT_FRAME) = tempVector;
-    m_frames.push_back(temp);
+    mFrames.push_back(temp);
     *framePtr = mFrames.back();
 
 }
@@ -144,7 +146,7 @@ std::size_t FrameRepository::insert(FramesPointer* framePtr, const Frame& frame,
 * \param rect Texture rectangle of animation.
 * \return Intersecting rectangle as a frame.
 */
-frame FrameRepository::getIntersection(const frame& frame,
+Frame FrameRepository::getIntersection(const Frame& frame,
                                  	   const IntRect& rect) {
 
     // Create temporary rectangle to use getIntersectionion function.
@@ -170,7 +172,7 @@ frame FrameRepository::getIntersection(const frame& frame,
 * \param other Frame which replaces frame at index position.
 * \param index Position of the frame which should be replaced.
 */
-void FrameRepository::replace(FramesPointer* framePtr, const frame& other,
+void FrameRepository::replace(FramesPointer* framePtr, const Frame& other,
                                std::size_t index, const IntRect& rect) {
 
     // Store frame in original storage and then apply texture rectangle and
@@ -250,3 +252,5 @@ void FrameRepository::tidy() {
 	}
 
 }
+
+CLOSE_WO_GFX

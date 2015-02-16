@@ -1,0 +1,7 @@
+# Welcome to the git cheat sheet file, a list of git commands, which you might
+# find useful while working with git as a tool. Feel free to add commands or
+# change dirty solutions into beautiful masterpieces. Only one thing I beg you
+# to do: keep the syntax of this file, for the sake of readability.
+
+# List all the files that are tracked by the branch 'exampleBranch'.
+git ls-tree -r exampleBranch --name-only

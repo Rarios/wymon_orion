@@ -42,8 +42,7 @@ add_library(${WO_GRAPHICS_LIB}
 set(WO_UTILS_LIB "wo_utils")
 add_library(${WO_UTILS_LIB}
 	    ${WO_UTILS_SRC_DIR}/Unicode.cpp 
-	    ${WO_UTILS_SRC_DIR}/Time_string.cpp
-		${WO_UTILS_SRC_DIR}/Time_string_constants.cpp)
+	    ${WO_UTILS_SRC_DIR}/TimeString.cpp)
 
 # Detect and add SFML
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/CMake ${CMAKE_MODULE_PATH})

@@ -1,7 +1,9 @@
 // Unicode.cpp - Unicode.hpp
 
-#include "Unicode.hpp"
 #include <iostream>
+#include "Unicode.hpp"
+
+OPEN_WO_SYS
 
 // Constant member variables
 
@@ -10,41 +12,41 @@
 * First non-printable control character of the Unicode character
 * tables (v6.3).
 */
-const key Unicode::null = 0x00000000 ;
+const key Unicode::null = 0x00000000;
 
 //! Backspace.
-const key Unicode::backspace = 0x00000008 ;
+const key Unicode::backspace = 0x00000008;
 
 //! Horizontal tabulator (HT), or character tabulation.
-const key Unicode::h_tab = 0x00000009 ;
+const key Unicode::horizontalTabulator = 0x00000009;
 
 //! Line feed, or End of Line (EOL) character.
-const key Unicode::line_feed = 0x0000000a ;
+const key Unicode::lineFeed = 0x0000000a;
 
 //! Vertical tabulator (VT), or line tabulation. 
-const key Unicode::v_tab = 0x0000000b ;
+const key Unicode::verticalTabulator = 0x0000000b;
 
 //! Carriage return (CR).
-const key Unicode::carriage_return = 0x0000000d ;
+const key Unicode::carriageReturn = 0x0000000d;
 
 //! Information separator one, or unit separator (US).
 /*!
 * Last non-printable control character of the Unicode character 
-* tables (v6.3), befor the ASCII punctuation and symbols start.
+* tables (v6.3), before the ASCII punctuation and symbols start.
 */
-const key Unicode::info_sep_one = 0x0000001f ;
+const key Unicode::infoSeparatorOne = 0x0000001f;
 
 //! Whitespace.
 /*!
 * First printable character of the Unicode character tables (v6.3).
 */
-const key Unicode::space = 0x00000020 ;
+const key Unicode::space = 0x00000020;
 
 //! Number 0.
-const key Unicode::num_0 = 0x00000030 ;
+const key Unicode::number_0 = 0x00000030;
 
 //! Number 9.
-const key Unicode::num_9 = 0x00000039 ;
+const key Unicode::number_9 = 0x00000039;
 
 //! Uppercase latin character "A".
 /*!
@@ -52,7 +54,7 @@ const key Unicode::num_9 = 0x00000039 ;
 * tables (v6.3). This character can be refered to as the
 * lower bound of a character set called "Alphabetic characters".
 */
-const key Unicode::letter_A = 0x00000041 ;
+const key Unicode::letter_A = 0x00000041;
 
 //! Lowercase latin character "z".
 /*!
@@ -60,21 +62,21 @@ const key Unicode::letter_A = 0x00000041 ;
 * table (v6.3). This character can be refered to as the
 * upper bound of a character set called "Alphabetic characters".
 */
-const key Unicode::letter_z = 0x0000007a ;
+const key Unicode::letter_z = 0x0000007a;
 
 //! Delete character.
 /*!
 * First non-printable control character of the Unicode character 
 * tables (v6.3), after the ASCII punctuation and symbols ended.
 */
-const key Unicode::del = 0x0000007f ;
+const key Unicode::del = 0x0000007f;
 
 //! Application programming command.
 /*!
 * Last non-printable control character of the Unicode character
 * tables (v6.3).
 */
-const key Unicode::apc = 0x0000009f ;
+const key Unicode::apc = 0x0000009f;
 
 // Static member functions.
 
@@ -83,11 +85,11 @@ const key Unicode::apc = 0x0000009f ;
 * \param letter Character code of the Unicode character tables (v6.3).
 * \return True if the letter is part of the latin alphabet.
 */
-bool Unicode::is_alphabetic(const key &letter) {
+bool Unicode::isAlphabetic(const key &letter) {
 	
 	// Is "letter" bigger than the lower alphabetic
 	// bound and bigger than the upper.
-	return(letter >= letter_A && letter <= letter_z) ;
+	return(letter >= letter_A && letter <= letter_z);
 	
 }
 
@@ -96,15 +98,15 @@ bool Unicode::is_alphabetic(const key &letter) {
 * \param letter Character code of the Unicode character tables (v6.3).
 * \return True if letter is within the interval 0 to 9.
 */
-bool Unicode::is_numeric(const key &letter) {
+bool Unicode::isNumeric(const key &letter) {
 
-	return (num_0 <= letter && num_9 >= letter) ;
+	return (number_0 <= letter && number_9 >= letter);
 
 }
 
 //! Returns true if the letter is printable.
 /*!
-* This function test whether or not the given letter is inside of
+* This function tests whether or not the given letter is inside of
 * one of two intervals of command characters. The first one starts at the
 * character for "NULL" and ends at the "Information separator one". The
 * second starts with the character "DELETE" and ends with the character
@@ -114,13 +116,13 @@ bool Unicode::is_numeric(const key &letter) {
 * \param letter Character code of the Unicode character tables (v6.3).
 * \return True if the letter is printable (thus not a control character).
 */
-bool Unicode::is_printable(const key &letter) {
+bool Unicode::isPrintable(const key &letter) {
 	
 	/*std::cout << "Printable? ";
 	std::cout << !((null <= letter && info_sep_one >= letter) ||
 		   (del <= letter && apc >= letter)) << std::endl;*/
-	return(!((null <= letter && info_sep_one >= letter) ||
-		   (del <= letter && apc >= letter))) ;
+	return(!((null <= letter && infoSeparatorOne >= letter) ||
+		   (del <= letter && apc >= letter)));
 	
 }
 
@@ -134,7 +136,7 @@ bool Unicode::is_printable(const key &letter) {
 * \param letter Character code of the Unicode character tables (v6.3).
 * \return True if letter creates a new line.
 */
-bool Unicode::is_newline(const key &letter) {
+bool Unicode::isNewline(const key &letter) {
 	
 	// NOTE: as you can see on the wikipedia page:
 	// http://en.wikipedia.org/wiki/Newline
@@ -143,6 +145,8 @@ bool Unicode::is_newline(const key &letter) {
 	// representation, but since I discovered that my Ubuntu 14.04 also used
 	// the CR instead of the LF, I changed the code so it would support both.
 	// This might be caused because of a dual boot/keyboard setting.
-	return((letter == line_feed) || (letter == carriage_return));
+	return((letter == lineFeed) || (letter == carriageReturn));
 	
 }
+
+CLOSE_WO_SYS

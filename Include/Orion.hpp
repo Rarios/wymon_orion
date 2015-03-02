@@ -21,8 +21,8 @@
 #ifndef GRAPHICS_ANIMATION
 #include "Animation.hpp"
 #endif
-#ifndef _Time_string_
-#include "Time_string.hpp"
+#ifndef SYSTEM_TIMESTRING
+#include "TimeString.hpp"
 #endif
 
 // Orion //
@@ -45,7 +45,7 @@ private :
 	sf::Image m_win_icon;
 
 	//! Window time and date string handling.
-	Time_string m_time_str;
+	wo::sys::TimeString mTimeString;
 
 	//! Window background.
 	wo::gfx::Sprite m_background;

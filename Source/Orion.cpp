@@ -13,7 +13,7 @@
 */
 Orion::Orion(sf::VideoMode mode, const sf::String& title , sf::Uint32 style ,
 			 const sf::ContextSettings& settings) : 
-m_win(mode, title, style, settings), m_win_icon(), m_time_str(), m_background(),
+m_win(mode, title, style, settings), m_win_icon(), mTimeString(), m_background(),
 m_wymon(), m_clock(), m_elap_time(), m_font(), m_time_text(), m_date_text(), 
 m_textfield(&m_font) {
 }
@@ -102,16 +102,16 @@ void Orion::obj_pos() {
 */
 void Orion::render() {
 
-	if(m_time_str.time_str(Time_string::TIME) != m_time_text.getString()) {
+	if(mTimeString.getTimeString(wo::sys::TimeString::TIME) != m_time_text.getString()) {
 
 		// Update time text object.
-		m_time_text.setString(m_time_str.time_str(Time_string::TIME));
+		m_time_text.setString(mTimeString.getTimeString(wo::sys::TimeString::TIME));
 
 		// Only update the date if time
 		// is equal to 00:00:00.
-		if (m_time_text.getString() == Time_string::NEW_DATE) { /* WORKS !!!!! */
+		if (m_time_text.getString() == wo::sys::TimeString::NEW_DATE) { /* WORKS !!!!! */
 			
-			m_date_text.setString(m_time_str.time_str(Time_string::DATE));
+			m_date_text.setString(mTimeString.getTimeString(wo::sys::TimeString::DATE));
 			
 		}
 
@@ -250,13 +250,13 @@ void Orion::run() {
 	m_win.draw(m_textfield);
 	
 	// Date.
-	m_date_text.setString(m_time_str.time_str(Time_string::DATE));
+	m_date_text.setString(mTimeString.getTimeString(wo::sys::TimeString::DATE));
 	m_date_text.setFont(&m_font);
 	m_date_text.setCharacterSize(11) ;
 	m_win.draw(m_date_text);
 
 	// Time.
-	m_time_text.setString(m_time_str.time_str(Time_string::TIME));
+	m_time_text.setString(mTimeString.getTimeString(wo::sys::TimeString::TIME));
 	m_time_text.setFont(&m_font);
 	m_time_text.setCharacterSize(46) ;
 	m_win.draw(m_time_text);

@@ -1,11 +1,12 @@
 // Unicode.hpp
 
-#ifndef _UNICODE_
-#define _UNICODE_
+#ifndef SYSTEM_UNICODE
+#define SYSTEM_UNICODE
 
-#ifndef _CSTDLIB_
 #include <cstdlib>
-#endif
+#include "Namespace.hpp"
+
+OPEN_WO_SYS
 
 //! Typedef for more code readability
 typedef std::size_t key;
@@ -22,37 +23,34 @@ public :
 
 	// Member variables
 
-	static const key null ;
-	
-	static const key backspace ;
+	static const key null;
+	static const key backspace;
+	static const key horizontalTabulator;
+	static const key lineFeed;
+	static const key verticalTabulator;
+	static const key carriageReturn;
+	static const key infoSeparatorOne;
 
-	static const key h_tab ;
+	static const key space;
+	static const key number_0;
+	static const key number_9;
+	static const key letter_A;
+	static const key letter_z;
 
-	static const key line_feed ;
+	// 'delete' is a reserved term
+	static const key del;
 
-	static const key v_tab ;
-	
-	static const key carriage_return ;
-
-	static const key info_sep_one ;
-
-	static const key space ;
-	static const key num_0 ;
-	static const key num_9 ;
-	static const key letter_A ;
-	static const key letter_z ;
-
-	static const key del ;
-
-	static const key apc ;
+	static const key apc;
 
 	// Member functions
 
-	static bool is_alphabetic(const key &letter) ;
-	static bool is_numeric(const key &letter) ;
-	static bool is_printable(const key &letter) ;
-	static bool is_newline(const key &letter) ;
+	static bool isAlphabetic(const key &letter);
+	static bool isNumeric(const key &letter);
+	static bool isPrintable(const key &letter);
+	static bool isNewline(const key &letter);
 
-} ;
+};
+
+CLOSE_WO_SYS
 
 #endif

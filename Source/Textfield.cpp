@@ -126,7 +126,7 @@ void Textfield::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 void Textfield::put_char(const sf::Uint32& character) {
 
 	// Check if the character is graphically representable.
-	if(Unicode::is_printable(character)) {
+	if(wo::sys::Unicode::isPrintable(character)) {
 	
 		// Store the letter inside buffer and hand it over to the text object,
 		// so it can be displayed as not submitted text.
@@ -140,7 +140,7 @@ void Textfield::put_char(const sf::Uint32& character) {
 		
 		}
 
-	} else if(Unicode::is_newline(character)) {
+	} else if(wo::sys::Unicode::isNewline(character)) {
 
 		// Text is submitted, store it inside the submitted text array and
 		// clear the content from the buffer and current text.
@@ -154,7 +154,7 @@ void Textfield::put_char(const sf::Uint32& character) {
 
 		// Check the intput for function keys (like "enter" or "f1", etc.)
 		// NOTE: Only backspace is supported at the moment.
-		if(character == Unicode::backspace && !(m_text_buff.isEmpty())) {
+		if(character == wo::sys::Unicode::backspace && !(m_text_buff.isEmpty())) {
 
 			// Delete last character.
 			m_text_buff.erase(m_text_buff.getSize()-1);

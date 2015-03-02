@@ -5,7 +5,7 @@ This is the WymonOrion project. Made with real men's sweat and the perfect pinch
 
 Current stable release: **angad 0.0.0**
 
-Current development snapshot: **kismed 2015_02_19**
+Current development snapshot: **kismed 2015_03_02**
 
 ## The Project
 

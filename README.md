@@ -17,7 +17,7 @@ Starting off as a little side project to test the 'time.h' or 'ctime' STL librar
 
 ## The Purpose
 
-Right now our little developers team is working on the idea of integrating a Python interpeter into WymonOrion, enabling the user to run Python scripts with all the utilities that the main application provides. This includes the SFML Graphics library, with integrated memory management for textures, an animation class, and so forth.
+Right now our little developer team is working on the idea of integrating a Python interpeter into WymonOrion, enabling the user to run Python scripts with all the utilities that the main application provides. This includes the SFML Graphics library, with integrated memory management for textures, an animation class, and so forth.
 
 Ultimately, we want to make WymonOrion an application hub for tools written in Python, where either you write them yourself or you take those already provided. It is all open-source, free for anyone to use and code for, so we hope that in future there is a lot of tools to be able to use.
 
@@ -31,11 +31,11 @@ Within the project's git repository, you will find a couple of different branche
 * **simmac** - Developer branch.
 * **yozoon** - Developer branch.
 
-The **master** branch will always provide you with the latest version of the WymonOrion project. However, if you want to try out our latest work, use the **dev** branch. Internally, we use this branch to work on the next release, merge independent work on the codebase, and so on. The other tree branches are working branches for our developers.
+The **master** branch will always provide you with the latest version of the WymonOrion project. However, if you want to try out our latest work, use the **dev** branch. Internally, we use this branch to work on the next release, merge independent work on the codebase, and so on. The other three branches are working branches for our developers.
 
 ## The Build
 
-Depending on your preferences, whether you're more the 'I look on the code and just appreciate it's beaty' kind of guy or more the 'doer' one, you might want to build the code. Luckily, this is a fairly easy thing to do.
+Depending on your preferences, whether you're more the 'I look on the code and just appreciate it's beauty' kind of guy or more the 'doer' one, you might want to build the code. Luckily, this is a fairly easy thing to do.
 
 First, make sure you've installed **CMake**, either the command line tool or the GUI application. We recommend the command line tool, but both options are fine and you can start building.
 
@@ -54,7 +54,7 @@ Done! Now you see why we prefer the command line tool.
 
 ### CMake GUI application
 
-Open the application, click 'Browse Source...'-button and select the folder with this file in it as the source directory. Then, click the 'Browse Build...'-button and select the 'Build' folder of this this project, which you can find in the directory of this file too. Hit 'Configure' and then 'Generate'. After this, depending on your settings, build it either with the 'make'-utility of the terminal or other applications.
+Open the application, click the 'Browse Source...'-button and select the folder with this file in it as the source directory. Then, click the 'Browse Build...'-button and select the 'Build' folder of this this project, which you can find in the directory of this file too. Hit 'Configure' and then 'Generate'. After this, depending on your settings, build it either with the 'make'-utility of the terminal or other applications.
 
 Done, but you might need to find tutorials for your specifc settings.
 
@@ -68,7 +68,7 @@ Every good code needs a good documentation, so this is what we have packed this 
 - Trypos and
 - Misspelings 
 
-If you want to have additional features like inheritance diagramms, call and caller graphs, and so on, you can also install **GraphViz** and then run Doxygen. This will create those documentation features as well. You might have to put the path to the GraphViz-executable into a PATH variable or something, so might want to look this up online, however, on Unix-type systems, this should be taken care of.
+If you want to have additional features like inheritance diagramms, call and caller graphs, and so on, you can also install **GraphViz** and then run Doxygen. This will create those documentation features as well. You might have to put the path to the GraphViz-executable into a PATH variable or something, so you might want to look this up online, however, on Unix-type systems, this should be taken care of for you.
 
 ## The Feedback
 
@@ -77,4 +77,5 @@ There is no improvement without the right amount of vitamin 'F', so we're please
 Thank you very much for your patience reading this file and also thank you for using WymonOrion, we do our best to make up for it's latin meaning as much as we can :).
 
 Sincerely,
+
 WymonOrion developer team

@@ -5,6 +5,16 @@ as an inspiration for our change log.
 
 _Little side note: Development snapshots are marked as 'kismed yyyy_mm_dd'_
 
+## kismed 2015_03_02
+
+### Changed
+
+- Utilitis module follows coding conventions.
+
+### Removed
+
+- 'Time_string_constants.cpp', which is now part of 'TimeString.cpp'.
+
 ## kismed 2015_02_19
 
 ### Added

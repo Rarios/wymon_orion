@@ -10,7 +10,7 @@
 signed int main ( void ) {
 
 	// Create Window
-	Orion Win(sf::VideoMode(600, 450), "WymonOrion - angad 0.0.0");
+	Orion Win(sf::VideoMode(600, 450), "WymonOrion - kismed 2015_02_19");
 
 	// Create Icon
 	if (!(Win.win_icon("Resources/wymonIcon.png"))) {

@@ -1,72 +1,80 @@
 WymonOrion project
 ==========
 
-The project is currently in its first major release state: **angad 0.0.0**
+This is the WymonOrion project. Made with real men's sweat and the perfect pinch of love since 1985 <3.
 
-This is the WymonOrion project repository. It consits of two major parts:
-The first part is a set of general purpose libraries. The second part is a set of code files utilizing those libs to build an application.
+Current stable release: **angad 0.0.0**
 
-# Project Branches
+Current development snapshot: **kismed 2015_02_19**
 
-Within the project's repository, you will find a couple of different branches. All of which have their own purpose, a short description is listed below:
+## The Project
+
+The name **'WymonOrion'** comes from the greek expression 'wymonere orionibus', meaning 'to be filled with awesomeness'. 
+
+Okay, good, we're just kidding. It's actually latin.
+
+Starting off as a little side project to test the 'time.h' or 'ctime' STL library, WymonOrion has since evolved into a playground for everything that interests us. We're a group of students with a passion for programming so finding a task, working on it and then adding the results to the WymonOrion application is what we love to spend our time with.
+
+## The Purpose
+
+Right now our little developers team is working on the idea of integrating a Python interpeter into WymonOrion, enabling the user to run Python scripts with all the utilities that the main application provides. This includes the SFML Graphics library, with integrated memory management for textures, an animation class, and so forth.
+
+Ultimately, we want to make WymonOrion an application hub for tools written in Python, where either you write them yourself or you take those already provided. It is all open-source, free for anyone to use and code for, so we hope that in future there is a lot of tools to be able to use.
+
+## The Branches
+
+Within the project's git repository, you will find a couple of different branches. All of which have their own purpose; a short description is given below:
 
 * **master** - Latest official release, consider it stable.
 * **dev** - Latest developement snapshot, may or may not be stable.
-* **agx_1** - Personal developer branch.
-* **simmac** - Personal developer branch.
-* **yozoon** - Personal developer branch.
+* **agx_1** - Developer branch.
+* **simmac** - Developer branch.
+* **yozoon** - Developer branch.
 
-The **master** branch will always provide you with the latest version of WymonOrion that you can use to work with. However, if you want the latest development snapshot, use the **dev** branch. Internally, we use this branch to work on the next release, merge independent work on the codebase, etc., so the code within this branch may not be fully stable. The other three branches are listed as 'Personal developer branch', because they are used by members of the developing team to work independently on different parts of the project. If you want to get insight into their current work, feel free to dive into one of these branches.
+The **master** branch will always provide you with the latest version of the WymonOrion project. However, if you want to try out our latest work, use the **dev** branch. Internally, we use this branch to work on the next release, merge independent work on the codebase, and so on. The other tree branches are working branches for our developers.
 
-# Libraries
+## The Build
 
-The libraries consist of the _graphics_ and the _utils_ library. The _graphics_ library partly uses the **SFML**, reimplements different classes provided by the **SFML** and adds an animation class on top of it. In addition to that, the _graphics_ lib has special data structures, not provided by the **SFML** itself, taking care of memory management for textures and animation frames.
-Note that the libraries can be used without the application, they only depend on the **SFML**.
+Depending on your preferences, whether you're more the 'I look on the code and just appreciate it's beaty' kind of guy or more the 'doer' one, you might want to build the code. Luckily, this is a fairly easy thing to do.
 
-# Application
+First, make sure you've installed **CMake**, either the command line tool or the GUI application. We recommend the command line tool, but both options are fine and you can start building.
 
-It is hard to describe what the main purpose or the main functionality of the application is. At the moment, it is sort of a playground to test different ideas. As already mentioned, the application uses the libraries from above.
+### CMake command line
 
-# Building
+The following description will assume you have a Linux-type terminal installed on your computer. OS X and Windows users might want to go to the CMake GUI description. 
 
-Depending on what you want to do with this project repository, building the main application, building only the libraries or even building your own project with self-written source files utilizing the provided libs, different _CMakeLists.txt_ files are provided in the project root. These files are as follows:
-
-* CMakeLists.txt.all - Builds the application and the libraries
-* CMakeLists.txt.libsonly - Builds only the libraries
-* CMakeLists.txt.proj - Build your own project with the provided libraries
-
-To activate your preferred build, remove the last part of the filename, so you end up having a _CMakeLists.txt_ file. Read the instructions at the top of the file. After that you should be ready to build.
-The recommended way to build the project is to go into the _build_ directory and execute the following commands (on a Linux-like system):
+Put yourself into the 'Build' folder of this project and run the following commands:
 
 ```
 cmake ..
 make
 ```
 
-or to use the other ways of building a project that uses CMake.
+Done! Now you see why we prefer the command line tool.
 
-# Tools
+### CMake GUI application
 
-This project uses two well known tools: **CMake** and **Doxygen**. This means that it provides a _CMakeLists.txt_ file, as well as a doxygen configuration file, _wo.doxyfile_. Building has already been covered above, but because the code is (mostly) well documented, you can generate an HTML documentation with just one line in the terminal (on a Linux-like system) as well:
+Open the application, click 'Browse Source...'-button and select the folder with this file in it as the source directory. Then, click the 'Browse Build...'-button and select the 'Build' folder of this this project, which you can find in the directory of this file too. Hit 'Configure' and then 'Generate'. After this, depending on your settings, build it either with the 'make'-utility of the terminal or other applications.
 
-```
-doxygen wo.doxyfile
-```
+Done, but you might need to find tutorials for your specifc settings.
 
-or, again, use the other ways to run Doxygen. Note that this documentation may also include graphs related to the code. In order to generate them, simply install **Graphviz** on your computer and make sure it is in the system's _PATH_ variable.
+## The Documentation
 
-I would also like to mention that this project has been written in **GVIM**, a version of the well known **VIM** editor. I believe that those who have worked only little with the editor will think that this is total madness. I also believe that those who have worked somewhat more with **VIM**-like editors will understand why I think it is the only right choice.
+Every good code needs a good documentation, so this is what we have packed this project with. We use inline code documentation and **Doxygen** for the final documentation compilation. You can look online for a tutorial on how to use Doxygen. Once you know how to use it, the file you're looking for is 'WymonOrion.doxyfile', which is in the same directory as this file. Feed Doxygen with it and you'll have a full HTML documentation of the project including features like: 
 
-# ToDo
+- Short function descriptions
+- Long function descriptions
+- Parameter and Return descriptions
+- Trypos and
+- Misspelings 
 
-Please note that I am still a student, currently in the year of my final exams. Therefore, my preferred way of working is the **ASAP** style, as soon as possible fixing and implementing of as much as possible. Also note that, even though this repository is fairly young, the code has been written in a couple of months and only recently been made into a git repository.
+If you want to have additional features like inheritance diagramms, call and caller graphs, and so on, you can also install **GraphViz** and then run Doxygen. This will create those documentation features as well. You might have to put the path to the GraphViz-executable into a PATH variable or something, so might want to look this up online, however, on Unix-type systems, this should be taken care of.
 
-- [x] Insert the new implementation of the _graphics_ and the _utils_ library.
-- [x] Adjust legacy code from application, so it will work with the new library implementation.
-- [ ] Use a single, clear coding convention (currently this is not the case, which is due to the code being written over a couple of months).
-- [ ] Test builds on different platforms.
-- [ ] Remove Herobrine.
+## The Feedback
 
-If there is anything you want to tell me about the project, from feedback to contribution, here is the address to do so: **wymon.orion@gmail.com**
+There is no improvement without the right amount of vitamin 'F', so we're pleased to get feedback of any kind on the WymonOrion project. Send your feedback to the following address: **wymon.orion@gmail.com**
 
-Best, Sebastian
+Thank you very much for your patience reading this file and also thank you for using WymonOrion, we do our best to make up for it's latin meaning as much as we can :).
+
+Sincerely,
+WymonOrion developer team

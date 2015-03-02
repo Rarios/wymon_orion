@@ -9,30 +9,24 @@ _Little side note: Development snapshots are marked as 'kismed yyyy_mm_dd'_
 
 ### Added
 
-	- Made a change log. Obviously.
-	- CMakeLists.txt
-	- Namespaces: wo - general WymonOrion namespace; any code will be under
-	  this namespace, sys - 'System' module namespace, win - 'Window' module
-	  namespace, gfx - 'Graphics' module namespace.
-	- 'Include/Namespace.hpp' for WymonOrion specific namespace macros.
-	- 'DeveloperTools' folder.
-	- 'DeveloperTools/ClearBuild.py', a script to clear the 'Build' folder.
+- Made a change log. Obviously.
+- CMakeLists.txt
+- Namespaces: **wo** - general WymonOrion namespace; any code will be under this namespace, **sys** - 'System' module namespace, **win** - 'Window' module namespace, **gfx** - 'Graphics' module namespace.
+- 'Include/Namespace.hpp' for WymonOrion specific namespace macros.
+- 'DeveloperTools' folder.
+- 'DeveloperTools/ClearBuild.py', a script to clear the 'Build' folder.
 	
 
 ### Changed
 
-	- Graphics module follows coding conventions.
-	- Renamed folders. Written names out, changed them to uppercase, so they
-	  fit the coding conventions. NOTE for repository users: you might have to
-	  clear the local repository in order for the name changes to work.
-	- Renamed 'wo.doxyfile' to 'WymonOrion.doxyfile'.
-	- '.gitignore' file will now make 'git' ignore any files other than the
-	  'Resource' folder inside the 'Build' folder. You can now use the normal
-	  'Build' folder for debugging.
-	- New window icon (thanks to yozoon :3)
-	- Rewritten 'README.md'.
+- Graphics module follows coding conventions.
+- Renamed folders. Written names out, changed them to uppercase, so they fit the coding conventions. NOTE for repository users: you might have to clear the local repository in order for the name changes to work.
+- Renamed 'wo.doxyfile' to 'WymonOrion.doxyfile'.
+- '.gitignore' file will now make 'git' ignore any files other than the 'Resource' folder inside the 'Build' folder. You can now use the normal 'Build' folder for debugging.
+- New window icon (thanks to yozoon :3)
+- Rewritten 'README.md'.
 
 ### Removed
 
-	- CMakeLists.txt.all, CMakeLists.txt.libsonly, CMakeLists.txt.proj.
-	- 'jobs' folder.
+- CMakeLists.txt.all, CMakeLists.txt.libsonly, CMakeLists.txt.proj.
+- 'jobs' folder.

@@ -1,11 +1,11 @@
 WymonOrion project
 ==========
 
-This is the WymonOrion project. Made with real men's sweat and the perfect pinch of love since 1985 <3.
+This is the WymonOrion project. Made from real men's sweat and the perfect pinch of love since 1985 <3.
 
 Current stable release: **angad 0.0.0**
 
-Current development snapshot: **kismed 2015_02_19**
+Current development snapshot: **kismed 2015_03_02**
 
 ## The Project
 
@@ -64,18 +64,17 @@ Every good code needs a good documentation, so this is what we have packed this 
 
 - Short function descriptions
 - Long function descriptions
-- Parameter and Return descriptions
 - Trypos and
 - Misspelings 
 
-If you want to have additional features like inheritance diagramms, call and caller graphs, and so on, you can also install **GraphViz** and then run Doxygen. This will create those documentation features as well. You might have to put the path to the GraphViz-executable into a PATH variable or something, so you might want to look this up online, however, on Unix-type systems, this should be taken care of for you.
+If you want to have additional features like inheritance diagramms, call and caller graphs, and so on, you can also install **GraphViz** and then run Doxygen. This will create those documentation features as well. Note that you might have to put the path to the GraphViz-executable into a PATH variable in order to make sure Doxygen knows where to find GraphViz, so you might want to look this up online. On Unix-type systems, however, this should be done for you.
 
 ## The Feedback
 
-There is no improvement without the right amount of vitamin 'F', so we're pleased to get feedback of any kind on the WymonOrion project. Send your feedback to the following address: **wymon.orion@gmail.com**
+There is no such thing as improvement without the right amount of 'Vitamin F', so we're pleased to get feedback of any kind on the WymonOrion project. Send your feedback to the following address: **wymon.orion@gmail.com**
 
 Thank you very much for your patience reading this file and also thank you for using WymonOrion, we do our best to make up for it's latin meaning as much as we can :).
 
 Sincerely,
 
-WymonOrion developer team
+WymonOrion Developer Team

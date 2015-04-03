@@ -9,5 +9,9 @@
 error_log.txt
 # Ignore all test builds.
 /test_build
-# Ignore CMakeLists file which is used to build test executables.
-CMakeLists.txt
+# Ignore all build files, built during testing (Linux tested only).
+/Build/CMakeFiles
+/Build/Makefile
+/Build/WymonOrion
+/Build/CMakeCache.txt
+/Build/cmake_install.cmake

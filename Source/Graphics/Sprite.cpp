@@ -44,7 +44,7 @@ Sprite::Sprite() {
 * \param texture Source texture.
 * \sa setTexture
 */
-Sprite::Sprite(const Texture& texture) {
+Sprite::Sprite(const TexturePointer& texture) {
 
 	mTexture = nullptr;
 	mTextureRect = IntRect();
@@ -60,7 +60,7 @@ Sprite::Sprite(const Texture& texture) {
 * \param texture Source texture.
 * \param rect Rectangle which defines the visible part of the texture.
 */
-Sprite::Sprite(const Texture& texture, const IntRect& rect) {
+Sprite::Sprite(const TexturePointer& texture, const IntRect& rect) {
 
 	mTexture = NULL;
 	mTextureRect = IntRect();
@@ -77,7 +77,7 @@ Sprite::Sprite(const Texture& texture, const IntRect& rect) {
 */
 Sprite::~Sprite(void) {
 
-	TextureRepository::tidy();
+	TextureManager::tidy();
 
 }
 

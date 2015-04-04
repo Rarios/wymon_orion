@@ -57,6 +57,9 @@ endif()
 
 # Create the executable, wymon_orion.
 set(WO_EXEC "${PROJECT_NAME}")
-file(GLOB WO_EXEC_FILES FILE_MATCH PATTER "${WO_SRC_DIR}/*.cpp")
-add_executable(${WO_EXEC} ${WO_EXEC_FILES})
+add_executable(${WO_EXEC}
+${WO_SRC_DIR}/MinimumTextureManager.cpp
+${WO_SRC_DIR}/Orion.cpp
+${WO_SRC_DIR}/Textfield.cpp)
+
 target_link_libraries(${WO_EXEC} ${WO_GRAPHICS_LIB} ${WO_UTILS_LIB})

@@ -1,7 +1,7 @@
 // texture_repository.hpp
 
-#ifndef GRAPHICS_TEXTUREREPOSITORY
-#define GRAPHICS_TEXTUREREPOSITORY
+#ifndef GRAPHICS_TEXTUREMANAGER
+#define GRAPHICS_TEXTUREMANAGER
 
 #include <string>
 #include <unordered_map>

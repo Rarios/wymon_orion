@@ -11,8 +11,8 @@
 #ifndef GRAPHICS_TEXTURABLE
 	#include "Texturable.hpp"
 #endif
-#ifndef GRAPHICS_TEXTUREREPOSITORY
-	#include "TextureRepository.hpp"
+#ifndef GRAPHICS_TEXTUREMANAGER
+	#include "TextureManager.hpp"
 #endif
 #ifndef GRAPHICS_FRAMEREPOSITORY
 	#include "FrameRepository.hpp"
@@ -36,8 +36,8 @@ public:
     // Member functions.
 
     Animation();
-    Animation(const Texture& texture);
-    Animation(const Texture& texture, const IntRect& rect);
+    Animation(const TexturePointer& texture);
+    Animation(const TexturePointer& texture, const IntRect& rect);
     ~Animation();
 
     std::size_t insert(const Frame& frm, IntRect rect = IntRect());

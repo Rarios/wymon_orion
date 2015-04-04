@@ -46,7 +46,7 @@ Animation::Animation() : mMaximumSize() {
 * Constructs Animation with given texture.
 * \param texture Texture which will be used for the Animation.
 */
-Animation::Animation(const Texture& texture) : mMaximumSize() {
+Animation::Animation(const TexturePointer& texture) : mMaximumSize() {
 
     mTexture = nullptr;
 
@@ -68,7 +68,7 @@ Animation::Animation(const Texture& texture) : mMaximumSize() {
 * \param texture Texture which will be used for the Animation.
 * \param rect Texture rectangle for displayed part of Animation.
 */
-Animation::Animation(const Texture& texture, const IntRect& rect) : 
+Animation::Animation(const TexturePointer& texture, const IntRect& rect) : 
 					 mMaximumSize() {
 
     mTexture = nullptr;

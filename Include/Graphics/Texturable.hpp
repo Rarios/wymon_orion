@@ -36,8 +36,8 @@
 #ifndef WO_NAMESPACE
 	#include "Namespace.hpp"
 #endif
-#ifndef GRAPHICS_TEXTUREREPOSITORY
-	#include "TextureRepository.hpp"
+#ifndef GRAPHICS_TEXTUREMANAGER
+	#include "TextureManager.hpp"
 #endif
 
 // Only temporarily during integration of coding conventions.
@@ -61,20 +61,7 @@ public :
 	virtual ~Texturable(void) {
 	}
 
-	bool loadFromFile(const std::string& filename,
-              const IntRect& displ_rect = IntRect(),
-			  const IntRect& load_rect = IntRect());
-	bool loadFromMemory(const void* data, std::size_t size,
-              const IntRect& displ_rect = IntRect(),
-			  const IntRect& load_rect = IntRect());
-	bool loadFromStream(InputStream& stream,
-			  const IntRect& displ_rect = IntRect(),
-			  const IntRect& load_rect = IntRect());
-	bool loadFromImage(const Image& image,
-			  const IntRect& displ_rect = IntRect(),
-			  const IntRect& load_rect = IntRect());
-
-	void setTexture(const Texture& texture, bool resetRect = false);
+	void setTexture(const TexturePointer& texture, bool resetRect = false);
 	//! Set the render rectangle, which the sprite will display.
 	/*!
 	* ATTENTION: This is a pure virtual function. The classes
@@ -83,7 +70,7 @@ public :
 	virtual void setTextureRect(const IntRect& rect) = 0;
     void setColor(const Color& color);
 
-	const Texture* getTexture() const;
+	const TexturePointer& getTexture() const;
 	const IntRect& getTextureRect() const;
     const Color& getColor() const;
 	//! Get the local boundaries rectangle.

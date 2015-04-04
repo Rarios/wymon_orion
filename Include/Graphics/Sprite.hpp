@@ -55,8 +55,8 @@ class Sprite : public Texturable {
 public:
 
 	Sprite(void);
-    explicit Sprite(const Texture& texture);
-    Sprite(const Texture& texture, const IntRect& rect);
+    explicit Sprite(const TexturePointer& texture);
+    Sprite(const TexturePointer& texture, const IntRect& rect);
 	~Sprite(void);
 
 	void setTextureRect(const IntRect& rect);

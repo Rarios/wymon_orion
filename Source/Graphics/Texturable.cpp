@@ -32,120 +32,6 @@
 
 OPEN_WO_GFX
 
-//! Load a texture from file into the sprite.
-/*!
-* Loads a texture object from a file and stores a pointer to it
-* inside of the sprite. With the two last arguments, it can be specified how
-* much of the image should be loaded, and how much of the loaded content should
-* be displayed.
-* \param filename Name of the file from which to load.
-* \param displayRect Area of texture (applied loadRect) to display.
-* \param loadRect Area of image (file) to load.
-* \return True on success.
-*/
-/* \todo Apply the better style of the load function (below) to all other
-load functions */
-bool Texturable::loadFromFile(const std::string& filename,
-					   const IntRect& displayRect,
-					   const IntRect& loadRect) {
-
-    if (!TextureRepository::loadFromFile(&this->mTexture, filename, loadRect)) {
-
-        return false;
-
-    }
-
-	// THIS LINE CAUSE THE SPRITE NOT TO APPEAR ON SCREEN. UNCOMMENT IT TO FIX
-	// THE ERROR.
-	//setTexture(*(mTexture.get()));
-	
-	applyDisplayRect(displayRect);
-
-	return true;
-
-}
-
-//! Load a texture from a file in memory.
-/*!
-* Loads a texture object from a file in memory and stores a pointer to it
-* inside of the sprite. With the two last arguments, it can be specified how
-* much of the image should be loaded, and how much of the loaded content should
-* be displayed.
-* \param data Data in memory from which to load.
-* \param size Size of the block of data.
-* \param displayRect Area of texture (applied loadRect) to display.
-* \param loadRect Area of image (file) to load.
-* \return True on success.
-*/
-bool Texturable::loadFromMemory(const void* data, std::size_t size,
-					   const IntRect& displayRect,
-					   const IntRect& loadRect) {
-
-    if (!TextureRepository::loadFromMemory(&this->mTexture, data, size, loadRect)) {
-
-        return false;
-
-    }
-
-	applyDisplayRect(displayRect);
-
-	return true;
-
-}
-
-//! Load a texture from a custom stream.
-/*!
-* Loads a texture object from a custrom stream and stores a pointer to it
-* inside of the sprite. With the two last arguments, it can be specified how
-* much of the image should be loaded, and how much of the loaded content should
-* be displayed.
-* \param stream Custom stream from which to load.
-* \param displayRect Area of texture (applied loadRect) to display.
-* \param loadRect Area of image (file) to load.
-* \return True on success.
-*/
-bool Texturable::loadFromStream(InputStream& stream, const IntRect& displayRect,
-					   const IntRect& loadRect) {
-
-    if (!TextureRepository::loadFromStream(&this->mTexture, stream, loadRect)) {
-
-        return false;
-
-    }
-
-	applyDisplayRect(displayRect);
-
-	return true;
-
-}
-
-//! Load a texture from an image.
-/*!
-* Loads a texture object from an image and stores a pointer to it
-* inside of the sprite. With the two last arguments, it can be specified how
-* much of the image should be loaded, and how much of the loaded content should
-* be displayed.
-* \param image Image from which to load.
-* \param displayRect Area of texture (applied loadRect) to display.
-* \param loadRect Area of image (file) to load.
-* \return True on success.
-*/
-bool Texturable::loadFromImage(const Image& image, 
-					   const IntRect& displayRect,
-					   const IntRect& loadRect) {
-
-    if (!TextureRepository::loadFromImage(&this->mTexture, image, loadRect)) {
-
-        return false;
-
-    }
-
-	applyDisplayRect(displayRect);
-
-	return true;
-
-}
-
 //! Change the source texture.
 /*!
 * The texture argument must not be destroyed as long as the Sprite
@@ -160,16 +46,16 @@ bool Texturable::loadFromImage(const Image& image,
 * \param resetRect If true, the visible (drawn) rectangle is adjusted.
 * \sa setTextureRect
 */
-void Texturable::setTexture(const Texture& texture, bool resetRect)
+void Texturable::setTexture(const TexturePointer& texture, bool resetRect)
 {
 
     // Recompute the texture area if requested, or if there is a valid texture,
     // but there has not been a rect before.
 	if (resetRect || (nullptr != mTexture && (mTextureRect == IntRect())))
-        setTextureRect(IntRect(0, 0, texture.getSize().x, texture.getSize().y));
+        setTextureRect(IntRect(0, 0, texture->getSize().x, texture->getSize().y));
 
     // Assign the new texture.
-    mTexture = std::make_shared<Texture>(texture);
+    mTexture = texture;
 
 }
 
@@ -201,10 +87,10 @@ void Texturable::setColor(const Color& color)
 * with this funtion.
 * \return Pointer to the sprite's texture.
 */
-const Texture* Texturable::getTexture() const
+const TexturePointer& Texturable::getTexture() const
 {
 
-    return mTexture.get() ;
+    return mTexture;
 
 }
 

@@ -36,7 +36,8 @@ add_library(${WO_GRAPHICS_LIB}
 	    ${WO_GRAPHICS_SRC_DIR}/Sprite.cpp
 	    ${WO_GRAPHICS_SRC_DIR}/Text.cpp
 	    ${WO_GRAPHICS_SRC_DIR}/Texturable.cpp
-		${WO_GRAPHICS_SRC_DIR}/TextureRepository.cpp)
+		${WO_GRAPHICS_SRC_DIR}/TextureRepository.cpp
+		${WO_GRAPHICS_SRC_DIR}/TextureManager.cpp)
 
 # Create lib for all items related to general utilities.
 set(WO_UTILS_LIB "wo_utils")

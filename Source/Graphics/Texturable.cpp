@@ -59,7 +59,7 @@ bool Texturable::loadFromFile(const std::string& filename,
 	// THE ERROR.
 	//setTexture(*(mTexture.get()));
 	
-	applyDisplayRect(displayRect);	
+	applyDisplayRect(displayRect);
 
 	return true;
 

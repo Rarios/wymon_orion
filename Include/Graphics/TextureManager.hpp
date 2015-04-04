@@ -45,13 +45,13 @@ public :
 
 	// Member functions
 
-	static bool loadFromFile(TexturePointer* texturePtr, const std::string& filename,
+	static bool loadFromFile(const std::string& filename,
 					 const std::string& key, const IntRect& area = IntRect());
-	static bool loadFromMemory(TexturePointer* texturePtr, const void* data, std::size_t size,
+	static bool loadFromMemory(const void* data, std::size_t size,
 					 const std::string& key, const IntRect& area = IntRect());
-	static bool loadFromStream(TexturePointer* texturePtr, InputStream& stream,
+	static bool loadFromStream(InputStream& stream,
 					 const std::string& key, const IntRect& area = IntRect());
-	static bool loadFromImage(TexturePointer* texturePtr, const Image& image,
+	static bool loadFromImage(const Image& image,
 					 const std::string& key, const IntRect& area = IntRect());
 
 	static bool replaceFromFile(const std::string& key, const std::string& filename, 

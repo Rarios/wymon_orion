@@ -47,7 +47,7 @@ std::size_t TextureManager::mDestructionCount = 0;
 * \param area Area of the image to load.
 * \return True on success. False if either key is taken, or file could not be loaded.
 */
-bool TextureManager::loadFromFile(TexturePointer* texturePtr, const std::string& filename,
+bool TextureManager::loadFromFile(const std::string& filename,
                               const std::string& key, const IntRect& area) {
 
     if(!isKeyUsed(key)) {
@@ -66,9 +66,6 @@ bool TextureManager::loadFromFile(TexturePointer* texturePtr, const std::string&
         return false;
 
     }
-
-    // Reference the stored texture, increases use_count().
-    *texturePtr = mTextures[key];
 
     /*std::cout << "Size of the texture: ";
     std::cout << mTextures.back()->getSize().x << ", ";
@@ -92,7 +89,7 @@ bool TextureManager::loadFromFile(TexturePointer* texturePtr, const std::string&
 * \param area Area of the image to load.
 * \return True on success.
 */
-bool TextureManager::loadFromMemory(TexturePointer* texturePtr, const void* data,
+bool TextureManager::loadFromMemory(const void* data,
                              std::size_t size, const std::string& key, const IntRect& area) {
 
 	if(!isKeyUsed(key)) {
@@ -112,9 +109,6 @@ bool TextureManager::loadFromMemory(TexturePointer* texturePtr, const void* data
 
     }
 
-    // Reference the stored texture, increases use_count().
-    *texturePtr = mTextures[key];
-
     return true;
 
 }
@@ -132,9 +126,8 @@ bool TextureManager::loadFromMemory(TexturePointer* texturePtr, const void* data
 * \param area Area of the image to load.
 * \return True on success.
 */
-bool TextureManager::loadFromStream(TexturePointer* texturePtr,
-                                      InputStream& stream, const std::string& key,
-                                      const IntRect& area) {
+bool TextureManager::loadFromStream(InputStream& stream, const std::string& key,
+                                     const IntRect& area) {
 
 	if(!isKeyUsed(key)) {
 
@@ -153,9 +146,6 @@ bool TextureManager::loadFromStream(TexturePointer* texturePtr,
 
     }
 
-    // Reference the stored texture, increases use_count().
-    *texturePtr = mTextures[key];
-
     return true;
 
 }
@@ -173,9 +163,8 @@ bool TextureManager::loadFromStream(TexturePointer* texturePtr,
 * \param area Area of the image to load.
 * \return True on success.
 */
-bool TextureManager::loadFromImage(TexturePointer* texturePtr,
-                                      const Image& image, const std::string& key,
-                                      const IntRect& area) {
+bool TextureManager::loadFromImage(const Image& image, const std::string& key,
+                                    const IntRect& area) {
 
 	if(!isKeyUsed(key)) {
 
@@ -193,9 +182,6 @@ bool TextureManager::loadFromImage(TexturePointer* texturePtr,
         return false;
 
     }
-
-    // Reference the stored texture, increases use_count().
-    *texturePtr = mTextures[key];
 
     return true;
 

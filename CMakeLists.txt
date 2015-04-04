@@ -58,7 +58,7 @@ endif()
 # Create the executable, wymon_orion.
 set(WO_EXEC "${PROJECT_NAME}")
 add_executable(${WO_EXEC}
-${WO_SRC_DIR}/MinimumTextureManager.cpp
+${WO_SRC_DIR}/main.cpp
 ${WO_SRC_DIR}/Orion.cpp
 ${WO_SRC_DIR}/Textfield.cpp)
 

@@ -5,7 +5,7 @@
 *.[oa]
 *.lib
 # Ignore the doxygen documentation files.
-/doc
+/Documentation
 DocumentationErrorLog.txt
 # Ignore all build files, built during testing (Linux tested only).
 /Build/CMakeFiles

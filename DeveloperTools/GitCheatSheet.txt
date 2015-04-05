@@ -3,5 +3,8 @@
 # change dirty solutions into beautiful masterpieces. Only one thing I beg you
 # to do: keep the syntax of this file, for the sake of readability.
 
+# Delete a local branch.
+git branch -d localBranchName
+
 # List all the files that are tracked by the branch 'exampleBranch'.
 git ls-tree -r exampleBranch --name-only

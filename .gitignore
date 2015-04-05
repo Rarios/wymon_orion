@@ -6,9 +6,7 @@
 *.lib
 # Ignore the doxygen documentation files.
 /doc
-error_log.txt
-# Ignore all test builds.
-/test_build
+DocumentationErrorLog.txt
 # Ignore all build files, built during testing (Linux tested only).
 /Build/CMakeFiles
 /Build/Makefile
